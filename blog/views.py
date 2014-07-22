@@ -5,7 +5,7 @@ from django.shortcuts import render, render_to_response
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.core.urlresolvers import reverse
 
-from blog.models import *
+from .models import Post
 
 def blog(request):
     """Main listing."""
