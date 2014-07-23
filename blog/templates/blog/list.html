@@ -28,7 +28,7 @@
 		<div class="author">{{ post.author }}</div>
                 <ul>
                     <div class="time">{{ post.created}}</div>
-                    <div class="body">{{ post.body|truncatedwords_html:20|linebreaks }}</div>
+                    <div class="body">{{ post.body|truncatedword_html:20|linebreaks }}</div>
 		    
                     <div class="commentlink"><a href="{% url 'post' post.id %}">Comments</a></div><br>
                 </ul>
