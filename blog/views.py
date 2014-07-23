@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response, HttpResponseRedirect
+from django.shortcuts import render, render_to_response, HttpResponseRedirect, redirect
 
 # Create your views here.
 
@@ -43,7 +43,7 @@ def add_comment(request, post_id):
         comment = cf.save(commit=False)
         comment.author = author
         comment.save()
-    return HttpResponseRedirect(reverse("sampleblog.blog.views.post", args=[post_id]))
+    return redirect("main")
 
 def blog(request):
     """Main listing."""
