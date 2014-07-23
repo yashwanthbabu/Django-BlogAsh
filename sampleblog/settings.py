@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from os.path import join
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -27,7 +28,9 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (
-    '/home/agiliq/sampleblog/blog/templates/blog/',
+    
+    os.path.join(BASE_DIR,  'blog/templates/blog'),
+    
 
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.

@@ -1,11 +1,49 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, HttpResponseRedirect
 
 # Create your views here.
 
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.core.urlresolvers import reverse
+from django.core.context_processors import csrf
 
-from blog.models import *
+from .models import Post, Comment
+from django.forms import ModelForm
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        exclude = ["post"]
+
+
+
+
+
+def post(request, post_id):
+    """Single post with comments and a comment form."""
+    
+    post = Post.objects.get(pk=post_id)
+    comments = Comment.objects.filter(post=post)
+    d = dict(post=post, comments=comments, form=CommentForm(), user=request.user)
+    d.update(csrf(request))
+    print request
+    return render_to_response("post.html", d)
+
+def add_comment(request, post_id):
+    """Add a new comment."""
+    p = request.POST
+
+    if p.has_key("body") and p["body"]:
+        author = "Anonymous"
+        if p["author"]: author = p["author"]
+
+        comment = Comment(post=Post.objects.get(pk=post_id))
+        cf = CommentForm(p, instance=comment)
+        cf.fields["author"].required = False
+
+        comment = cf.save(commit=False)
+        comment.author = author
+        comment.save()
+    return HttpResponseRedirect(reverse("sampleblog.blog.views.post", args=[post_id]))
 
 def blog(request):
     """Main listing."""
@@ -23,3 +61,4 @@ def blog(request):
         posts = paginator.page(paginator.num_pages)
 
     return render_to_response("list.html", dict(posts=posts, user=request.user))
+

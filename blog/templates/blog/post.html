@@ -1,0 +1,48 @@
+{% extends "list.html" %}
+
+{% block content %}
+    <div class="main"> 
+<!-- Posts  -->
+        <ul>
+            
+                <div class="title">{{ post.title }}</div>
+                <ul>
+                    <div class="time">{{ post.created}}</div>
+                    <div class="body">{{ post.body|linebreaks }}</div>
+
+                </ul>
+            
+        </ul>
+
+	<!-- Comments  -->
+	<ul>
+		{% if comments %}
+    			<p>Comments:</p>
+		{% endif %}
+				
+		{% for comment in comments %}
+    			<div class="comment">
+				
+        			<div class="time">{{ comment.created }} | {{ comment.author }}</div>
+        			<div class="body">{{ comment.body|linebreaks }}</div>
+    			</div>
+		{% endfor %}
+
+		<div id="addc">Add a comment</div><br>
+		<ul>
+		<!-- Comment form  -->
+			<form action="{% url 'add_comment' post.id %}" method="POST">{% csrf_token %}
+    				<div id="cform">
+        				Name: {{ form.author }} 
+
+        				<p>{{ form.body }}</p>
+    				</div>
+    				<div id="submit"><input type="submit" value="Submit"></div>
+			</form> <br>
+			
+			<a href="{% url 'main' %}">Back to Blog Frontpage</a>
+		</ul>
+	</ul>
+	</div>
+
+{% endblock %}
