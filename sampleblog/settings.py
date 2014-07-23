@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (
     
-    os.path.join(BASE_DIR, '/blog/templates/blog'),
+    os.path.join(BASE_DIR, 'blog/templates/blog'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
