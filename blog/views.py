@@ -1,5 +1,6 @@
 from django.shortcuts import render, render_to_response, HttpResponseRedirect, redirect
-
+import time
+from calendar import month_name
 # Create your views here.
 
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
@@ -86,5 +87,5 @@ def blog(request):
     except (InvalidPage, EmptyPage):
         posts = paginator.page(paginator.num_pages)
 
-    return render_to_response("list.html", dict(posts=posts, user=request.user
-                                                post_list=posts.objects_list, months=mkmonth_lst()))
+    return render_to_response("list.html", dict(posts=posts, user=request.user,
+                                                post_list=posts.object_list, months=mkmonth_lst()))
