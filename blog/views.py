@@ -34,7 +34,8 @@ def add_comment(request, post_id):
 
     if p.has_key("body") and p["body"]:
         author = "Anonymous"
-        if p["author"]: author = p["author"]
+        if p["author"]:
+            author = p["author"]
 
         comment = Comment(post=Post.objects.get(pk=post_id))
         cf = CommentForm(p, instance=comment)
