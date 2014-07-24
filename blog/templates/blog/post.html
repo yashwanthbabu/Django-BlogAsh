@@ -51,7 +51,7 @@
 		<div id="addc">Add a comment</div><br>
 		<ul>
 		<!-- Comment form  -->
-			<form action="{% url 'add_comment' post.id %}" method="POST">
+			<form action="{% url 'add_comment' post.id %}" method="POST">{% csrf_token %}
     				<div id="cform">
         				Name: {{ form.author }} 
 
