@@ -1,6 +1,4 @@
 Django==1.6.5
-python==2.7.5+
-git version==1.8.3.2
 south
 argparse==1.2.1
 mercurial==2.6.3
