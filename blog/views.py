@@ -9,15 +9,6 @@ from django.core.context_processors import csrf
 from .models import Post, Comment
 from django.forms import ModelForm
 
-class CommentForm(ModelForm):
-    class Meta:
-        model = Comment
-        exclude = ["post"]
-
-
-
-
-
 def post(request, post_id):
     """Single post with comments and a comment form."""
     
