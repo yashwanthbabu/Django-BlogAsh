@@ -1,5 +1,17 @@
 {% extends "base.html" %}
 
+{% block sidebar %}
+    <style type="text/css">
+        #sidebar { float: right; border: 1px dotted #ccc; padding: 4px; }
+    </style>
+    <div id="sidebar">
+        Monthly Archive<br />
+        {% for month in months %}
+            <a href="{% url 'month' month.0 month.1 %}">{{ month.0 }} {{ month.2 }}</a> <br />
+        {% endfor %}
+    </div>
+{% endblock %}
+
 {% block content %}
 
     <style type="text/css">
