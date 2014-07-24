@@ -7,7 +7,7 @@
     <div id="sidebar">
         Monthly Archive<br />
         {% for month in months %}
-            <a href="{% url 'month' month.0 month.1 %}">{{ month.0 }} {{ month.2 }}</a> <br />
+            <a href="{% url 'month' month.0 month.1 %}">{{ month.0 }} - {{ month.2 }}</a> <br />
         {% endfor %}
     </div>
 {% endblock %}
