@@ -1,18 +1,19 @@
 from django.db import models
-from django.contrib import admin
+from django.contrib.auth.models import User
+from django.conf import settings
 
 # Create your models here.
 
+
 class Post(models.Model):
     title = models.CharField(max_length=60)
-
+    user = models.ForeignKey(User, null=True)
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-    
-
 
     def __unicode__(self):
         return self.title
+
 
 class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)

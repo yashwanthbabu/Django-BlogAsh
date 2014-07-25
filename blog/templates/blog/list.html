@@ -1,5 +1,27 @@
 {% extends "base.html" %}
 
+<head>
+
+<script>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	
+</script>
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+{% block sidebar %}
+    <style type="text/css">
+        #sidebar { float: right; border: 1px dotted #ccc; padding: 4px; }
+    </style>
+    <div id="sidebar">
+        Monthly Archive<br />
+        {% for month in months %}
+            <a href="{% url 'month' month.0 month.1 %}">{{ month.0 }} - {{ month.2 }}</a> <br />
+        {% endfor %}
+    </div>
+{% endblock %}
+
 {% block content %}
 
 	<style type="text/css">
@@ -24,14 +46,15 @@
         <!-- Posts  -->
         <ul>
             {% for post in posts.object_list %}
-                <div class="title">{{ post.title }}</div>
-
+		
+                <div class="title">{{ post.title }}</div><br>
+		<div class="user">By: <a href="{%url 'aboutme' %}"> {{ post.user }} </a></div>
                 <ul>
-                    <div class="time">{{ post.created}}</div>
+                    <div class="time">{{ post.created|linebreaks}}</div>
                     <div class="body">{{ post.body|truncatewords_html:20|linebreaks }}</div>
 		    
 
-		    <div class="seemore"><a href="{% url 'post' post.id %}"> more info..>></a></div><br>
+		    <div class="seemore"><a href="{% url 'post' post.id %}"> more info..>> </a></div><br>
                 </ul>
             {% endfor %}
         </ul>
@@ -39,7 +62,7 @@
 	
 
         <!-- Next/Prev page links  -->
-        {% if posts.object_list and posts.paginator.num_pages > 1 %}
+        {% if not archive and posts.object_list and posts.paginator.num_pages > 1 %}
         <div class="pagination" style="margin-top: 20px; margin-left: -20px; ">
             <span class="step-links">
             <ul>
