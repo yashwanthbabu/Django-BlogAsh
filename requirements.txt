@@ -9,6 +9,7 @@ PAM==0.4.2
 Pillow==2.0.0
 PyBluez==0.18
 SecretStorage==1.0.0
+South==1.0
 Twisted-Core==13.0.0
 Twisted-Names==13.0.0
 Twisted-Web==13.0.0

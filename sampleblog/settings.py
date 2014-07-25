@@ -28,26 +28,24 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (
-    
     os.path.join(BASE_DIR,  'blog/templates/blog'),
-    
-
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    #Putstringshere,like"/home/html/django_templates"r"C:/www/django/templates"
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
 
-
-
 # Application definition
 
 INSTALLED_APPS = (
+    'django_admin_bootstrapped.bootstrap3',
+    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'south',
     'blog',
 )
 
