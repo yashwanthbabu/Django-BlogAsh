@@ -1,103 +1,77 @@
 {% extends "base.html" %}
 
 {% block content %}
-<<<<<<< HEAD
-        
-	
+
 	<style type="text/css">
-=======
 
-     <style type="text/css">
->>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
-        .main { margin-left: 25px; margin-top: 30px; }
-        .time { font-size: 0.8em; margin-top: 2px; }
-        .comment { border: 1px solid #eee; padding: 4px; margin-bottom: 12px; }
-        .body { font-size: 1.1em; margin-top: 2px; }
-        .messages { margin-left: 20px; }
-        .title { font-size: 1.4em; margin-top: 20px; border-bottom: 1px solid #ccc; padding-left: 4px; }
+		<style type="text/css">
 
-        #addc { width: 508px; background: #f5f5f5; padding: 3px; padding-bottom: 8px;
-            border-bottom: 1px dotted #aaa;
-            }
-        #cform { background: #f5f5f5; width: 506px; padding: 4px; padding-bottom: 0px; }
-<<<<<<< HEAD
-        #submit { text-align: left; margin-right: 50px; width: 500px; margin-top: -5px; }
+	        .main { margin-left: 25px; margin-top: 30px; }
+        	.time { font-size: 0.8em; margin-top: 2px; }
+        	.comment { border: 1px solid #eee; padding: 4px; margin-bottom: 12px; }
+        	.body { font-size: 1.1em; margin-top: 2px; }
+        	.messages { margin-left: 20px; }
+        	.title { font-size: 1.4em; margin-top: 20px; border-bottom: 1px solid #ccc; padding-left: 4px; }
+        	#addc { width: 508px; background: #f5f5f5; padding: 3px; padding-bottom: 8px;
+            		border-bottom: 1px dotted #aaa;
+            		}
+        	#cform { background: #f5f5f5; width: 506px; padding: 4px; padding-bottom: 0px; }
+        	#submit { text-align: left; margin-right: 50px; width: 500px; margin-top: -5px; }
 
-        ul { margin-bottom: 30px; }
-    </style>
+        	ul { margin-bottom: 30px; }
+	</style>
 
 
-    <div class="blog"> 
+	<div class="blog"> 
 	
-	<!-- Messages  -->
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+		<!-- Messages  -->
+	        {% if messages %}
+	        <ul class="messages">
+	            {% for message in messages %}
+	            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+	            {% endfor %}
+	        </ul>
+	        {% endif %}
 
-	<!-- Posts  -->
-        <ul>
-            
-                <div class="title">{{ post.title }}</div><br>
-		<div class="user">By: {{ post.user }}</div>
-=======
-        #submit { text-align: right; margin-right: 50px; width: 500px; margin-top: -5px; }
-
-        ul { margin-bottom: 30px; }
-    </style>
-    
-    <div class="main"> 
-    
    
-<!-- Posts  -->
-        <ul>
+		<!-- Posts  -->
+	        <ul>            
+                	<div class="title">{{ post.title }}</div><br>
+			<div class="user">By: <a href="{%url 'aboutme' %}"> {{ post.user }} </a></div>
+	                <ul>
+				<div class="time">{{ post.created}}</div>
+				<div class="body">{{ post.body|linebreaks }}</div>
+			</ul>
             
-                <div class="title">{{ post.title }}</div>
->>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
-                <ul>
-                    <div class="time">{{ post.created}}</div>
-                    <div class="body">{{ post.body|linebreaks }}</div>
+	        </ul>
 
-                </ul>
-            
-        </ul>
-
-	<!-- Comments  -->
-	<ul>
-<<<<<<< HEAD
+		<!-- Comments  -->
+		<ul>
 		<form action="{% url 'delete_comment' post.id %}" method="POST">{% csrf_token %}
 
-=======
->>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
 		{% if comments %}
     			<p>Comments:</p>
 		{% endif %}
 				
 		{% for comment in comments %}
     			<div class="comment">
-				
         			<div class="time">{{ comment.created }} | {{ comment.author }}</div>
         			<div class="body">{{ comment.body|linebreaks }}</div>
-<<<<<<< HEAD
+
 				{% if user.is_staff %}
 		                	<input type="checkbox" name="delete" value="{{ comment.pk }}">
             				<a href="{% url 'delete_comment' post.pk comment.id %}">delete</a>
         			{% endif %}
     			</div>
-                        {% endfor %} 
+		{% endfor %} 
 		{% if user.is_staff and comments %}
     			<p><input type="submit" value="Delete all selected"></p>
     			<br />
 		{% endif %}
 		</form>
-		
-=======
-    			</div>
-		{% endfor %}
->>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
+	
+		</div>
+	
 
 		<div id="addc">Add a comment</div><br>
 		<ul>
@@ -111,13 +85,9 @@
     				<div id="submit"><input type="submit" value="Submit"></div>
 			</form> <br>
 			
-			<a href="{% url 'main' %}">Back to Blog Frontpage</a>
+				<a href="{% url 'main' %}">Back to Blog Frontpage</a>
 		</ul>
-<<<<<<< HEAD
 
-			
-=======
->>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
 	</ul>
 	</div>
 
