@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 from django.shortcuts import render, render_to_response, HttpResponseRedirect, redirect, HttpResponse
 import time
 from calendar import month_name
 
+=======
+from django.shortcuts import render, render_to_response, HttpResponseRedirect, redirect
+import time
+from calendar import month_name
+>>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
 # Create your views here.
 
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
@@ -39,7 +45,11 @@ def add_comment(request, post_id):
         comment.author = author
         comment.save()
     return redirect("main")
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
 def mkmonth_lst():
     """Make a list of months to show archive links."""
 
@@ -64,13 +74,18 @@ def mkmonth_lst():
         for m in range(start, end, -1):
             months.append((y, m, month_name[m]))
     return months
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
 def month(request, year, month):
     """Monthly archive."""
     
     posts = Post.objects.filter(created__year=year, created__month=month)
     return render_to_response("list.html", dict(post_list=posts, user=request.user, 
                                                 months=mkmonth_lst(), archive=True))
+<<<<<<< HEAD
 
 
 def delete_comment(request, post_pk, pk=None):
@@ -82,6 +97,8 @@ def delete_comment(request, post_pk, pk=None):
         for pk in pklst:
             Comment.objects.get(pk=pk).delete()
         return HttpResponseRedirect(reverse("post", args=[post_pk]))
+=======
+>>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
 
 
 def blog(request):
@@ -101,7 +118,10 @@ def blog(request):
 
     return render_to_response("list.html", dict(posts=posts, user=request.user,
                                                 post_list=posts.object_list, months=mkmonth_lst()))
+<<<<<<< HEAD
 
 def aboutme(request):
     return render_to_response("aboutme.html")
 
+=======
+>>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93

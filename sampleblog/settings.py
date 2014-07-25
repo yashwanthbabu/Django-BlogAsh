@@ -28,7 +28,11 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (
+<<<<<<< HEAD
     os.path.join(BASE_DIR,  'blog/templates/blog'),
+=======
+    os.path.join(BASE_DIR, 'blog/templates/blog'),
+>>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
     #Putstringshere,like"/home/html/django_templates"r"C:/www/django/templates"
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.

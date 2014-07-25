@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+<<<<<<< HEAD
 <head>
 
 <script>
@@ -10,6 +11,8 @@
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
+=======
+>>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
 {% block sidebar %}
     <style type="text/css">
         #sidebar { float: right; border: 1px dotted #ccc; padding: 4px; }
@@ -24,7 +27,11 @@
 
 {% block content %}
 
+<<<<<<< HEAD
 	<style type="text/css">
+=======
+    <style type="text/css">
+>>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
         .main { margin-left: 25px; margin-top: 30px; }
         .time { font-size: 0.8em; margin-top: 2px; }
         .comment { border: 1px solid #eee; padding: 4px; margin-bottom: 12px; }
@@ -40,12 +47,17 @@
 
         ul { margin-bottom: 30px; }
     </style>
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
     <div class="blog">
 
         <!-- Posts  -->
         <ul>
             {% for post in posts.object_list %}
+<<<<<<< HEAD
 		
                 <div class="title">{{ post.title }}</div><br>
 		<div class="user">By: <a href="{%url 'aboutme' %}"> {{ post.user }} </a></div>
@@ -55,6 +67,15 @@
 		    
 
 		    <div class="seemore"><a href="{% url 'post' post.id %}"> more info..>> </a></div><br>
+=======
+                <div class="title">{{ post.title }}</div>
+		<div class="author">{{ post.author }}</div>
+                <ul>
+                    <div class="time">{{ post.created}}</div>
+                    <div class="body">{{ post.body|truncatewords_html:20|linebreaks }}</div>
+		    
+                    <div class="commentlink"><a href="{% url 'post' post.id %}"> more info..>></a></div><br>
+>>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
                 </ul>
             {% endfor %}
         </ul>
@@ -86,7 +107,12 @@
 
     </div>
 
+<<<<<<< HEAD
 
 
 {% endblock %}
+=======
+>>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
 
+
+{% endblock %}

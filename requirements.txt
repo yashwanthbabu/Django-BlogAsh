@@ -1,4 +1,5 @@
 Django==1.6.5
+<<<<<<< HEAD
 Electrum==1.9.8
 Fabric==1.4.3
 IMAPClient==0.9.2
@@ -105,3 +106,12 @@ xdiagnose==3.6.1
 xkit==0.0.0
 youtube-dl==2014.01.27.1
 zope.interface==4.0.5
+=======
+south
+argparse==1.2.1
+mercurial==2.6.3
+pep8==1.4.6
+pysqlite==1.0.1
+
+
+>>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
