@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+
+{% block sidebar %}
+    <style type="text/css">
+        #sidebar { float: right; border: 1px dotted #ccc; padding: 4px; }
+    </style>
+    <div id="sidebar">
+        Monthly Archive<br />
+        {% for month in months %}
+            <a href="{% url 'month' month.0 month.1 %}">{{ month.2 }} - {{ month.0 }}</a> <br />
+		
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block content %}
+
+	<style type="text/css">
+    <style type="text/css">
+
+        .main { margin-left: 25px; margin-top: 30px; }
+        .time { font-size: 0.8em; margin-top: 2px; }
+        .comment { border: 1px solid #eee; padding: 4px; margin-bottom: 12px; }
+        .body { font-size: 1.1em; margin-top: 2px; }
+        .messages { margin-left: 20px; }
+        .title { font-size: 1.4em; margin-top: 20px; border-bottom: 1px solid #ccc; padding-left: 4px; }
+
+        #addc { width: 508px; background: #f5f5f5; padding: 3px; padding-bottom: 8px;
+            border-bottom: 1px dotted #aaa;
+            }
+        #cform { background: #f5f5f5; width: 506px; padding: 4px; padding-bottom: 0px; }
+        #submit { text-align: right; margin-right: 50px; width: 500px; margin-top: -5px; }
+
+        ul { margin-bottom: 30px; }
+    </style>
+
+    <div class="main">
+
+        <!-- Posts  -->
+        <ul>
+            {% for post in posts %}
+	
+                <div class="title">{{ post.title }}</div><br>
+		<div class="user">By: <a href="{%url 'aboutme' %}"> {{ post.user }} </a></div>
+                <ul>
+                    <div class="time">{{ post.created|linebreaks}}</div>
+                    <div class="body">{{ post.body|truncatewords_html:20|linebreaks }}</div>
+		    <div class="commentlink"><a href="{% url 'post' post.id %}"> more info..>></a></div><br>
+
+                </ul>
+            {% endfor %}
+        </ul>
+
+	
+
+        <!-- Next/Prev page links  -->
+        {% if not archive and posts.object_list and posts.paginator.num_pages > 1 %}
+        <div class="pagination" style="margin-top: 20px; margin-left: -20px; ">
+            <span class="step-links">
+            <ul>
+                {% if posts.has_previous %}
+                    <a href= "?page={{ posts.previous_page_number }}">PREVIOUS &lt;&lt; </a>
+                {% endif %}
+
+                <span class="current">
+                    &nbsp;Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                </span>
+
+                {% if posts.has_next %}
+                    <a href="?page={{ posts.next_page_number }}"> &gt;&gt; NEXT</a>
+                {% endif %} <br> <br> 
+ 		
+                    <a href="{% url 'main' %}">Back to Blog Frontpage</a>
+		</ul>
+            </span>
+        </div>
+        {% endif %}
+
+    </div>
+
+
+
+
+{% endblock %}
