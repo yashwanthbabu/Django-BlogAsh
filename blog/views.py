@@ -98,7 +98,7 @@ def delete_comment(request, post_pk, pk=None):
 
 def blog(request):
     """Main listing."""
-    posts = Post.objects.all().order_by("-created")
+    posts = Post.objects.order_by("-created")
     paginator = Paginator(posts, 3)
     try:
         page = int(request.GET.get("page", '1'))
