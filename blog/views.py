@@ -3,6 +3,7 @@ from calendar import month_name
 from django.conf import settings
 from django.shortcuts import render, render_to_response
 from django.shortcuts import HttpResponseRedirect, redirect
+from django.http import Http404
 from django.template import RequestContext
 import time
 from calendar import month_name
@@ -19,12 +20,15 @@ from .forms import CommentForm
 
 def post(request, post_id):
     """Single post with comments and a comment form."""
-    post = Post.objects.get(pk=post_id)
-    comments = Comment.objects.filter(post=post)
-    d = dict(post=post, comments=comments, form=CommentForm(), user=request.user)
-    d.update(csrf(request))
-    print request
-    return render_to_response("post.html", d)
+    try:
+        post = Post.objects.get(pk=post_id)
+        comments = Comment.objects.filter(post=post)
+        d = dict(post=post, comments=comments, form=CommentForm(), user=request.user)
+        d.update(csrf(request))
+        print request
+        return render_to_response("post.html", d)
+    except Post.DoesNotExist:
+        raise Http404
 
 def add_comment(request, post_id):
     """Add a new comment."""
