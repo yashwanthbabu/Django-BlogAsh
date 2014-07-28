@@ -57,7 +57,7 @@ def mkmonth_lst():
 
     # set up vars
     year, month = time.localtime()[:2]
-    first = Post.objects.order_by("created")[0]
+    first = Post.objects.latest("created")
     fyear = first.created.year
     fmonth = first.created.month
     months = []
