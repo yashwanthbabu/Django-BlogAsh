@@ -14,8 +14,8 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.core.urlresolvers import reverse
 from django.core.context_processors import csrf
 from .models import Post, Comment
-from django.forms import ModelForm
-from blog.forms import CommentForm
+from .forms import ModelForm
+from .forms import CommentForm
 
 
 def post(request, post_id):
