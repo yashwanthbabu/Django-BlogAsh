@@ -1,5 +1,3 @@
-from django.shortcuts import render, render_to_response, HttpResponseRedirect
-from django.shortcuts import redirect, HttpResponse
 import time
 from calendar import month_name
 from django.conf import settings
@@ -23,18 +21,16 @@ def post(request, post_id):
     """Single post with comments and a comment form."""
     post = Post.objects.get(pk=post_id)
     comments = Comment.objects.filter(post=post)
-    d = dict(post=post, comments=comments,
-             form=CommentForm(), user=request.user)
+    d = dict(post=post, comments=comments, form=CommentForm(), user=request.user)
     d.update(csrf(request))
     print request
     return render_to_response("post.html", d)
-
 
 def add_comment(request, post_id):
     """Add a new comment."""
     p = request.POST
 
-    if p.in_key("body") and p["body"]:
+    if p.has_key("body") and p["body"]:
         author = "Anonymous"
         if p["author"]:
             author = p["author"]
@@ -47,7 +43,6 @@ def add_comment(request, post_id):
         comment.author = author
         comment.save()
     return redirect("main")
-
 
 def mkmonth_lst():
     """Make a list of months to show archive links."""
@@ -78,19 +73,16 @@ def mkmonth_lst():
 def month(request, year, month):
     """Monthly archive."""
     posts = Post.objects.filter(created__year=year, created__month=month)
-    return render_to_response("archive.html", dict(post_list=posts,
-                                                user=request.user,
-                                                months=mkmonth_lst(),
-                                                archive=True))
+    return render_to_response("archive.html", dict(posts=posts, post_list=posts,
+                                     context_instance=RequestContext(request),
+                                                months=mkmonth_lst(), archive=True))
 
 
 def delete_comment(request, post_pk, pk=None):
     """Delete comment(s) with primary key `pk` or with pks in POST."""
     if request.user.is_staff:
-        if not pk:
-            pklst = request.POST.getlist("delete")
-        else:
-            pklst = [pk]
+        if not pk: pklst = request.POST.getlist("delete")
+        else: pklst = [pk]
 
         for pk in pklst:
             Comment.objects.get(pk=pk).delete()
@@ -102,6 +94,7 @@ def blog(request):
     posts = Post.objects.order_by("-created")
     entries_per_page = getattr(settings, 'BLOG_NUMBER_OF_ENTRIES_PER_PAGE')
     paginator = Paginator(posts, entries_per_page)
+    
     try:
         page = int(request.GET.get("page", '1'))
     except ValueError:
@@ -114,8 +107,7 @@ def blog(request):
 
     return render_to_response("list.html", dict(posts=posts,
                                                 context_instance=RequestContext(request),
-                                                post_list=posts.object_list,
-                                                months=mkmonth_lst()))
+                                                post_list=posts.object_list, months=mkmonth_lst()))
 
 
 def aboutme(request):
