@@ -78,7 +78,7 @@ def mkmonth_lst():
 def month(request, year, month):
     """Monthly archive."""
     posts = Post.objects.filter(created__year=year, created__month=month)
-    return render_to_response("list.html", dict(post_list=posts,
+    return render_to_response("archive.html", dict(post_list=posts,
                                                 user=request.user,
                                                 months=mkmonth_lst(),
                                                 archive=True))
