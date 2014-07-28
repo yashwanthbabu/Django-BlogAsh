@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response, HttpResponseRedirect
 from django.shortcuts import redirect, HttpResponse
 import time
 from calendar import month_name
-
+from django.conf import settings
 from django.shortcuts import render, render_to_response
 from django.shortcuts import HttpResponseRedirect, redirect
 from django.template import RequestContext
@@ -100,7 +100,8 @@ def delete_comment(request, post_pk, pk=None):
 def blog(request):
     """Main listing."""
     posts = Post.objects.order_by("-created")
-    paginator = Paginator(posts, 3)
+    entries_per_page = getattr(settings, 'BLOG_NUMBER_OF_ENTRIES_PER_PAGE')
+    paginator = Paginator(posts, entries_per_page)
     try:
         page = int(request.GET.get("page", '1'))
     except ValueError:
