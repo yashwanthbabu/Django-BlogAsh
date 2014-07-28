@@ -5,6 +5,7 @@ from calendar import month_name
 
 from django.shortcuts import render, render_to_response
 from django.shortcuts import HttpResponseRedirect, redirect
+from django.template import RequestContext
 import time
 from calendar import month_name
 
@@ -110,7 +111,8 @@ def blog(request):
     except (InvalidPage, EmptyPage):
         posts = paginator.page(paginator.num_pages)
 
-    return render_to_response("list.html", dict(posts=posts, user=request.user,
+    return render_to_response("list.html", dict(posts=posts,
+                                                context_instance=RequestContext(request),
                                                 post_list=posts.object_list,
                                                 months=mkmonth_lst()))
 
