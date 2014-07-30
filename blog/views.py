@@ -11,13 +11,6 @@ from calendar import month_name
 <<<<<<< HEAD
 <<<<<<< HEAD
 from django.core.mail import send_mail
-=======
-=======
->>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
-
-# Create your views here.
-
->>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.core.urlresolvers import reverse
 from django.core.context_processors import csrf
@@ -37,13 +30,7 @@ def post(request, post_id):
         return render_to_response("post.html", d)
     except Post.DoesNotExist:
         raise Http404
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
-=======
->>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
 
 def add_comment(request, post_id):
     """Add a new comment."""
@@ -62,15 +49,8 @@ def add_comment(request, post_id):
         comment.author = author
 	comment.save()
     return redirect("main")
-<<<<<<< HEAD
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
-=======
-
->>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
 def mkmonth_lst():
     """Make a list of months to show archive links."""
 
@@ -139,10 +119,3 @@ def blog(request):
 
 def aboutme(request):
     return render_to_response("aboutme.html")
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
-=======
->>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
