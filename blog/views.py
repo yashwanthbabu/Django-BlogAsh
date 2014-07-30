@@ -8,8 +8,6 @@ from django.http import Http404
 from django.template import RequestContext
 import time
 from calendar import month_name
-<<<<<<< HEAD
-<<<<<<< HEAD
 from django.core.mail import send_mail
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.core.urlresolvers import reverse
