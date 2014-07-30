@@ -15,7 +15,6 @@
             {% block nav-global %}
 
                 <!-- MENU -->
-                <h2>MyBlog</h2>
                 {% if user.is_staff %}
                 <a href="{% url 'admin:index' %}">Admin</a>
                 <a href="{% url 'admin:blog_post_add' %}">Add post</a>
