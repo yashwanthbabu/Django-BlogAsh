@@ -28,15 +28,26 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 TEMPLATE_DIRS = (
-<<<<<<< HEAD
-    os.path.join(BASE_DIR,  'blog/templates/blog'),
-=======
     os.path.join(BASE_DIR, 'blog/templates/blog'),
->>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
     #Putstringshere,like"/home/html/django_templates"r"C:/www/django/templates"
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
+
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
+
+STATIC_ROOT = ''
+
+STATIC_URL = "/static/"
+
+ADMIN_MEDIA_PREFIX = '/static/admin/'
+
+STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(__file__), 'static'),
+    )
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/')
+
 
 # Application definition
 
@@ -51,6 +62,21 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'south',
     'blog',
+)
+
+TEMPLATE_LOADERS = ('django.template.loaders.filesystem.Loader',
+	 'django.template.loaders.app_directories.Loader'
+		)
+
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.request',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,7 +108,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -94,4 +120,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
+
+BLOG_NUMBER_OF_ENTRIES_PER_PAGE = 3
+
+

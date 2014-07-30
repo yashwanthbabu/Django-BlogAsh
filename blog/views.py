@@ -1,32 +1,34 @@
-<<<<<<< HEAD
-from django.shortcuts import render, render_to_response, HttpResponseRedirect, redirect, HttpResponse
+import time
+import pytz
+from calendar import month_name
+from django.conf import settings
+from django.shortcuts import render, \
+    render_to_response, HttpResponseRedirect, redirect
+from django.http import Http404
+from django.template import RequestContext
 import time
 from calendar import month_name
-
-=======
-from django.shortcuts import render, render_to_response, HttpResponseRedirect, redirect
-import time
-from calendar import month_name
->>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
-# Create your views here.
-
+from django.core.mail import send_mail
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.core.urlresolvers import reverse
 from django.core.context_processors import csrf
-
 from .models import Post, Comment
-from django.forms import ModelForm
-from blog.forms import CommentForm
+from .forms import ModelForm
+from .forms import CommentForm
+
 
 def post(request, post_id):
     """Single post with comments and a comment form."""
-    
-    post = Post.objects.get(pk=post_id)
-    comments = Comment.objects.filter(post=post)
-    d = dict(post=post, comments=comments, form=CommentForm(), user=request.user)
-    d.update(csrf(request))
-    print request
-    return render_to_response("post.html", d)
+    try:
+        post = Post.objects.get(pk=post_id)
+        comments = Comment.objects.filter(post=post)
+        d = dict(post=post, comments=comments, form=CommentForm(), user=request.user)
+        d.update(csrf(request))
+        print request
+        return render_to_response("post.html", d)
+    except Post.DoesNotExist:
+        raise Http404
+
 
 def add_comment(request, post_id):
     """Add a new comment."""
@@ -43,13 +45,10 @@ def add_comment(request, post_id):
 
         comment = cf.save(commit=False)
         comment.author = author
-        comment.save()
+	comment.save()
     return redirect("main")
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
+
 def mkmonth_lst():
     """Make a list of months to show archive links."""
 
@@ -58,7 +57,7 @@ def mkmonth_lst():
 
     # set up vars
     year, month = time.localtime()[:2]
-    first = Post.objects.order_by("created")[0]
+    first = Post.objects.earliest("created")
     fyear = first.created.year
     fmonth = first.created.month
     months = []
@@ -74,18 +73,14 @@ def mkmonth_lst():
         for m in range(start, end, -1):
             months.append((y, m, month_name[m]))
     return months
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
+
 def month(request, year, month):
     """Monthly archive."""
-    
     posts = Post.objects.filter(created__year=year, created__month=month)
-    return render_to_response("list.html", dict(post_list=posts, user=request.user, 
+    return render_to_response("archive.html", dict(posts=posts, post_list=posts,
+                                     context_instance=RequestContext(request),
                                                 months=mkmonth_lst(), archive=True))
-<<<<<<< HEAD
 
 
 def delete_comment(request, post_pk, pk=None):
@@ -93,18 +88,17 @@ def delete_comment(request, post_pk, pk=None):
     if request.user.is_staff:
         if not pk: pklst = request.POST.getlist("delete")
         else: pklst = [pk]
-
+	print request
         for pk in pklst:
             Comment.objects.get(pk=pk).delete()
         return HttpResponseRedirect(reverse("post", args=[post_pk]))
-=======
->>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93
 
 
 def blog(request):
     """Main listing."""
-    posts = Post.objects.all().order_by("-created")
-    paginator = Paginator(posts, 3)
+    posts = Post.objects.order_by("-created")
+    entries_per_page = getattr(settings, 'BLOG_NUMBER_OF_ENTRIES_PER_PAGE')
+    paginator = Paginator(posts, entries_per_page)
     
     try:
         page = int(request.GET.get("page", '1'))
@@ -116,12 +110,11 @@ def blog(request):
     except (InvalidPage, EmptyPage):
         posts = paginator.page(paginator.num_pages)
 
-    return render_to_response("list.html", dict(posts=posts, user=request.user,
+    return render_to_response("list.html", dict(posts=posts,
+                                                context_instance=RequestContext(request),
                                                 post_list=posts.object_list, months=mkmonth_lst()))
-<<<<<<< HEAD
+
 
 def aboutme(request):
     return render_to_response("aboutme.html")
 
-=======
->>>>>>> 5234395f7ae24f76e99e8922cb315a3d7adbbb93

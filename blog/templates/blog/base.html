@@ -1,29 +1,41 @@
+{% load staticfiles %}
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head> <title>{% block title %}Welcome to MyBlog{% endblock %}</title> </head>
-
+<head> <title>{% block title %}Welcome to MyBlog{% endblock %}</title> 
+<link href="{% static 'css/sk.css' %}" rel="stylesheet" type="text/css">
+</head>
 <body>
-    <div id="sidebar"> {% block sidebar %} {% endblock %} </div>
+
+    <div id="sidebar" align="center"> {% block sidebar %} {% endblock %} </div>
     <div id="container">
         <div id="menu">
             {% block nav-global %}
 
                 <!-- MENU -->
-                <h3>MyBlog</h3>
+                <h2>MyBlog</h2>
                 {% if user.is_staff %}
                 <a href="{% url 'admin:index' %}">Admin</a>
                 <a href="{% url 'admin:blog_post_add' %}">Add post</a>
-                {% endif %}
+                {% endif %} 
+	<!-- HEADER STARTS HERE -->
+          <div id="header">
+	  
+		<img src="{% static 'images/blog.png' %}" width="206" height="67" alt="Agiliq Solutions" />
+	  
+	  </div>
+    <!-- HEADER ENDS HERE -->
 
-            {% endblock %}
+            
         </div>
 
         <div id="content">
             {% block content %}{% endblock %}
         </div>
     </div>
+{% endblock %}
 
 </body>
 </html>
