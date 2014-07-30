@@ -2,8 +2,8 @@ import time
 import pytz
 from calendar import month_name
 from django.conf import settings
-from django.shortcuts import render, render_to_response
-from django.shortcuts import HttpResponseRedirect, redirect
+from django.shortcuts import render, \
+    render_to_response, HttpResponseRedirect, redirect
 from django.http import Http404
 from django.template import RequestContext
 import time
