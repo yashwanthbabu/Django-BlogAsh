@@ -5,8 +5,14 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head> <title>{% block title %}Welcome to MyBlog{% endblock %}</title> 
+<<<<<<< HEAD
 <link href="{% static 'css/sk.css' %}" rel="stylesheet" type="text/css">
 </head>
+=======
+	<link href="{% static 'css/sk.css' %}" rel="stylesheet" type="text/css">
+</head>
+
+>>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
 <body>
 
     <div id="sidebar" align="center"> {% block sidebar %} {% endblock %} </div>
@@ -19,8 +25,15 @@
                 {% if user.is_staff %}
                 <a href="{% url 'admin:index' %}">Admin</a>
                 <a href="{% url 'admin:blog_post_add' %}">Add post</a>
+<<<<<<< HEAD
                 {% endif %} 
 	<!-- HEADER STARTS HERE -->
+=======
+                {% endif %}
+        <br>
+		<!-- HEADER STARTS HERE -->
+        <!-- HEADER STARTS HERE -->
+>>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
           <div id="header">
 	  
 		<img src="{% static 'images/blog.png' %}" width="206" height="67" alt="Agiliq Solutions" />

@@ -2,5 +2,8 @@ Django==1.6.5
 South==1.0
 argparse==1.2.1
 django-admin-bootstrapped==1.6.6
+<<<<<<< HEAD
 pytz==2014.4
+=======
+>>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
 wsgiref==0.1.2
