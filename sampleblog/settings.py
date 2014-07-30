@@ -120,17 +120,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-<<<<<<< HEAD
 STATIC_URL = "/static/"
 
 BLOG_NUMBER_OF_ENTRIES_PER_PAGE = 3
 
 
-=======
+
 STATIC_URL = '/static/'
 
 BLOG_NUMBER_OF_ENTRIES_PER_PAGE = 3
-<<<<<<< HEAD
->>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
-=======
->>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
