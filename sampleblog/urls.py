@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r"^delete_comment/(?P<post_pk>[0-9]+)/$", 'blog.views.delete_comment', name='delete_comment'),
     url(r"^delete_comment/(?P<post_pk>[0-9]+)/(?P<comment_id>[0-9]+)/$", 'blog.views.delete_comment', name='delete_comment'),
     url(r"^aboutme/", 'blog.views.aboutme', name='aboutme'),
+    url(r"^posts/", 'blog.views.posts', name='recentposts'),
     # url(r'^$', 'sampleblog.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     
