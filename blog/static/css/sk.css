@@ -5,11 +5,12 @@
         .messages { margin-left: 20px; }
         .title { font-size: 1.4em; margin-top: 20px; border-bottom: 1px solid #ccc; padding-left: 4px; }
 
-        #addc { width: 508px; background: #f5f5f5; padding: 3px; padding-bottom: 8px;
+        #addc { width: 508px; background: pink; padding: 3px; padding-bottom: 8px;
             border-bottom: 1px dotted #aaa;
             }
-        #cform { background: #f5f5f5; width: 506px; padding: 4px; padding-bottom: 0px; }
-        #submit { text-align: right; margin-right: 50px; width: 500px; margin-top: -5px; }
+        #cform { width: 300px; padding: 8px; padding-bottom: 0px; }
+	fieldset{ width:300px;}
+        #submit { text-align: center; margin-right: 50px; width: 500px; margin-top: -5px; }
 
         ul { margin-bottom: 30px; }
 ul{
@@ -26,4 +27,8 @@ ul{
 .submit{ text-align:right; padding:3px;}
 h2{font:bold 15px Helvetica, Arial, sans-serif; line-height:40px;}
 h2.message{color: brown; text-align: right; font-style:italic; font:bold;}
-body{background:url(../images/image.jpeg);}
+h2{color:red;}
+body{background:url(../images/image.jpeg); color: black;}
+a{color: green; }
+ #sidebar { float: right; border: 1px dotted #ccc; padding: 4px; text-align:center; color:green}
+
