@@ -18,6 +18,7 @@
                 {% if user.is_staff %}
                 <a href="{% url 'admin:index' %}">Admin</a>
                 <a href="{% url 'admin:blog_post_add' %}">Add post</a>
+                <a href="{% url 'admin:blog_comment_add' %}"> Add Comment </a>
                 {% endif %} 
 	<!-- HEADER STARTS HERE -->
                 
@@ -30,8 +31,11 @@
 	  </a>
 	  </div>
     <!-- HEADER ENDS HERE -->
-
-            
+    	<div id="header" align="right">
+            <a href="{% url 'main' %}">HOME</a>
+            |<a href="{% url 'recentposts' %}">RECENT ARTICLES</a> 
+            |<a href="/login">USER LOGIN</a>
+        </div>
         </div>
 
         <div id="content">
