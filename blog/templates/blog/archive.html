@@ -1,25 +1,22 @@
 {% extends "base.html" %}
 
 
-{% block sidebar %}
     <style type="text/css">
         #sidebar { float: right; border: 1px dotted #ccc; padding: 4px; }
     </style>
-    <div id="sidebar">
-        Monthly Archive<br />
-        {% for month in months %}
-            <a href="{% url 'month' month.0 month.1 %}">{{ month.2 }} - {{ month.0 }}</a> <br />
-		
-        {% endfor %}
-    </div>
-{% endblock %}
-
 {% block content %}
 
 	
 
     <div class="main">
 
+<div id="sidebar">
+        <br><u>MONTHLY ARCHIVES</u><br />
+        {% for month in months %}
+            <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}">{{ month.2 }} - {{ month.0 }} </a> <br />
+		
+        {% endfor %}
+    </div>
         <!-- Posts  -->
         <ul>
             {% for post in posts %}
@@ -66,10 +63,3 @@
 
 
 {% endblock %}
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
-=======
->>>>>>> 204c2f945a754c8687159235ca4071e777ea0ebb
