@@ -13,9 +13,8 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.core.urlresolvers import reverse
 from django.core.context_processors import csrf
 from .models import Post, Comment
-from .forms import ModelForm
-from .forms import CommentForm
-
+from .forms import ModelForm \
+    PostForm, CommentsForm, CommentForm
 
 def post(request, post_id):
     """Single post with comments and a comment form."""
@@ -113,6 +112,28 @@ def blog(request):
     return render_to_response("list.html", dict(posts=posts,
                                                 context_instance=RequestContext(request),
                                                 post_list=posts.object_list, months=mkmonth_lst()))
+                                                
+                                                
+def posts(request):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            posts = Post.objects.order_by("created")
+            comments = Comment.objects.order_by("created")
+            comment_form = CommentsForm()
+            return render( request, 'recentposts.html', {'posts': posts, 'comments': comments, 'comment_form':comment_form})
+        else:
+            posts = Post.objects.order_by("created")
+            comments = Comment.objects.order_by("created")
+            comment_form = CommentsForm()
+            return render( request, 'recentposts.html', {'posts': posts,'comments': comments,'comment_form':comment_form})
+    else:
+        posts = Post.objects.order_by("created")
+        comments = Comment.objects.order_by("created")
+        comment_form = CommentsForm()
+        return render( request, 'recentposts.html', {'posts': posts, 'comments': comments, 'comment_form': comment_form})
+
 
 
 def aboutme(request):
