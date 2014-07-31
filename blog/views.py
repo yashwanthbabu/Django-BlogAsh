@@ -13,7 +13,7 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.core.urlresolvers import reverse
 from django.core.context_processors import csrf
 from .models import Post, Comment
-from .forms import ModelForm \
+from .forms import ModelForm, \
     PostForm, CommentsForm, CommentForm
 
 def post(request, post_id):
