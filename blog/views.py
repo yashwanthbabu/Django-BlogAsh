@@ -7,6 +7,7 @@ from django.http import Http404
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.core.context_processors import csrf
+from django.views.generic import TemplateView
 
 from django.core.paginator import Paginator, \
     InvalidPage, EmptyPage
@@ -140,5 +141,5 @@ def posts(request):
 
 
 
-def aboutme(request):
-    return render("aboutme.html")
+class AboutMe(TemplateView):
+    template_name = "aboutme.html"
