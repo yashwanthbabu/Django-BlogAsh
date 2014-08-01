@@ -24,7 +24,7 @@ def post(request, post_id):
         d = dict(post=post, comments=comments, form=CommentForm(), user=request.user)
         d.update(csrf(request))
         print request
-        return render("post.html", d)
+        return render_to_response("post.html", d)
     except Post.DoesNotExist:
         raise Http404
 
@@ -77,7 +77,7 @@ def mkmonth_lst():
 def month(request, year, month):
     """Monthly archive."""
     posts = Post.objects.filter(created__year=year, created__month=month)
-    return render("archive.html", dict(posts=posts, post_list=posts,
+    return render_to_response("archive.html", dict(posts=posts, post_list=posts,
                                      context_instance=RequestContext(request),
                                                 months=mkmonth_lst(), archive=True))
 
