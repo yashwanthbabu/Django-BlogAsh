@@ -21,7 +21,7 @@ def post(request, post_id):
     try:
         post = Post.objects.get(pk=post_id)
         comments = Comment.objects.filter(post=post)
-        d = dict(post=post, comments=comments, form=CommentForm(), user=request.user)
+        d = { 'post':post, 'comments':comments, 'form':CommentForm(), 'user':request.user }
         d.update(csrf(request))
         print request
         return render_to_response("post.html", d)
@@ -77,9 +77,9 @@ def mkmonth_lst():
 def month(request, year, month):
     """Monthly archive."""
     posts = Post.objects.filter(created__year=year, created__month=month)
-    return render_to_response("archive.html", dict(posts=posts, post_list=posts,
-                                     context_instance=RequestContext(request),
-                                                months=mkmonth_lst(), archive=True))
+    return render_to_response("archive.html", { 'posts':posts, 'post_list':posts,
+                                     'context_instance':RequestContext(request),
+                                                'months':mkmonth_lst(), 'archive':True })
 
 
 def delete_comment(request, post_pk, pk=None):
@@ -111,9 +111,9 @@ def blog(request):
     except (InvalidPage, EmptyPage):
         posts = paginator.page(paginator.num_pages)
 
-    return render_to_response("list.html", dict(posts=posts,
-                                                context_instance=RequestContext(request),
-                                                post_list=posts.object_list, months=mkmonth_lst()))
+    return render_to_response("list.html", {'posts':posts,
+                                                'context_instance':RequestContext(request),
+                                                'post_list':posts.object_list, 'months':mkmonth_lst()})
                                                 
                                                 
 def posts(request):
