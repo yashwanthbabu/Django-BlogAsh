@@ -6,8 +6,8 @@ from django.conf import settings
 from django.http import Http404
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
-from django.core.context_processors import csrf
 from django.views.generic import TemplateView
+from django.core.context_processors import csrf
 
 from django.core.paginator import Paginator, \
     InvalidPage, EmptyPage
