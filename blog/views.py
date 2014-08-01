@@ -21,7 +21,7 @@ def post(request, post_id):
     """Single post with comments and a comment form."""
     try:
         post_model = Post.objects.get(pk=post_id)
-        comment_moel = Comment.objects.filter(post=post_model)
+        comment_model = Comment.objects.filter(post=post_model)
         d = { 'post':post_model, 'comments':comment_model, 'form':CommentForm(), 'user':request.user }
         ipdb.set_trace()
         return render(request, "post.html", d)
@@ -33,7 +33,7 @@ def add_comment(request, post_id):
     """Add a new comment."""
     post_data = request.POST
 
-    if post_data.has_key("body") and p["body"]:
+    if post_data.has_key("body") and post_data["body"]:
         comment_author = "Anonymous"
         if post_data["author"]:
             comment_author = post_data["author"]
