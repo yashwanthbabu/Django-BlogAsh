@@ -1,6 +1,6 @@
-from django.conf.urls import patterns, include, url
-
 from django.contrib import admin
+from django.conf.urls import patterns, include, url
+from blog.views import AboutMe
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     url(r"^month/(?P<year>\d{4})/(?P<month>(0|1)?\d)/$", 'blog.views.month', name='month'),
     url(r"^delete_comment/(?P<post_pk>[0-9]+)/$", 'blog.views.delete_comment', name='delete_comment'),
     url(r"^delete_comment/(?P<post_pk>[0-9]+)/(?P<comment_id>[0-9]+)/$", 'blog.views.delete_comment', name='delete_comment'),
-    url(r"^aboutme/", 'blog.views.aboutme', name='aboutme'),
+    url(r"^aboutme/", AboutMe.as_view(), name='aboutme'),
     url(r"^posts/", 'blog.views.posts', name='recentposts'),
     # url(r'^$', 'sampleblog.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
