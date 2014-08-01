@@ -27,7 +27,7 @@ def post(request, post_id):
         d = { 'post':post, 'comments':comments, 'form':CommentForm(), 'user':request.user }
         d.update(csrf(request))
         print request
-        return render_to_response("post.html", d)
+        return render(request, "post.html", d)
     except Post.DoesNotExist:
         raise Http404
 
@@ -80,7 +80,7 @@ def mkmonth_lst():
 def month(request, year, month):
     """Monthly archive."""
     posts = Post.objects.filter(created__year=year, created__month=month)
-    return render_to_response("archive.html", { 'posts':posts, 'post_list':posts,
+    return render(request, "archive.html", { 'posts':posts, 'post_list':posts,
                                      'context_instance':RequestContext(request),
                                                 'months':mkmonth_lst(), 'archive':True })
 
@@ -114,7 +114,7 @@ def blog(request):
     except (InvalidPage, EmptyPage):
         posts = paginator.page(paginator.num_pages)
 
-    return render_to_response("list.html", {'posts':posts,
+    return render(reqeust, "list.html", {'posts':posts,
                                                 'context_instance':RequestContext(request),
                                                 'post_list':posts.object_list, 'months':mkmonth_lst()})
                                                 
