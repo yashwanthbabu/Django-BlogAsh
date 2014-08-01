@@ -1,5 +1,4 @@
 import time
-import pytz
 import ipdb
 from calendar import month_name
 
@@ -8,7 +7,6 @@ from django.http import Http404
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView
-from django.core.context_processors import csrf
 
 from django.core.paginator import Paginator, \
     InvalidPage, EmptyPage
@@ -17,9 +15,7 @@ from django.shortcuts import render, \
     HttpResponseRedirect, redirect
 
 from .models import Post, Comment
-
-from .forms import ModelForm, \
-    PostForm, CommentsForm, CommentForm
+from .forms import CommentsForm, CommentForm
 
 def post(request, post_id):
     """Single post with comments and a comment form."""
