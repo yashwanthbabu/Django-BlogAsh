@@ -111,7 +111,7 @@ def blog(request):
     except (InvalidPage, EmptyPage):
         posts = paginator.page(paginator.num_pages)
 
-    return render(reqeust, "list.html", {'posts':posts,
+    return render(request, "list.html", {'posts':posts,
                                                 'context_instance':RequestContext(request),
                                                 'post_list':posts.object_list, 'months':mkmonth_lst()})
                                                 
