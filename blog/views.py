@@ -117,25 +117,16 @@ def blog(request):
                                                 
                                                 
 def posts(request):
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            posts = Post.objects.order_by("created")
-            comments = Comment.objects.order_by("created")
-            comment_form = CommentsForm()
-            return render( request, 'recentposts.html', {'posts': posts, 'comments': comments, 'comment_form':comment_form})
-        else:
-            posts = Post.objects.order_by("created")
-            comments = Comment.objects.order_by("created")
-            comment_form = CommentsForm()
-            return render( request, 'recentposts.html', {'posts': posts,'comments': comments,'comment_form':comment_form})
-    else:
+    try:
+    	post_data = request.POST
+        form = CommentForm(post_data)
         posts = Post.objects.order_by("created")
         comments = Comment.objects.order_by("created")
         comment_form = CommentsForm()
-        return render( request, 'recentposts.html', {'posts': posts, 'comments': comments, 'comment_form': comment_form})
-
-
-
+        return render( request, 'recentposts.html', {'posts': posts, 'comments': comments, 'comment_form':comment_form})
+    except Post.DoesNotExist:
+    	raise Http404
+    	
+    	
 class AboutMe(TemplateView):
     template_name = "aboutme.html"
