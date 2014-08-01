@@ -1,5 +1,6 @@
 import time
 import pytz
+import ipdb
 from calendar import month_name
 
 from django.conf import settings
@@ -26,7 +27,7 @@ def post(request, post_id):
         post_model = Post.objects.get(pk=post_id)
         comment_moel = Comment.objects.filter(post=post_model)
         d = { 'post':post_model, 'comments':comment_model, 'form':CommentForm(), 'user':request.user }
-        print request
+        ipdb.set_trace()
         return render(request, "post.html", d)
     except Post.DoesNotExist:
         raise Http404
