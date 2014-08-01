@@ -11,7 +11,7 @@ from .models import Post, Comment
 from django.core.paginator import Paginator, \
     InvalidPage, EmptyPage
 from django.shortcuts import render, \
-    render_to_response, HttpResponseRedirect, redirect
+    HttpResponseRedirect, redirect
 from .forms import ModelForm, \
     PostForm, CommentsForm, CommentForm
 
