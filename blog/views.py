@@ -22,10 +22,9 @@ from .forms import ModelForm, \
 def post(request, post_id):
     """Single post with comments and a comment form."""
     try:
-        post = Post.objects.get(pk=post_id)
-        comments = Comment.objects.filter(post=post)
-        d = { 'post':post, 'comments':comments, 'form':CommentForm(), 'user':request.user }
-        d.update(csrf(request))
+        post_model = Post.objects.get(pk=post_id)
+        comment_moel = Comment.objects.filter(post=post_model)
+        d = { 'post':post_model, 'comments':comment_model, 'form':CommentForm(), 'user':request.user }
         print request
         return render(request, "post.html", d)
     except Post.DoesNotExist:
@@ -34,19 +33,19 @@ def post(request, post_id):
 
 def add_comment(request, post_id):
     """Add a new comment."""
-    p = request.POST
+    post_data = request.POST
 
-    if p.has_key("body") and p["body"]:
-        author = "Anonymous"
-        if p["author"]:
-            author = p["author"]
+    if post_data.has_key("body") and p["body"]:
+        comment_author = "Anonymous"
+        if post_data["author"]:
+            comment_author = post_data["author"]
 
         comment = Comment(post=Post.objects.get(pk=post_id))
-        cf = CommentForm(p, instance=comment)
+        cf = CommentForm(post_data, instance=comment)
         cf.fields["author"].required = False
 
         comment = cf.save(commit=False)
-        comment.author = author
+        comment.author = comment_author
 	comment.save()
     return redirect("main")
 
@@ -123,7 +122,7 @@ def posts(request):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            cd = form.cleaned_data
+            form_data = form.cleaned_data
             posts = Post.objects.order_by("created")
             comments = Comment.objects.order_by("created")
             comment_form = CommentsForm()
