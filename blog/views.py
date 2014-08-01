@@ -120,7 +120,6 @@ def posts(request):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            form_data = form.cleaned_data
             posts = Post.objects.order_by("created")
             comments = Comment.objects.order_by("created")
             comment_form = CommentsForm()
