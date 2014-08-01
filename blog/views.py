@@ -85,8 +85,10 @@ def month(request, year, month):
 def delete_comment(request, post_pk, pk=None):
     """Delete comment(s) with primary key `pk` or with pks in POST."""
     if request.user.is_staff:
-        if not pk: pklst = request.POST.getlist("delete")
-        else: pklst = [pk]
+        if not pk:
+            pklst = request.POST.getlist("delete")
+        else:
+            pklst = [pk]
 	print request
         for pk in pklst:
             Comment.objects.get(pk=pk).delete()
