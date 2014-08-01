@@ -2,20 +2,16 @@ import time
 import pytz
 from calendar import month_name
 from django.conf import settings
-
-from django.shortcuts import render, \
-    render_to_response, HttpResponseRedirect, redirect
-
 from django.http import Http404
 from django.template import RequestContext
-
-from django.core.paginator import Paginator, \
-    InvalidPage, EmptyPage
-
 from django.core.urlresolvers import reverse
 from django.core.context_processors import csrf
 from .models import Post, Comment
 
+from django.core.paginator import Paginator, \
+    InvalidPage, EmptyPage
+from django.shortcuts import render, \
+    render_to_response, HttpResponseRedirect, redirect
 from .forms import ModelForm, \
     PostForm, CommentsForm, CommentForm
 
