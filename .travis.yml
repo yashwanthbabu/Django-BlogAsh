@@ -6,7 +6,7 @@ python:
 install: pip install -r requirements.txt
 # command to run tests, e.g. python setup.py test
 script:
-  - coverage run --source="." /manage.py test blog
+  - coverage run --source="." python manage.py test blog
 
 after_success:
   - coveralls 
