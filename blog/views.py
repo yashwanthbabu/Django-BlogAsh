@@ -1,5 +1,4 @@
 import time
-import ipdb
 from calendar import month_name
 
 from django.conf import settings
@@ -25,7 +24,6 @@ def post(request, post_id):
         comment_model = Comment.objects.filter(post=post_model)
         d = {'post': post_model, 'comments': comment_model,
              'form': CommentForm(), 'user': request.user}
-        ipdb.set_trace()
         return render(request, "post.html", d)
     except Post.DoesNotExist:
         raise Http404
@@ -121,7 +119,8 @@ def posts(request):
         comments = Comment.objects.order_by("created")
         comment_form = CommentsForm()
         return render(request, 'recentposts.html', {'posts': posts,
-                      'comments': comments, 'comment_form': comment_form, 'months': mkmonth_lst()})
+                      'comments': comments, 'comment_form': comment_form,
+                      'months': mkmonth_lst()})
     except Post.DoesNotExist:
         raise Http404
 
