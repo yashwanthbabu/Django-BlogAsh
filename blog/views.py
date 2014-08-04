@@ -118,8 +118,6 @@ def blog(request):
 
 def posts(request):
     try:
-        post_data = request.POST
-        form = CommentForm(post_data)
         posts = Post.objects.order_by("created")
         comments = Comment.objects.order_by("created")
         comment_form = CommentsForm()
