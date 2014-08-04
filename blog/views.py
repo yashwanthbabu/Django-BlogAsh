@@ -17,12 +17,14 @@ from django.shortcuts import render, \
 from .models import Post, Comment
 from .forms import CommentsForm, CommentForm
 
+
 def post(request, post_id):
     """Single post with comments and a comment form."""
     try:
         post_model = Post.objects.get(pk=post_id)
         comment_model = Comment.objects.filter(post=post_model)
-        d = { 'post':post_model, 'comments':comment_model, 'form':CommentForm(), 'user':request.user }
+        d = {'post': post_model, 'comments': comment_model,
+             'form': CommentForm(), 'user': request.user}
         ipdb.set_trace()
         return render(request, "post.html", d)
     except Post.DoesNotExist:
@@ -44,7 +46,7 @@ def add_comment(request, post_id):
 
         comment = cf.save(commit=False)
         comment.author = comment_author
-	comment.save()
+        comment.save()
     return redirect("main")
 
 
@@ -77,9 +79,9 @@ def mkmonth_lst():
 def month(request, year, month):
     """Monthly archive."""
     posts = Post.objects.filter(created__year=year, created__month=month)
-    return render(request, "archive.html", { 'posts':posts, 'post_list':posts,
-                                     'context_instance':RequestContext(request),
-                                                'months':mkmonth_lst(), 'archive':True })
+    return render(request, "archive.html", {'posts': posts, 'post_list': posts,
+                  'context_instance': RequestContext(request),
+                  'months': mkmonth_lst(), 'archive': True})
 
 
 def delete_comment(request, post_pk, pk=None):
@@ -89,7 +91,6 @@ def delete_comment(request, post_pk, pk=None):
             pklst = request.POST.getlist("delete")
         else:
             pklst = [pk]
-	print request
         for pk in pklst:
             Comment.objects.get(pk=pk).delete()
         return HttpResponseRedirect(reverse("post", args=[post_pk]))
@@ -100,7 +101,6 @@ def blog(request):
     posts = Post.objects.order_by("-created")
     entries_per_page = getattr(settings, 'BLOG_NUMBER_OF_ENTRIES_PER_PAGE')
     paginator = Paginator(posts, entries_per_page)
-    
     try:
         page = int(request.GET.get("page", '1'))
     except ValueError:
@@ -111,22 +111,23 @@ def blog(request):
     except (InvalidPage, EmptyPage):
         posts = paginator.page(paginator.num_pages)
 
-    return render(request, "list.html", {'posts':posts,
-                                                'context_instance':RequestContext(request),
-                                                'post_list':posts.object_list, 'months':mkmonth_lst()})
-                                                
-                                                
+    return render(request, "list.html", {'posts': posts,
+                  'context_instance': RequestContext(request),
+                  'post_list': posts.object_list, 'months': mkmonth_lst()})
+
+
 def posts(request):
     try:
-    	post_data = request.POST
+        post_data = request.POST
         form = CommentForm(post_data)
         posts = Post.objects.order_by("created")
         comments = Comment.objects.order_by("created")
         comment_form = CommentsForm()
-        return render( request, 'recentposts.html', {'posts': posts, 'comments': comments, 'comment_form':comment_form})
+        return render(request, 'recentposts.html', {'posts': posts,
+                      'comments': comments, 'comment_form': comment_form})
     except Post.DoesNotExist:
-    	raise Http404
-    	
-    	
+        raise Http404
+
+
 class AboutMe(TemplateView):
     template_name = "aboutme.html"
