@@ -11,18 +11,18 @@
 	
     <div class="blog">
 
-<div id="sidebar">
+<!--<div id="sidebar">
         <br><u>MONTHLY ARCHIVES</u><br />
         {% for month in months %}
             <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}">{{ month.2 }} - {{ month.0 }} </a> <br />
 		
         {% endfor %}
-    </div>
+    </div> -->
         <!-- Posts  -->
         <ul>
             {% for post in posts.object_list %}
 	
-                <div class="title">{{ post.title }}</div><br>
+                <div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</div><br>
 		<div class="user">By: <a href="{%url 'aboutme' %}"> {{ post.user }} </a></div>
                 <ul>
                     <div class="time">{{ post.created|linebreaks}}</div>
