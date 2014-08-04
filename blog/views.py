@@ -34,8 +34,7 @@ def post(request, post_id):
 def add_comment(request, post_id):
     """Add a new comment."""
     post_data = request.POST
-
-    if post_data.has_key("body") and post_data["body"]:
+    if "body" in post_data and post_data["body"]:
         comment_author = "Anonymous"
         if post_data["author"]:
             comment_author = post_data["author"]
