@@ -121,7 +121,7 @@ def posts(request):
         comments = Comment.objects.order_by("created")
         comment_form = CommentsForm()
         return render(request, 'recentposts.html', {'posts': posts,
-                      'comments': comments, 'comment_form': comment_form})
+                      'comments': comments, 'comment_form': comment_form, 'months': mkmonth_lst()})
     except Post.DoesNotExist:
         raise Http404
 
