@@ -1,5 +1,4 @@
 import time
-import ipdb
 from calendar import month_name
 
 from django.conf import settings
@@ -7,12 +6,14 @@ from django.http import Http404
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView
+from django.core.mail import send_mail, BadHeaderError
+from django.template.loader import Context, get_template
 
 from django.core.paginator import Paginator, \
     InvalidPage, EmptyPage
 
 from django.shortcuts import render, \
-    HttpResponseRedirect, redirect
+    HttpResponseRedirect, redirect, HttpResponse
 
 from .models import Post, Comment
 from .forms import CommentsForm, CommentForm
@@ -25,7 +26,6 @@ def post(request, post_id):
         comment_model = Comment.objects.filter(post=post_model)
         d = {'post': post_model, 'comments': comment_model,
              'form': CommentForm(), 'user': request.user}
-        ipdb.set_trace()
         return render(request, "post.html", d)
     except Post.DoesNotExist:
         raise Http404
@@ -34,6 +34,13 @@ def post(request, post_id):
 def add_comment(request, post_id):
     """Add a new comment."""
     post_data = request.POST
+    from_email = "hello@agiliq.com"
+    mail = request.POST.get("email")
+    to = [mail]
+    subject = get_template('blog/mail.txt').render(Context({
+        'author': post_data["author"],
+        'body': post_data["body"]}))
+    #c = Context({"author": post_data["author"], "body": post_data["body"]})
     if "body" in post_data and post_data["body"]:
         comment_author = "Anonymous"
         if post_data["author"]:
@@ -46,6 +53,10 @@ def add_comment(request, post_id):
         comment = cf.save(commit=False)
         comment.author = comment_author
         comment.save()
+        try:
+            send_mail("New Comment Added", subject, from_email, to)
+        except BadHeaderError:
+            return HttpResponse("invalid header found")
     return redirect("main")
 
 
@@ -121,7 +132,8 @@ def posts(request):
         comments = Comment.objects.order_by("created")
         comment_form = CommentsForm()
         return render(request, 'recentposts.html', {'posts': posts,
-                      'comments': comments, 'comment_form': comment_form, 'months': mkmonth_lst()})
+                      'comments': comments, 'comment_form': comment_form,
+                      'months': mkmonth_lst()})
     except Post.DoesNotExist:
         raise Http404
 

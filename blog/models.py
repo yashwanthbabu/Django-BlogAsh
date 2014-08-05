@@ -18,6 +18,7 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     author = models.CharField(max_length=60)
     body = models.TextField()
+    email = models.EmailField(max_length=35, null=True)
     post = models.ForeignKey(Post)
 
     def __unicode__(self):

@@ -37,7 +37,7 @@
 		{% for comment in comments %}
     			<div class="comment">
         			<div class="time">{{ comment.created }} | {{ comment.author }}</div>
-        			<div class="body">{{ comment.body|linebreaks }}</div>
+        			<div class="body">{{ comment.body }}  </div>
 
 				{% if user.is_staff %}
 		                	<input type="checkbox" name="delete" value="{{ comment.pk }}">
@@ -61,6 +61,7 @@
 			<form action="{% url 'add_comment' post.id %}" id="myform4" method="POST">{% csrf_token %}
     				<div id="cform">
         				Name:<br>{{ form.author }}<br><br>
+					Email:<br> {{ form.email }}<br><br> 
 					Comment:
         				{{ form.body }}
 					

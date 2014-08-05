@@ -129,3 +129,12 @@ BLOG_NUMBER_OF_ENTRIES_PER_PAGE = 3
 STATIC_URL = '/static/'
 
 BLOG_NUMBER_OF_ENTRIES_PER_PAGE = 3
+
+BLOG_NUMBER_OF_RECENT_ENTRIES_PER_PAGE = 5
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'yashwanthbabu.gujarathi@gmail.com'
+EMAIL_HOST_PASSWORD = 'yashwanthgujarathi'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
