@@ -60,7 +60,6 @@ def add_comment(request, post_id):
     return HttpResponseRedirect(reverse("post", args=[post_id]))
 
 
-
 def mkmonth_lst():
     """Make a list of months to show archive links."""
     if not Post.objects.count():
