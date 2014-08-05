@@ -13,7 +13,7 @@ from django.core.paginator import Paginator, \
     InvalidPage, EmptyPage
 
 from django.shortcuts import render, \
-    HttpResponseRedirect, redirect, HttpResponse
+    HttpResponseRedirect, HttpResponse
 
 from .models import Post, Comment
 from .forms import CommentsForm, CommentForm
@@ -63,7 +63,6 @@ def add_comment(request, post_id):
 
 def mkmonth_lst():
     """Make a list of months to show archive links."""
-
     if not Post.objects.count():
         return []
 
