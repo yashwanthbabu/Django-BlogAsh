@@ -128,7 +128,7 @@ def blog(request):
 
 def posts(request):
     try:
-        posts = Post.objects.order_by("created")
+        posts = Post.objects.order_by("-created")
         comments = Comment.objects.order_by("created")
         comment_form = CommentsForm()
         return render(request, 'recentposts.html', {'posts': posts,
