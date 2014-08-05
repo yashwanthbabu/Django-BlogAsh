@@ -57,7 +57,8 @@ def add_comment(request, post_id):
             send_mail("New Comment Added", subject, from_email, to)
         except BadHeaderError:
             return HttpResponse("invalid header found")
-    return redirect("main")
+    return HttpResponseRedirect(reverse("post", args=[post_id]))
+
 
 
 def mkmonth_lst():
