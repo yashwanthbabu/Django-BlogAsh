@@ -3,7 +3,6 @@ from calendar import month_name
 
 from django.conf import settings
 from django.http import Http404
-from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView
 from django.core.mail import send_mail, BadHeaderError
