@@ -23,8 +23,9 @@ def post(request, post_id):
         post_model = Post.objects.get(pk=post_id)
         comment_model = Comment.objects.filter(post=post_model)
         d = {'post': post_model, 'comments': comment_model,
-             'form': CommentForm(), 'user': request.user}
-        return render(request, "post.html", d)
+             'form': CommentForm(), 'user': request.user,
+             'months': mkmonth_lst()}
+        return render(request, "post.html", d,)
     except Post.DoesNotExist:
         raise Http404
 
@@ -87,7 +88,6 @@ def month(request, year, month):
     """Monthly archive."""
     posts = Post.objects.filter(created__year=year, created__month=month)
     return render(request, "archive.html", {'posts': posts, 'post_list': posts,
-                  'context_instance': RequestContext(request),
                   'months': mkmonth_lst(), 'archive': True})
 
 
@@ -119,7 +119,6 @@ def blog(request):
         posts = paginator.page(paginator.num_pages)
 
     return render(request, "list.html", {'posts': posts,
-                  'context_instance': RequestContext(request),
                   'post_list': posts.object_list, 'months': mkmonth_lst()})
 
 
