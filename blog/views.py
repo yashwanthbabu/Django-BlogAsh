@@ -8,10 +8,8 @@ from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView
 from django.core.mail import send_mail, BadHeaderError
 from django.template.loader import Context, get_template
-
 from django.core.paginator import Paginator, \
     InvalidPage, EmptyPage
-
 from django.shortcuts import render, \
     HttpResponseRedirect, HttpResponse
 
