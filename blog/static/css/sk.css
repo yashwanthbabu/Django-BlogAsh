@@ -10,7 +10,7 @@
             }
         #cform { width: 300px; padding: 8px; padding-bottom: 0px; }
 	fieldset{ width:300px;}
-        #submit { text-align: center; margin-right: 50px; width: 500px; margin-top: -5px; }
+        #submit { float: right; margin-right: 50px; width: 500px; margin-top: -5px; }
 
         ul { margin-bottom: 30px; }
 ul{
@@ -24,11 +24,15 @@ ul{
 	font-family: inherit;
 	vertical-align: baseline;
 }
-.submit{ text-align:right; padding:3px;}
+#sendwrapper{ float:right; padding:3px; }
 h2{font:bold 15px Helvetica, Arial, sans-serif; line-height:40px;}
 h2.message{color: brown; text-align: right; font-style:italic; font:bold;}
 h2{color:red;}
 body{background:url(../images/image.jpeg); color: black;}
 a{color: green; }
  #sidebar { float: right; border: 1px dotted #ccc; padding: 4px; text-align:center; color:green}
+ .col-sm-8 { color: red ;}
+ .text-danger { color: red;}
+ .form-group {color:red;}
+ #color { color:black;}
 

@@ -2555,7 +2555,7 @@ select[multiple].input-lg {
 .has-success .checkbox,
 .has-success .radio-inline,
 .has-success .checkbox-inline {
-  color: #3c763d;
+  -smor: #3c763d;
 }
 .has-success .form-control {
   border-color: #3c763d;

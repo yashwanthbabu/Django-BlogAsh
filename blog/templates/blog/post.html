@@ -1,5 +1,8 @@
 {% extends "base.html" %}
+<head>
 
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css">
+</head>
 {% block content %}
 
 
@@ -46,7 +49,11 @@
     			</div>
 		{% endfor %} 
 		{% if user.is_staff and comments %}
-    			<p><input type="submit" value="Delete all selected" class="required"></p>
+    			<div class="form-group row">
+          <div class="col-sm-5">
+            <input type="submit" value="Delete all selected" class="btn btn-primary" />
+          </div>
+        </div>
     			<br />
 		{% endif %}
 		</form>
@@ -58,20 +65,96 @@
 		
 		<ul>
 		<!-- Comment form  -->
-			<form action="{% url 'add_comment' post.id %}" id="myform4" method="POST">{% csrf_token %}
-    				<div id="cform">
-        				Name:<br>{{ form.author }}<br><br>
-					Email:<br> {{ form.email }}<br><br> 
-					Comment:
-        				{{ form.body }}
-					
-    				</div>
-    				<br><div id="submit"><input type="submit" value="Comment"></div>
-			</form> <br>
+    
+    <h2></h2>
+    {% if form.errors %}
+    <div class="text-danger">Please correct the error{{ form.errors|pluralize }} below.</div>
+    {% endif %}
+    <div class="col-sm-8">
+    <form id="ajaxform" action="{% url 'add_comment' post.id %}" method="post">
+        {% csrf_token %}
+        <!-- {{ form.non_field_errors }} -->
+        {{ form.as_p }}
+        </div>
+        
+        <div id="loading" style="display:none;">
+            <span id="load_text" class="help-block">loading...</span>
+        </div>
+        <div id="form_ajax" style="display:none;">
+            <span class="help-block">Form submit successfully.</span>
+        </div>
+        <div id="form_ajax_error" style="display:none;">
+            <span class="help-block">Can not submit data due to errors.</span>
+        </div>
+        <p id="sendwrapper"><input type="submit" value="Comment" id="submitbutton"/></p>
+        </form> 
+        </ul>
+    </fieldset>
+
+
+			
+    			<!--<div class="col-sm-8">
+    <h2></h2>
+    {% if form.errors %}
+    <div class="text-danger">Please correct the error{{ form.errors|pluralize }} below.</div>
+    {% endif %}
+    <p>
+    <div class="form-horizontal">
+      <form action="{% url 'add_comment' post.id %}" method="post" role="form">{% csrf_token %}
+        
+        <div class="form-group row {% if form.author.errors %}has-error{% endif %}">
+           <label for="id_sender" class="col-sm-3">Name:</label>
+           <div class="col-lg-5">
+           {% for field in form.author %} 
+           {{ form.non_field_errors }}
+           {{ form.as_p }}
+            {{ form.author }}
+            {% endfor %}
+            .........................................
+            {% if form.author.errors %}
+              <span class="help-block">
+                {% for error in form.author.errors %}{{ errors }} {% endfor %} 
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="form-group row {% if form.email.errors %}has-error{% endif %}">
+          <label for="id_sender" class="col-sm-3">Email address:</label>
+          <div class="col-lg-5">
+          {{ form.email }}
+            {% if form.email.errors %}
+              <span class="help-block">
+                {% for error in form.email.errors %}{{ error }}{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+        
+        <div class="form-group row {% if form.body.errors %}has-error{% endif %}">
+          <label for="id_message" class="col-sm-3">Body:</label>
+          <div class="col-lg-5">
+            {{ form.body }}
+            {% if form.body.errors %}
+              <span class="help-block">
+                {% for error in form.message.errors %}{{ error }}{% endfor %}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-5 col-sm-offset-3 ">
+            <input type="submit" value="comment" class="btn btn-primary" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div> -->
+			 <br>
 			
 				
-		</ul>
-		</fieldset>
+		
 	</ul>
 	</div>
 

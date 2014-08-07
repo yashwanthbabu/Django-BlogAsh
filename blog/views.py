@@ -10,7 +10,7 @@ from django.template.loader import Context, get_template
 from django.core.paginator import Paginator, \
     InvalidPage, EmptyPage
 from django.shortcuts import render, \
-    HttpResponseRedirect, HttpResponse
+    HttpResponseRedirect, HttpResponse, render_to_response, redirect
 
 from .models import Post, Comment
 from .forms import CommentsForm, CommentForm
@@ -28,9 +28,9 @@ def post(request, post_id):
     except Post.DoesNotExist:
         raise Http404
 
-
+"""
 def add_comment(request, post_id):
-    """Add a new comment."""
+    Add a new comment.
     post_data = request.POST
     from_email = "hello@agiliq.com"
     mail = request.POST.get("email")
@@ -56,6 +56,34 @@ def add_comment(request, post_id):
         except BadHeaderError:
             return HttpResponse("invalid header found")
     return HttpResponseRedirect(reverse("post", args=[post_id]))
+"""
+
+def add_comment(request, post_id):
+    if request.method == 'POST':
+        # get data from POST request to contactform
+        from_email = "hello@agiliq.com"
+        mail = request.POST.get("email")
+        to = [mail]
+        print mail
+        form = CommentsForm(request.POST)
+        post_model = Post.objects.get(pk=post_id)
+        comment_model = Comment.objects.filter(post=post_model)
+        subject = get_template('blog/mail.txt').render(Context({
+        'author': request.POST.get("author"),
+        'body': request.POST.get("body")}))
+        print post_model
+        print subject
+        print comment_model
+        # import ipdb; ipdb.set_trace()
+        if form.is_valid():
+        	send_mail("Added new comment", subject, from_email, to)
+    else:
+        form = CommentForm()
+    print form.errors
+    d =  {'post': post_model, 'comments': comment_model,
+             'form': form, 'months': mkmonth_lst()}
+           
+    return render(request,"post.html", d)
 
 
 def mkmonth_lst():
