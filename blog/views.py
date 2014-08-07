@@ -65,14 +65,16 @@ def add_comment(request, post_id):
 		to = [mail]
 		print mail
 		subject = get_template('blog/mail.txt').render(Context({
-			'author': request.POST.get("author"),
-			'body': request.POST.get("body")}))
+		    'author': request.POST.get("author"),
+		    'body': request.POST.get("body")}))
 		print subject
-		form = CommentsForm(request.POST)
+		form = CommentForm(request.POST)
 		post_model = Post.objects.get(pk=post_id)
 		comment_model = Comment.objects.filter(post=post_model)
 		if form.is_valid:
-			pass
+			author = request.POST["author"]
+			body = request.POST["body"]
+			send_mail("Comment added", subject, from_email, to)
 		else:
 			form = CommentsForm()
 		d = {'post': post_model, 'comments': comment_model,
