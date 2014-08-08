@@ -27,7 +27,7 @@ If you are a Admin user then you can delete either single or bulk comments.
 # **To integrate into your application:**
 
 1) Install the requirements.txt
-2) Include django_admin_bootstrapped.bootstrap3 , django_admin_bootstrapped , south in settings.INSTALLED_APPS.
+2) Include `django_admin_bootstrapped.bootstrap3` , `django_admin_bootstrapped` , `south` in settings.INSTALLED_APPS.
 3) Enable django admin. If not already enabled python manange.py syncdb 4) Check out your blog at /blog/
 
 Enjoy the blogging application in django now.
