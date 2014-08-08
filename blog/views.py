@@ -10,7 +10,7 @@ from django.template.loader import Context, get_template
 from django.core.paginator import Paginator, \
     InvalidPage, EmptyPage
 from django.shortcuts import render, \
-    HttpResponseRedirect, HttpResponse, render_to_response, redirect
+    HttpResponseRedirect, HttpResponse
 
 from .models import Post, Comment
 from .forms import CommentsForm, CommentForm
@@ -32,54 +32,77 @@ def post(request, post_id):
 def add_comment(request, post_id):
     Add a new comment.
     post_data = request.POST
-    from_email = "hello@agiliq.com"
-    mail = request.POST.get("email")
-    to = [mail]
-    subject = get_template('blog/mail.txt').render(Context({
-        'author': post_data["author"],
-        'body': post_data["body"]}))
-    #c = Context({"author": post_data["author"], "body": post_data["body"]})
-    if "body" in post_data and post_data["body"]:
-        comment_author = "Anonymous"
-        if post_data["author"]:
-            comment_author = post_data["author"]
+    if post_data:
+        from_email = "hello@agiliq.com"
+        mail = request.POST.get("email")
+        to = [mail]
+        subject = get_template('blog/mail.txt').render(Context({
+            'author': request.POST.get("author"),
+            'body': request.POST.get("body")}))
+        print subject
+        #c = Context({"author": post_data["author"], "body": post_data["body"]
+                      })
+        form = CommentForm(request.POST)
+        post_model = Post.objects.get(pk=post_id)
+        comment_model = Comment.objects.filter(post=post_model)
+        if form.is_valid():
+            if "body" in post_data and post_data["body"]:
+                comment_author = "Anonymous"
+                if post_data["author"]:
+                    comment_author = post_data["author"]
 
-        comment = Comment(post=Post.objects.get(pk=post_id))
-        cf = CommentForm(post_data, instance=comment)
-        cf.fields["author"].required = False
+                comment = Comment(post=Post.objects.get(pk=post_id))
+                cf = CommentForm(post_data, instance=comment)
+                cf.fields["author"].required = False
 
-        comment = cf.save(commit=False)
-        comment.author = comment_author
-        comment.save()
-        try:
-            send_mail("New Comment Added", subject, from_email, to)
-        except BadHeaderError:
-            return HttpResponse("invalid header found")
-    return HttpResponseRedirect(reverse("post", args=[post_id]))
+                comment = cf.save(commit=False)
+                comment.author = comment_author
+                comment.save()
+                try:
+                    send_mail("New Comment Added", subject, from_email, to)
+                except BadHeaderError:
+                    return HttpResponse("invalid header found")
+        else:
+            form = CommentsForm()
+        d = {'post': post_model, 'comments': comment_model,
+              'form':form, 'months':mkmonth_lst()}
+    return render(request, "post.html", d)
 """
 
+
 def add_comment(request, post_id):
-	if request.method == 'POST':
-		from_email = "hello@agiliq.com"
-		mail = request.POST.get("email")
-		to = [mail]
-		print mail
-		subject = get_template('blog/mail.txt').render(Context({
-		    'author': request.POST.get("author"),
-		    'body': request.POST.get("body")}))
-		print subject
-		form = CommentForm(request.POST)
-		post_model = Post.objects.get(pk=post_id)
-		comment_model = Comment.objects.filter(post=post_model)
-		if form.is_valid:
-			author = request.POST["author"]
-			body = request.POST["body"]
-			send_mail("Comment added", subject, from_email, to)
-		else:
-			form = CommentsForm()
-		d = {'post': post_model, 'comments': comment_model,
-		      'form':form, 'months':mkmonth_lst()}
-	return render(request, "post.html", d)
+    form = CommentForm(request.POST)
+    post_model = Post.objects.get(pk=post_id)
+    comment_model = Comment.objects.filter(post=post_model)
+    from_email = ""
+    mail = request.POST.get("email")
+    to = [mail]
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        subject = get_template('blog/mail.txt').render(Context({
+            'author': request.POST.get("author"),
+            'body': request.POST.get("body")}))
+        if form.is_valid():
+            comment_author = "Anonymous"
+            if request.POST["author"]:
+                comment_author = request.POST["author"]
+
+            comment = Comment(post=Post.objects.get(pk=post_id))
+            cf = CommentForm(request.POST, instance=comment)
+            cf.fields["author"].required = False
+
+            comment = cf.save(commit=False)
+            comment.author = comment_author
+            comment.save()
+            try:
+                send_mail("Comment added", subject, from_email, to)
+            except BadHeaderError:
+                return HttpResponse("invalid header error")
+    else:
+        form = CommentsForm()
+    d = {'post': post_model, 'comments': comment_model,
+         'form': form, 'months': mkmonth_lst()}
+    return render(request, "post.html", d)
 
 
 def mkmonth_lst():
