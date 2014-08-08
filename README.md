@@ -2,11 +2,11 @@ Checkout the application and use it at https://github.com/yashwanthbabu/DjangoBl
 
 # **To try it locally**
 
-`Clone the repository.`
-`cd DjangoBlog`
-`pip install -r requirements.txt`
-`python manage.py syncdb`
-`python manage.py runserver`
+* `Clone the repository.`
+* `cd DjangoBlog`
+* `pip install -r requirements.txt`
+* `python manage.py syncdb`
+* `python manage.py runserver`
 
 You will be able to access http://127.0.0.1:8000/admin/ with this.
 
