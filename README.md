@@ -2,11 +2,11 @@ Checkout the application and use it at https://github.com/yashwanthbabu/DjangoBl
 
 # **To try it locally**
 
-* Clone the repository.
-* cd DjangoBlog
-* pip install -r requirements.txt
-* python manage.py syncdb
-* python manage.py runserver
+`Clone the repository.`
+`cd DjangoBlog`
+`pip install -r requirements.txt`
+`python manage.py syncdb`
+`python manage.py runserver`
 
 You will be able to access http://127.0.0.1:8000/admin/ with this.
 
@@ -27,8 +27,8 @@ If you are a Admin user then you can delete either single or bulk comments.
 # **To integrate into your application:**
 
 * Install the requirements.txt
-* Include `django_admin_bootstrapped.bootstrap3` , `django_admin_bootstrapped` , `south` in settings.INSTALLED_APPS.
-* Enable django admin. If not already enabled python manange.py syncdb
+* Include django_admin_bootstrapped.bootstrap3 , django_admin_bootstrapped , south in settings.INSTALLED_APPS.
+* Enable django admin. If not already enabled python manange.py syncdb 
 * Check out your blog at /blog/
 
 Enjoy the blogging application in django now.
