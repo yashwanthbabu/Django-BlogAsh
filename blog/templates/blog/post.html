@@ -38,13 +38,15 @@
 		{% endif %}
 				
 		{% for comment in comments %}
+          <a name="comment-{{ comment.pk }}">
+          
     			<div class="comment">
         			<div class="time">{{ comment.created }} | {{ comment.author }}</div>
         			<div class="body">{{ comment.body }}  </div>
-
+          
 				{% if user.is_staff %}
 		                	<input type="checkbox" name="delete" value="{{ comment.pk }}">
-            				<a href="{% url 'delete_comment' post.pk comment.id %}">delete</a>
+            				<a href="{% url 'delete_single_comment' post.pk comment.pk %}">delete</a>
         			{% endif %}
     			</div>
 		{% endfor %} 
@@ -59,7 +61,7 @@
 		</form>
 	
 		</div>
-	
+    <ul>	
 		<fieldset>
 		<legend> Add a Comment </legend>
 		
@@ -90,7 +92,7 @@
         </form> 
         </ul>
     </fieldset>
-
+</ul>
 
 			
     			<!--<div class="col-sm-8">

@@ -94,8 +94,11 @@ def add_comment(request, post_id):
             comment = cf.save(commit=False)
             comment.author = comment_author
             comment.save()
+            form = CommentForm()
+
             try:
                 send_mail("Comment added", subject, from_email, to)
+                return HttpResponseRedirect('#comment-%s' % comment.pk)
             except BadHeaderError:
                 return HttpResponse("invalid header error")
     else:
@@ -137,9 +140,11 @@ def month(request, year, month):
                   'months': mkmonth_lst(), 'archive': True})
 
 
-def delete_comment(request, post_pk, pk=None):
+def delete_bulk_comment(request, post_pk, pk=None):
     """Delete comment(s) with primary key `pk` or with pks in POST."""
     if request.user.is_staff:
+        import ipdb
+        ipdb.set_trace()
         if not pk:
             pklst = request.POST.getlist("delete")
         else:
@@ -147,6 +152,12 @@ def delete_comment(request, post_pk, pk=None):
         for pk in pklst:
             Comment.objects.get(pk=pk).delete()
         return HttpResponseRedirect(reverse("post", args=[post_pk]))
+
+
+def delete_single_comment(request, post_pk, comment_pk, pk=None):
+    obj = Comment.objects.get(pk=comment_pk)
+    obj.delete()
+    return HttpResponseRedirect(reverse("post", args=[post_pk]))
 
 
 def blog(request):
