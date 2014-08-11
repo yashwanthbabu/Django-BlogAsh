@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.conf.urls import patterns, include, url
+from django.views.generic import TemplateView
 from blog.views import AboutMe
 
 admin.autodiscover()
@@ -15,6 +16,9 @@ urlpatterns = patterns('',
     url(r"^delete_single_comment/(?P<post_pk>[0-9]+)/(?P<comment_pk>[0-9]+)/$", 'blog.views.delete_single_comment', name='delete_single_comment'),
     url(r"^aboutme/", AboutMe.as_view(), name='aboutme'),
     url(r"^posts/", 'blog.views.posts', name='recentposts'),
+    url(r"^accounts/profile", 'blog.views.blog', name='main'),
+    url(r"^login/$", TemplateView.as_view(template_name="login.html"), name='login'),
+    url(r'', include('social_auth.urls')),
     # url(r'^$', 'sampleblog.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^admin/', include(admin.site.urls)),

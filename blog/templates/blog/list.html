@@ -11,14 +11,7 @@
 	
     <div class="blog">
 
-<!--<div id="sidebar">
-        <br><u>MONTHLY ARCHIVES</u><br />
-        {% for month in months %}
-            <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}">{{ month.2 }} - {{ month.0 }} </a> <br />
-		
-        {% endfor %}
-    </div> -->
-        <!-- Posts  -->
+
         <ul>
             {% for post in posts.object_list %}
 	
