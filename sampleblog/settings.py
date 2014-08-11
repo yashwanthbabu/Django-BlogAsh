@@ -62,6 +62,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'south',
     'blog',
+    'social_auth',
 )
 
 TEMPLATE_LOADERS = ('django.template.loaders.filesystem.Loader',
@@ -79,6 +80,15 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 )
 
+AUTHENTICATION_BACKENDS=(
+    'social_auth.backends.google.GoogleOAuth2Backend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+	)
+
+SESSION_SERIALIZER='django.contrib.sessions.serializers.PickleSerializer'
+
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -87,6 +97,14 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
+
+GOOGLE_OAUTH2_CLIENT_ID = '1008298715868-rco5g1rd603igduj0armr16f2oulqmbh.apps.googleusercontent.com'
+GOOGLE_OAUTH2_CLIENT_SECRET = 'vZqRHuy2z0UDQza6DUVtpytH'
+
+FACEBOOK_APP_ID = '559235774199929'
+FACEBOOK_API_SECRET = 'f6f810170c820a624614bf07e1f89c37'
+
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 
 ROOT_URLCONF = 'sampleblog.urls'
 

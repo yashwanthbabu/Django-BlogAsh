@@ -35,7 +35,7 @@
     	<div id="header" align="right">
             <a href="{% url 'main' %}">HOME</a>
             |<a href="{% url 'recentposts' %}">RECENT ARTICLES</a> 
-            |<a href="/login">USER LOGIN</a>
+            |<a href="{% url 'login' %}">USER LOGIN</a>
         </div>
         </div>
         <div id="sidebar" align="center"> {% block sidebar %} 

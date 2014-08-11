@@ -93,66 +93,6 @@
         </ul>
     </fieldset>
 </ul>
-
-			
-    			<!--<div class="col-sm-8">
-    <h2></h2>
-    {% if form.errors %}
-    <div class="text-danger">Please correct the error{{ form.errors|pluralize }} below.</div>
-    {% endif %}
-    <p>
-    <div class="form-horizontal">
-      <form action="{% url 'add_comment' post.id %}" method="post" role="form">{% csrf_token %}
-        
-        <div class="form-group row {% if form.author.errors %}has-error{% endif %}">
-           <label for="id_sender" class="col-sm-3">Name:</label>
-           <div class="col-lg-5">
-           {% for field in form.author %} 
-           {{ form.non_field_errors }}
-           {{ form.as_p }}
-            {{ form.author }}
-            {% endfor %}
-            .........................................
-            {% if form.author.errors %}
-              <span class="help-block">
-                {% for error in form.author.errors %}{{ errors }} {% endfor %} 
-              </span>
-            {% endif %}
-          </div>
-        </div>
-
-        <div class="form-group row {% if form.email.errors %}has-error{% endif %}">
-          <label for="id_sender" class="col-sm-3">Email address:</label>
-          <div class="col-lg-5">
-          {{ form.email }}
-            {% if form.email.errors %}
-              <span class="help-block">
-                {% for error in form.email.errors %}{{ error }}{% endfor %}
-              </span>
-            {% endif %}
-          </div>
-        </div>
-        
-        <div class="form-group row {% if form.body.errors %}has-error{% endif %}">
-          <label for="id_message" class="col-sm-3">Body:</label>
-          <div class="col-lg-5">
-            {{ form.body }}
-            {% if form.body.errors %}
-              <span class="help-block">
-                {% for error in form.message.errors %}{{ error }}{% endfor %}
-              </span>
-            {% endif %}
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-sm-5 col-sm-offset-3 ">
-            <input type="submit" value="comment" class="btn btn-primary" />
-          </div>
-        </div>
-      </form>
-    </div>
-  </div> -->
 			 <br>
 			
 				
