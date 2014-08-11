@@ -98,11 +98,11 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-GOOGLE_OAUTH2_CLIENT_ID = '1008298715868-rco5g1rd603igduj0armr16f2oulqmbh.apps.googleusercontent.com'
-GOOGLE_OAUTH2_CLIENT_SECRET = 'vZqRHuy2z0UDQza6DUVtpytH'
+GOOGLE_OAUTH2_CLIENT_ID = os.environ.get("googleclientid")
+GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get("googlecliendsecret")
 
-FACEBOOK_APP_ID = '559235774199929'
-FACEBOOK_API_SECRET = 'f6f810170c820a624614bf07e1f89c37'
+FACEBOOK_APP_ID = os.environ.get("fbID")
+FACEBOOK_API_SECRET = os.environ.get("fbsecret")
 
 FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 
