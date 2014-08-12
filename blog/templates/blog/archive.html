@@ -15,7 +15,7 @@
         <ul>
             {% for post in posts %}
 	
-                <div class="title">{{ post.title }}</div><br>
+                <div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</div><br>
 		<div class="user">By: <a href="{%url 'aboutme' %}"> {{ post.user }} </a></div>
                 <ul>
                     <div class="time">{{ post.created|linebreaks}}</div>

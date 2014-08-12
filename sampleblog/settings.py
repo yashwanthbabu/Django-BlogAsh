@@ -78,13 +78,19 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
+    'social_auth.context_processors.social_auth_by_name_backends',
+    'social_auth.context_processors.social_auth_backends',
+    'social_auth.context_processors.social_auth_by_type_backends',
+    'social_auth.context_processors.social_auth_login_redirect',
 )
 
 AUTHENTICATION_BACKENDS=(
+	'social_auth.backends.twitter.TwitterBackend',
     'social_auth.backends.google.GoogleOAuth2Backend',
     'social_auth.backends.facebook.FacebookBackend',
     'django.contrib.auth.backends.ModelBackend',
 	)
+
 
 SESSION_SERIALIZER='django.contrib.sessions.serializers.PickleSerializer'
 
@@ -99,10 +105,21 @@ MIDDLEWARE_CLASSES = (
 )
 
 GOOGLE_OAUTH2_CLIENT_ID = os.environ.get("googleclientid")
-GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get("googlecliendsecret")
+
+GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get("googleclientsecret")
 
 FACEBOOK_APP_ID = os.environ.get("fbID")
+
 FACEBOOK_API_SECRET = os.environ.get("fbsecret")
+
+TWITTER_CONSUMER_KEY = os.environ.get("twitterapi")
+
+TWITTER_CONSUMER_SECRET = os.environ.get("twittersecret")
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/blog/'
+SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/blog/'
+SOCIAL_AUTH_INACTIVE_USER_URL = '...'
 
 FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 
