@@ -5,12 +5,15 @@ from django.conf import settings
 from django.http import Http404
 from django.core.urlresolvers import reverse
 from django.views.generic import TemplateView
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import logout as auth_logout
 from django.core.mail import send_mail, BadHeaderError
 from django.template.loader import Context, get_template
 from django.core.paginator import Paginator, \
     InvalidPage, EmptyPage
 from django.shortcuts import render, \
-    HttpResponseRedirect, HttpResponse
+    HttpResponseRedirect, HttpResponse, get_object_or_404, redirect
 
 from .models import Post, Comment
 from .forms import CommentsForm, CommentForm
@@ -94,7 +97,8 @@ def mkmonth_lst():
 
 def month(request, year, month):
     """Monthly archive."""
-    posts = Post.objects.filter(created__year=year, created__month=month)
+    posts = Post.objects.filter(created__year=year,
+                                created__month=month).order_by("-created")
     return render(request, "archive.html", {'posts': posts, 'post_list': posts,
                   'months': mkmonth_lst(), 'archive': True})
 
@@ -102,8 +106,6 @@ def month(request, year, month):
 def delete_bulk_comment(request, post_pk, pk=None):
     """Delete comment(s) with primary key `pk` or with pks in POST."""
     if request.user.is_staff:
-        import ipdb
-        ipdb.set_trace()
         if not pk:
             pklst = request.POST.getlist("delete")
         else:
@@ -148,6 +150,31 @@ def posts(request):
                       'months': mkmonth_lst()})
     except Post.DoesNotExist:
         raise Http404
+
+
+def author(request, user_id):
+    page = 1
+    posts = Post.objects.all().order_by("-created")
+    author = get_object_or_404(User, pk=user_id)
+    entries_per_page = getattr(settings, 'BLOG_NUMBER_OF_ENTRIES_PER_PAGE')
+    paginator = Paginator(posts, entries_per_page)
+    if page > paginator.num_pages:
+        return redirect(reverse("post",
+                                args=[author.user_id, paginator.num_pages]))
+    try:
+        posts = paginator.page(page)
+        # author_posts = User.objects.order_by("-created")
+        return render(request, "authorposts.html", {'posts': posts,
+                      'months': mkmonth_lst()})
+    except Post.DoesNotExist:
+        raise Http404
+
+
+def logout(request):
+    """Logs out user"""
+    auth_logout(request)
+    messages.success(request, "you have successfully logged out")
+    return redirect(reverse("main"), args=[])
 
 
 class AboutMe(TemplateView):

@@ -1,9 +1,11 @@
 from django.test import TestCase
+from django.test.client import Client
 
-# Create your tests here.
+class BlogEntriesTest(TestCase):
 
+    def setUp(self):
+        self.c = Client()
 
-class BlogViewsTestCase(TestCase):
-    def test_index(self):
-        resp = self.client.get('/blog/')
-        self.assertEqual(resp.status_code, 200)
+    def test_entries_access(self):
+        response = self.c.get('/blog/posts/')
+        self.assertEqual(response.status_code, 200)
