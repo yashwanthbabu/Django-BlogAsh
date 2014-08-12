@@ -126,6 +126,8 @@ def blog(request):
     posts = Post.objects.order_by("-created")
     entries_per_page = getattr(settings, 'BLOG_NUMBER_OF_ENTRIES_PER_PAGE')
     paginator = Paginator(posts, entries_per_page)
+    if request.user.is_authenticated():
+        messages.success(request, "you are successfully logged in")
     try:
         page = int(request.GET.get("page", '1'))
     except ValueError:
