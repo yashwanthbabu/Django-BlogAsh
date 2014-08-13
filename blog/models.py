@@ -6,9 +6,12 @@ from django.contrib.auth.models import User
 
 class Post(models.Model):
     title = models.CharField(max_length=60)
-    user = models.ForeignKey(User, null=True)
+    author = models.ForeignKey(User, null=True)
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created']
 
     def __unicode__(self):
         return self.title
@@ -16,10 +19,13 @@ class Post(models.Model):
 
 class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    author = models.CharField(max_length=60)
+    name = models.CharField(max_length=60)
     email = models.EmailField(max_length=35, null=True)
     body = models.TextField()
     post = models.ForeignKey(Post)
+
+    class meta:
+        ordering = ['-created']
 
     def __unicode__(self):
         return unicode("%s: %s" % (self.post, self.body[:60]))

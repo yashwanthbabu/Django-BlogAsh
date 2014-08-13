@@ -9,18 +9,18 @@
 {% block content %}
 
 	
-    <div class="blog">
+    <div class="hoverblock"> <a> About Author </a></div>
 
 
         <ul>
             {% for post in posts.object_list %}
 	
-                <div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</div><br>
-		<div class="user">By: <a href="{%url 'aboutme' %}"> {{ post.user }} </a></div>
+                <div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div><br>
+		<div class="user"> By: <a href="{%url 'aboutme' %}"> {{ post.author }}</a> on  {{ post.created }} </div>
                 <ul>
-                    <div class="time">{{ post.created|linebreaks}}</div>
+                    <!-- <div class="time">{{ post.created|linebreaks}}</div> -->
                     <div class="body">{{ post.body|truncatewords_html:20|linebreaks }}</div>
-		    <div class="commentlink"><a href="{% url 'post' post.id %}"> more info..>></a></div><br>
+		    <div class="commentlink"><a href="{% url 'post' post.id %}"> Read more → </a></div><br>
 
                 </ul>
             {% endfor %}

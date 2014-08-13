@@ -11,8 +11,8 @@ class CommentForm(ModelForm):
 
 
 class CommentsForm(forms.Form):
-    Author = forms.CharField(widget=forms.TextInput(attrs={'size': '48',
-                             'class': 'form-control'}))
+    name = forms.CharField(widget=forms.TextInput(attrs={'size': '48',
+                           'class': 'form-control'}))
     # A CharField that checks that the value is a valid email address.
     email = forms.EmailField(widget=forms.TextInput(attrs={'size': '48',
                              'class': 'form-control'}))

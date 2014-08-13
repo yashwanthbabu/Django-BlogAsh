@@ -11,7 +11,7 @@
 {% if posts %}
     {% for post in posts|slice:":4" %}
 		
-			<div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</div>
+			<div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div>
 		
 		
                 

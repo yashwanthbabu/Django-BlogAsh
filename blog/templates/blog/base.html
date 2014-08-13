@@ -24,8 +24,8 @@
 
     <div id="sidebar">
     {% block nav-global %}
-            {% if user and not user.is_anonymous %}
-     Welcome {{ user.get_full_name|default:user.username }}!
+            {% if author and not author.is_anonymous %}
+     Welcome {{ author.get_full_name|default:author.username }}!
      
    
    {% endif %}</div>
@@ -34,7 +34,7 @@
             
 
                 <!-- MENU -->
-                {% if user.is_staff %}
+                {% if author.is_staff %}
                 <a href="{% url 'admin:index' %}">Admin</a>
                 <a href="{% url 'admin:blog_post_add' %}">Add post</a>
                 <a href="{% url 'admin:blog_comment_add' %}"> Add Comment </a>
@@ -54,7 +54,7 @@
             <a href="{% url 'main' %}">HOME</a>
             |<a href="{% url 'recentposts' %}">RECENT ARTICLES</a> 
            
-            {% if user and not user.is_anonymous %}
+            {% if author and not author.is_anonymous %}
             |<a href="{% url 'auth:logout' %}">LOGOUT</a>
             {% else %}
             |<a href="{% url 'login' %}">USER LOGIN</a>

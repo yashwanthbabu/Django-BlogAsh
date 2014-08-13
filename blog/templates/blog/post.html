@@ -20,11 +20,13 @@
    
 		<!-- Posts  -->
 	        <ul>            
-                	<div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</div><br>
-			<div class="user">By: <a href="{%url 'aboutme' %}"> {{ post.user }} </a></div>
+                	<div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div><br>
+			<div class="user">By: <a href="{%url 'aboutme' %}"> {{ post.author }} </a></div><br>
+			<a href="https://about.me/yashwanthbabu" target="_blank">About Author</a>
 	                <ul>
 				<div class="time">{{ post.created}}</div>
 				<div class="body">{{ post.body|linebreaks }}</div>
+
 			</ul>
             
 	        </ul>
@@ -38,19 +40,19 @@
 		{% endif %}
 				
 		{% for comment in comments %}
-          <a name="comment-{{ comment.pk }}">
           
+          <a name="comment-{{ comment.pk }}">
     			<div class="comment">
-        			<div class="time">{{ comment.created }} | {{ comment.author }}</div>
+        			<div class="time">{{ comment.created }} | {{ comment.name }}</div>
         			<div class="body">{{ comment.body }}  </div>
           
-				{% if user.is_staff %}
+				{% if author.is_staff %}
 		                	<input type="checkbox" name="delete" value="{{ comment.pk }}">
             				<a href="{% url 'delete_single_comment' post.pk comment.pk %}">delete</a>
         			{% endif %}
     			</div>
 		{% endfor %} 
-		{% if user.is_staff and comments %}
+		{% if author.is_staff and comments %}
     			<div class="form-group row">
           <div class="col-sm-5">
             <input type="submit" value="Delete all selected" class="btn btn-primary" />
@@ -75,23 +77,18 @@
     <div class="col-sm-8">
     <form id="ajaxform" action="{% url 'add_comment' post.id %}" method="post">
         {% csrf_token %}
-        <!-- {{ form.non_field_errors }} -->
         {{ form.as_p }}
+       <!-- <h4 style="color:black">Name: {{ form.author }} </h4>{{ form.author.errors }}  -->
+        <!-- <h4 style="color:black">Email:{{ form.email }}</h4> {{ form.email.errors }}  -->
+        <!-- <h4 style="color:black">Body: {{ form.body }}</h4>  {{ form.body.errors }} <br/> -->
         </div>
         
-        <div id="loading" style="display:none;">
-            <span id="load_text" class="help-block">loading...</span>
-        </div>
-        <div id="form_ajax" style="display:none;">
-            <span class="help-block">Form submit successfully.</span>
-        </div>
-        <div id="form_ajax_error" style="display:none;">
-            <span class="help-block">Can not submit data due to errors.</span>
-        </div>
-        <p id="sendwrapper"><input type="submit" value="Comment" id="submitbutton"/></p>
+        
+       <p id="sendwrapper"><input type="submit" value="Comment" id="submitbutton"/></p>
+        </fieldset>
         </form> 
         </ul>
-    </fieldset>
+    
 </ul>
 			 <br>
 			
