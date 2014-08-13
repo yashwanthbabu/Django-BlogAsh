@@ -54,7 +54,7 @@
             <a href="{% url 'main' %}">HOME</a>
             |<a href="{% url 'recentposts' %}">RECENT ARTICLES</a> 
            
-            {% if author and not author.is_anonymous %}
+            {% if user and not user.is_anonymous %}
             |<a href="{% url 'auth:logout' %}">LOGOUT</a>
             {% else %}
             |<a href="{% url 'login' %}">USER LOGIN</a>
