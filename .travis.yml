@@ -9,4 +9,3 @@ install:
 script:
   - pyflakes blog
   - pep8 blog/views.py
-  - python manage.py test blog
