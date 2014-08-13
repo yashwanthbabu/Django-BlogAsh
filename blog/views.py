@@ -21,6 +21,7 @@ from .forms import CommentsForm, CommentForm
 
 def post(request, post_id):
     """Single post with comments and a comment form."""
+
     try:
         post_model = Post.objects.get(pk=post_id)
         comment_model = Comment.objects.filter(post=post_model)
@@ -33,6 +34,7 @@ def post(request, post_id):
 
 
 def add_comment(request, post_id):
+
     form = CommentForm(request.POST)
     post_model = Post.objects.get(pk=post_id)
     comment_model = Comment.objects.filter(post=post_model)
@@ -42,16 +44,16 @@ def add_comment(request, post_id):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         subject = get_template('blog/mail.txt').render(Context({
-            'author': request.POST.get("author"),
+            'author': request.POST.get("name"),
             'body': request.POST.get("body")}))
         if form.is_valid():
             comment_author = "Anonymous"
-            if request.POST["author"]:
-                comment_author = request.POST["author"]
+            if request.POST["name"]:
+                comment_author = request.POST["name"]
 
             comment = Comment(post=Post.objects.get(pk=post_id))
             cf = CommentForm(request.POST, instance=comment)
-            cf.fields["author"].required = False
+            cf.fields["name"].required = False
 
             comment = cf.save(commit=False)
             comment.author = comment_author
@@ -60,6 +62,7 @@ def add_comment(request, post_id):
 
             try:
                 send_mail("Comment added", subject, from_email, to)
+                form = CommentForm()
                 return HttpResponseRedirect('#comment-%s' % comment.pk)
             except BadHeaderError:
                 return HttpResponse("invalid header error")
@@ -97,15 +100,17 @@ def mkmonth_lst():
 
 def month(request, year, month):
     """Monthly archive."""
+    if request.user.is_authenticated():
+        messages.success(request, "you are successfully logged in")
     posts = Post.objects.filter(created__year=year,
-                                created__month=month).order_by("-created")
+                                created__month=month)
     return render(request, "archive.html", {'posts': posts, 'post_list': posts,
                   'months': mkmonth_lst(), 'archive': True})
 
 
 def delete_bulk_comment(request, post_pk, pk=None):
     """Delete comment(s) with primary key `pk` or with pks in POST."""
-    if request.user.is_staff:
+    if request.author.is_staff:
         if not pk:
             pklst = request.POST.getlist("delete")
         else:
@@ -123,7 +128,7 @@ def delete_single_comment(request, post_pk, comment_pk, pk=None):
 
 def blog(request):
     """Main listing."""
-    posts = Post.objects.order_by("-created")
+    posts = Post.objects.all()
     entries_per_page = getattr(settings, 'BLOG_NUMBER_OF_ENTRIES_PER_PAGE')
     paginator = Paginator(posts, entries_per_page)
     if request.user.is_authenticated():
@@ -143,9 +148,11 @@ def blog(request):
 
 
 def posts(request):
+    if request.user.is_authenticated():
+        messages.success(request, "you are successfully logged in")
     try:
-        posts = Post.objects.order_by("-created")
-        comments = Comment.objects.order_by("created")
+        posts = Post.objects.all()
+        comments = Comment.objects.all()
         comment_form = CommentsForm()
         return render(request, 'recentposts.html', {'posts': posts,
                       'comments': comments, 'comment_form': comment_form,
@@ -154,15 +161,15 @@ def posts(request):
         raise Http404
 
 
-def author(request, user_id):
+def author(request, author_id):
     page = 1
-    posts = Post.objects.all().order_by("-created")
-    author = get_object_or_404(User, pk=user_id)
+    posts = Post.objects.all()
+    author = get_object_or_404(User, pk=author_id)
     entries_per_page = getattr(settings, 'BLOG_NUMBER_OF_ENTRIES_PER_PAGE')
     paginator = Paginator(posts, entries_per_page)
     if page > paginator.num_pages:
         return redirect(reverse("post",
-                                args=[author.user_id, paginator.num_pages]))
+                                args=[author.author_id, paginator.num_pages]))
     try:
         posts = paginator.page(page)
         # author_posts = User.objects.order_by("-created")

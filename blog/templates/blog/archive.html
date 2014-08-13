@@ -15,12 +15,12 @@
         <ul>
             {% for post in posts %}
 	
-                <div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</div><br>
+                <div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div><br>
 		<div class="user">By: <a href="{%url 'aboutme' %}"> {{ post.user }} </a></div>
                 <ul>
                     <div class="time">{{ post.created|linebreaks}}</div>
                     <div class="body">{{ post.body|truncatewords_html:20|linebreaks }}</div>
-		    <div class="commentlink"><a href="{% url 'post' post.id %}"> more info..>></a></div><br>
+		    <div class="commentlink"><a href="{% url 'post' post.id %}"> Read more → </a></div><br>
 
                 </ul>
             {% endfor %}
