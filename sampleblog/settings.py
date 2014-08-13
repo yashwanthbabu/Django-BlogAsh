@@ -13,7 +13,7 @@ import os
 from os.path import join
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'DjangoBlog.settings')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
