@@ -29,8 +29,9 @@ ul{
 h2{font:bold 15px Helvetica, Arial, sans-serif; line-height:40px;}
 h2.message{color: brown; text-align: right; font-style:italic; font:bold;}
 h2{color:red;}
-body{background:url(../images/image.jpeg); color: black;
+body{background:url(../images/image.jpeg) repeat center top;  min-height:1200px;
     }
+#author_bg{background:url(..images/frame_bg.png);}
 a{color: #009966; }
 a:hover{color:brown;}
  #sidebar { float: right; border: 1px dotted #ccc; padding: 4px; text-align:center; color:black}

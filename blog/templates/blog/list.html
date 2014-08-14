@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
     <style type="text/css">
         #sidebar { float: right; border: 1px dotted #ccc; padding: 4px; align:right; color:green}
@@ -16,6 +17,7 @@
             {% for post in posts.object_list %}
 	
                 <div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div><br>
+                <div id="author_bg"><img src="{% static 'images/yashwanth.jpg' %}" width="" height="72" color="black" alt="yashwanth" /></img></div><br>
 		<div class="user"> By: <a href="{%url 'aboutme' %}"> {{ post.author }}</a> on  {{ post.created }} </div>
                 <ul>
                     <!-- <div class="time">{{ post.created|linebreaks}}</div> -->
