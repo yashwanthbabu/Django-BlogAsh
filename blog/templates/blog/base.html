@@ -7,6 +7,14 @@
 <head> <title>{% block title %}Welcome to MyBlog{% endblock %}</title> 
 <link href="{% static 'css/sk.css' %}" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53ec607840f43654"></script>
+
+
+ <!-- cript type="text/javascript">var switchTo5x=true;</script> -->
+<!-- <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script> -->
+<!--<script type="text/javascript">stLight.options({publisher: "f73ac946-1c8d-4569-aae7-5e72cbe7f5e2", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>-->
 </head>
 <center>
 {% if messages %}
@@ -22,10 +30,10 @@
     
     <div id="container">
 
-    <div id="sidebar">
+    <div id="sidebar"><br><br>
     {% block nav-global %}
-            {% if author and not author.is_anonymous %}
-     Welcome {{ author.get_full_name|default:author.username }}!
+            {% if user and not user.is_anonymous %}
+     Welcome {{ user.get_full_name|default:user.username }}!
      
    
    {% endif %}</div>
@@ -50,6 +58,7 @@
 	  </a>
 	  </div>
     <!-- HEADER ENDS HERE -->
+    <!-- Go to your Addthis.com Dashboard to update any options -->
     	<div id="header" align="right">
             <a href="{% url 'main' %}">HOME</a>
             |<a href="{% url 'recentposts' %}">RECENT ARTICLES</a> 

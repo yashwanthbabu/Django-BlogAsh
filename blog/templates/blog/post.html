@@ -1,47 +1,76 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 <head>
-
+<title> {% block title %} {{ post.title }} {% endblock %} </title>
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css">
 </head>
 {% block content %}
 
+<div id="fb-root"></div>
+	<script>(function(d, s, id)
+		{
+  			var js, fjs = d.getElementsByTagName(s)[0];
+  			if (d.getElementById(id)) return;
+  			js = d.createElement(s); js.id = id;
+  			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=559235774199929&version=v2.0";
+  			fjs.parentNode.insertBefore(js, fjs);
+		}
+			(document, 'script', 'facebook-jssdk'));
+	</script>
+
+<script>!function(d,s,id)
+		{
+			var js,fjs=d.getElementsByTagName(s)[0];
+			if(!d.getElementById(id))
+				{
+					js=d.createElement(s);
+					js.id=id;
+					js.src="https://platform.twitter.com/widgets.js";
+					fjs.parentNode.insertBefore(js,fjs);
+				}
+		}
+		(document,"script","twitter-wjs");
+</script>
+
 
 	<div class="blog"> 
-	
 		<!-- Messages  -->
-	        {% if messages %}
-	        <ul class="messages">
-	            {% for message in messages %}
-	            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-	            {% endfor %}
-	        </ul>
-	        {% endif %}
+	    {% if messages %}
+	    <ul class="messages">
+	        {% for message in messages %}
+	        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+	        {% endfor %}
+	    </ul>
+	    {% endif %}
 
-   
 		<!-- Posts  -->
-	        <ul>            
-                	<div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div><br>
+        <ul>            
+           	<div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div><br>
+          	<div id="author_bg"><img src="{% static 'images/yashwanth.jpg' %}" width="" height="72" color="black" alt="yashwanth"></img></div><br>
 			<div class="user">By: <a href="{%url 'aboutme' %}"> {{ post.author }} </a></div><br>
 			<a href="https://about.me/yashwanthbabu" target="_blank">About Author</a>
-	                <ul>
+                <ul>
 				<div class="time">{{ post.created}}</div>
 				<div class="body">{{ post.body|linebreaks }}</div>
+					<div class="fb-like" data-href="http://127.0.0.1:8000/blog/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div><br><br>
+				<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+                
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+			<div class="addthis_native_toolbox"></div>
 
-			</ul>
-            
-	        </ul>
-
+                
+			
 		<!-- Comments  -->
-		<ul>
+		
 		<form action="{% url 'delete_comment' post.id %}" method="POST">{% csrf_token %}
 
-		{% if comments %}
-    			<p>Comments:</p>
-		{% endif %}
+			{% if comments %}
+    		<p>Comments:</p>
+			{% endif %}
 				
-		{% for comment in comments %}
+			{% for comment in comments %}
           
-          <a name="comment-{{ comment.pk }}">
+        	  <a name="comment-{{ comment.pk }}">
     			<div class="comment">
         			<div class="time">{{ comment.created }} | {{ comment.name }}</div>
         			<div class="body">{{ comment.body }}  </div>
@@ -51,17 +80,21 @@
             				<a href="{% url 'delete_single_comment' post.pk comment.pk %}">delete</a>
         			{% endif %}
     			</div>
-		{% endfor %} 
-		{% if author.is_staff and comments %}
-    			<div class="form-group row">
-          <div class="col-sm-5">
+			{% endfor %} 
+			{% if author.is_staff and comments %}
+    		<div class="form-group row">
+            <div class="col-sm-5">
             <input type="submit" value="Delete all selected" class="btn btn-primary" />
-          </div>
-        </div>
-    			<br />
-		{% endif %}
+            </div>
+        	</div>
+    		<br />
+			{% endif %}
+		</ul>
 		</form>
-	
+	</ul>
+            
+	        </ul>
+
 		</div>
     <ul>	
 		<fieldset>
@@ -96,5 +129,6 @@
 		
 	</ul>
 	</div>
+
 
 {% endblock %}
