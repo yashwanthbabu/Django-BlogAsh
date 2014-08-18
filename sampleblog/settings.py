@@ -14,6 +14,12 @@ from os.path import join
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'DjangoBlog.settings')
+
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
