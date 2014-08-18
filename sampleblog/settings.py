@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.setdefault('some_key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['blogging-application.herokuapp.com']
 
@@ -181,4 +181,4 @@ EMAIL_HOST_PASSWORD = os.environ.get("hostpswd")
 EMAIL_USE_TLS = True
 EMAIL_PORT = os.environ.get("emailport")
 
- SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
