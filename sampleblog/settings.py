@@ -13,13 +13,9 @@ import os
 from os.path import join
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'DjangoBlog.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'sampleblog.settings')
 
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
 
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -181,3 +177,23 @@ EMAIL_HOST_USER = os.environ.get("hostuser")
 EMAIL_HOST_PASSWORD = os.environ.get("hostpswd")
 EMAIL_USE_TLS = True
 EMAIL_PORT = os.environ.get("emailport")
+
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
