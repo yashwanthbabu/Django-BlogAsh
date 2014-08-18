@@ -110,14 +110,14 @@ def month(request, year, month):
 
 def delete_bulk_comment(request, post_pk, pk=None):
     """Delete comment(s) with primary key `pk` or with pks in POST."""
-    if request.author.is_staff:
+    if request.user.is_staff:
         if not pk:
             pklst = request.POST.getlist("delete")
         else:
             pklst = [pk]
         for pk in pklst:
             Comment.objects.get(pk=pk).delete()
-        return HttpResponseRedirect(reverse("post", args=[post_pk]))
+    return HttpResponseRedirect(reverse("post", args=[post_pk]))
 
 
 def delete_single_comment(request, post_pk, comment_pk, pk=None):
@@ -147,7 +147,7 @@ def blog(request):
                   'post_list': posts.object_list, 'months': mkmonth_lst()})
 
 
-def posts(request):
+def recentposts(request):
     if request.user.is_authenticated():
         messages.success(request, "you are successfully logged in")
     try:

@@ -75,13 +75,13 @@
         			<div class="time">{{ comment.created }} | {{ comment.name }}</div>
         			<div class="body">{{ comment.body }}  </div>
           
-				{% if author.is_staff %}
+				{% if user.is_staff %}
 		                	<input type="checkbox" name="delete" value="{{ comment.pk }}">
             				<a href="{% url 'delete_single_comment' post.pk comment.pk %}">delete</a>
         			{% endif %}
     			</div>
 			{% endfor %} 
-			{% if author.is_staff and comments %}
+			{% if user.is_staff and comments %}
     		<div class="form-group row">
             <div class="col-sm-5">
             <input type="submit" value="Delete all selected" class="btn btn-primary" />
