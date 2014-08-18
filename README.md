@@ -14,7 +14,13 @@ Blog entries exist at /blog/. Try accessing it. It will show the limited blog en
 * HOME - which will redirects to the /blog/ page.
 * RECENT ARTICLES - shows the recent blog entries in the manner of recently added.
 * MONTHLY ARCHIVES - shows the blog entries of the particular month and 
-* USER LOGIN - user can login through social authentication. This one is not yet completed still working on it.
+* USER LOGIN - user can login through social authentication. Instead of having the registration form, the user can register and login using Facebook, Twitter and LinkedIn
+
+  This UserLogin has been done with the django-social_auth libray. Here is the documentation: http://django-social-auth.readthedocs.org/en/latest/
+  
+  - social plugins to follow the social accounts of the organization by the user.
+  
+  - For each and every post you can see the facebook like, share and tweet option. By this the user can share the particular post for his social account.
 
 If you are a Admin user and you are already logged in, then the links of Admin, Add Post and Add Comment will be appeared at the Top-Left of the /blog/ page.By this you can directly redirect to the adming to add posts and comments.
 
