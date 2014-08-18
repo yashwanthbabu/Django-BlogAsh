@@ -48,6 +48,8 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/')
 
+SOUTH_TESTS_MIGRATE = False
+
 
 # Application definition
 
