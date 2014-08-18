@@ -1,7 +1,6 @@
 import time
 
 from django.test import TestCase
-from django.utils import timezone
 from django.test.client import Client
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
