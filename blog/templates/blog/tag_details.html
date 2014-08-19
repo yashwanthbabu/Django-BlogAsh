@@ -16,7 +16,7 @@
 
 
         <ul>
-            {% for post in posts.object_list %}
+            {% for post in posts %}
 	
                 <div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div><br>
                 

@@ -10,7 +10,14 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53ec607840f43654"></script>
+<script type="text/javascript">
 
+$(document).ready(function(){
+    setTimeout(function(){
+        $('.messages').fadeOut('slow');
+    }, 3000);
+});
+</script>
 
  <!-- cript type="text/javascript">var switchTo5x=true;</script> -->
 <!-- <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script> -->
@@ -18,11 +25,11 @@
 </head>
 <center>
 {% if messages %}
-<ul class="messages">
+<div class="messages">
     {% for message in messages %}
     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
     {% endfor %}
-</ul>
+</div>
 {% endif %}
 </center>
 <body>

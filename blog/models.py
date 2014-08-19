@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 
 # Create your models here.
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=60)
+    title = models.CharField(max_length=60) 
+    tags = TaggableManager()
     author = models.ForeignKey(User, null=True)
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)

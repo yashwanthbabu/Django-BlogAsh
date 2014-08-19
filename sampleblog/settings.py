@@ -66,7 +66,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'south',
     'blog',
+    'taggit',
     'social_auth',
+    'django.contrib.auth',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django-session-idle-timeout',
 )
 
 TEMPLATE_LOADERS = ('django.template.loaders.filesystem.Loader',
@@ -106,7 +111,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django-session-idle-timeout.middleware.SessionIdleTimeout',
 )
+
+SESSION_IDLE_TIMEOUT = 60
 
 GOOGLE_OAUTH2_CLIENT_ID = os.environ.get("googleclientid")
 
@@ -120,7 +131,7 @@ TWITTER_CONSUMER_KEY = os.environ.get("twitterapi")
 
 TWITTER_CONSUMER_SECRET = os.environ.get("twittersecret")
 
-LOGIN_URL = '/accounts/login/'
+LOGIN_URL = '/blog/'
 LOGIN_REDIRECT_URL = '/blog/'
 SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/blog/'
 SOCIAL_AUTH_INACTIVE_USER_URL = '...'
