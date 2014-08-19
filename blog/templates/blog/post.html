@@ -34,25 +34,28 @@
 
 
 	<div class="blog"> 
-		<!-- Messages  -->
-	    {% if messages %}
-	    <ul class="messages">
-	        {% for message in messages %}
-	        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-	        {% endfor %}
-	    </ul>
-	    {% endif %}
-
-		<!-- Posts  -->
         <ul>            
            	<div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div><br>
-          	<div id="author_bg"><img src="{% static 'images/yashwanth.jpg' %}" width="" height="72" color="black" alt="yashwanth"></img></div><br>
 			<div class="user">By: <a href="{%url 'aboutme' %}"> {{ post.author }} </a></div><br>
 			<a href="https://about.me/yashwanthbabu" target="_blank">About Author</a>
                 <ul>
 				<div class="time">{{ post.created}}</div>
 				<div class="body">{{ post.body|linebreaks }}</div>
+				
+				{% for tag in post.tags.all %}
+				<div class="tags">
+				{% if forloop.first %}Topics : {% endif %}
+			    <a href= "{% url 'tag_details' tag.slug %}">{{ tag.name }}, </a> </div>
+			    {% empty %}
+				No Tags are available for this post
+				{% endfor %}
+				<br/><br>
 					<div class="fb-like" data-href="http://127.0.0.1:8000/blog/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div><br><br>
+				
+				
+				
+				
+				
 				<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
                 
                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
@@ -72,7 +75,7 @@
           
         	  <a name="comment-{{ comment.pk }}">
     			<div class="comment">
-        			<div class="time">{{ comment.created }} | {{ comment.name }}</div>
+        			<div class="time">{{ comment.name }} | {{ comment.created }}</div><br>
         			<div class="body">{{ comment.body }}  </div>
           
 				{% if user.is_staff %}

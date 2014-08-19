@@ -1,6 +1,6 @@
 .main { margin-left: 25px; margin-top: 30px; }
         .time { font-size: 0.8em; margin-top: 2px; }
-        .comment { border: 1px solid #eee; padding: 4px; margin-bottom: 12px; }
+        .comment { border: 2px solid white; padding: 4px; margin-bottom: 12px; }
         .body { font-size: 1.1em; margin-top: 2px; background-image:url('images/img2.jpeg'); }
         .messages { margin-left: 20px; }
         .title { font-size: 1.4em; margin-top: 20px; border-bottom: 1px solid #ccc; padding-left: 4px; }
@@ -22,19 +22,21 @@ ul{
 	font-style: inherit;
 	font-size: 100%;
 	font-family: inherit;
-	vertical-align: baseline;
+
 
 }
+.blog{background:#F9F0D2; padding:20px;}
+.blog .tags{font-family: 'Molengo', arial, serif; font-size:15px; color:#962000; text-transform:uppercase; line-height:20px;display:inline;font:bold;}
 #sendwrapper{ float:right; padding:3px; }
 h2{font:bold 15px Helvetica, Arial, sans-serif; line-height:40px;}
 h2.message{color: brown; text-align: right; font-style:italic; font:bold;}
 h2{color:red;}
-body{background:url(../images/image.jpeg) repeat center top;  min-height:1200px;
+body{background:#F9F0D2; padding:20px;
     }
 #author_bg{background:url(..images/frame_bg.png);}
 a{color: #009966; }
 a:hover{color:brown;}
- #sidebar { float: right; border: 1px dotted #ccc; padding: 4px; text-align:center; color:black}
+ #sidebar { float: right; border: 0px dotted #ccc; padding: 4px; text-align:center; color:black}
  .col-sm-8 { color: red ;}
  .text-danger { color: red;}
  .form-group {color:red;}
@@ -43,5 +45,6 @@ a:hover{color:brown;}
 }
 a:hover .hoverblock{display:block;
 }
+
  
 

@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import logout as auth_logout
+from taggit.models import Tag
 from django.core.mail import send_mail, BadHeaderError
 from django.template.loader import Context, get_template
 from django.core.paginator import Paginator, \
@@ -188,3 +189,11 @@ def logout(request):
 
 class AboutMe(TemplateView):
     template_name = "aboutme.html"
+
+
+def tag_details(request, tag_slug):
+    tag = get_object_or_404(Tag, slug=tag_slug)
+    posts = Post.objects.all()
+    # tagged_entries = Post.objects.filter(tags__in=[tag])
+    d = {'post': posts, 'tag': tag}
+    return render(request, "tag_details.html", d)

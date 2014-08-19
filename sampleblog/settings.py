@@ -13,7 +13,9 @@ import os
 from os.path import join
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'DjangoBlog.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", 'sampleblog.settings')
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -23,9 +25,9 @@ SECRET_KEY = os.environ.setdefault('some_key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['blogging-application.herokuapp.com']
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'blog/templates/blog'),
@@ -36,7 +38,7 @@ TEMPLATE_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
 
-STATIC_ROOT = ''
+STATIC_ROOT = 'staticfiles'
 
 STATIC_URL = "/static/"
 
@@ -64,7 +66,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'south',
     'blog',
+    'taggit',
     'social_auth',
+    'django.contrib.auth',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django-session-idle-timeout',
 )
 
 TEMPLATE_LOADERS = ('django.template.loaders.filesystem.Loader',
@@ -104,7 +111,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django-session-idle-timeout.middleware.SessionIdleTimeout',
 )
+
+SESSION_IDLE_TIMEOUT = 60
 
 GOOGLE_OAUTH2_CLIENT_ID = os.environ.get("googleclientid")
 
@@ -118,7 +131,7 @@ TWITTER_CONSUMER_KEY = os.environ.get("twitterapi")
 
 TWITTER_CONSUMER_SECRET = os.environ.get("twittersecret")
 
-LOGIN_URL = '/accounts/login/'
+LOGIN_URL = '/blog/'
 LOGIN_REDIRECT_URL = '/blog/'
 SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/blog/'
 SOCIAL_AUTH_INACTIVE_USER_URL = '...'
@@ -139,6 +152,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -175,3 +189,5 @@ EMAIL_HOST_USER = os.environ.get("hostuser")
 EMAIL_HOST_PASSWORD = os.environ.get("hostpswd")
 EMAIL_USE_TLS = True
 EMAIL_PORT = os.environ.get("emailport")
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
