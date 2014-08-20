@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+{% extends 'base.html' %}
+{% load staticfiles %}
+<head>
+  <title>Agiliq | Registration form</title>
+
+  <!--End base head-->
+</head>
+{% block content %}
+<body class="page-body">
+<!--base body-->
+  <!--layout content-->
+  <div class="page-body">
+    <!--page-->
+    <div class="row main-content">
+      <div class="static-container">
+        <div id="flash-message" style="margin-top:5px"></div>
+        <div class="email_confirmation_box">
+
+  <script>
+    //  $.cookie('confirm_close', null);
+    console.log($.cookie('confirm_close'));
+    $('.confirm_close').click(function () {
+      $.cookie('confirm_close', true, { expires: 1, path: '/' });
+      console.log($.cookie('confirm_close'));
+    });
+
+    if ($.cookie('confirm_close')) {
+      $('.email_confirmation_box').remove();
+    }
+  </script>
+
+</div>
+        <div class="">
+  <div id="login-wrapper">
+    <div class="content-box background-box">
+      <div class="row">
+        <h1>Log in</h1>
+
+        <div class="social_logins">
+          <a href="{% url 'socialauth_begin' 'facebook' %}" class="sl_icon_facebook">
+            <i class="fa fa-facebook"></i>
+</a>
+          <a href="{% url 'socialauth_begin' 'twitter' %}" class="sl_icon_twitter">
+            <i class="fa fa-twitter"></i>
+</a>
+          <a href="{% url 'socialauth_begin' 'google-oauth2' %}" class="sl_icon_google_plus">
+            <i class="fa fa-google-plus"></i>
+</a>        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <form accept-charset="UTF-8" action="/users/login" class="form-horizontal" id="new_user" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="M6DXEUp0tv70UKNdtD5R/4FKlVdyq8ULLgW10YYyMCM=" /></div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="user_email">Email</label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="entypo-user"></i></span>
+                  <span><input class="form-control" id="user_email" name="user[email]" placeholder="mymail@mail.com" required="required" size="30" type="email" /></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="user_password">Password</label>
+              <div class="col-md-9">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="entypo-key"></i></span>
+                  <span><input class="form-control" id="user_password" name="user[password]" placeholder="eg. X8df!90EO" required="required" size="30" type="password" /></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-9 col-xs-offset-3 col-md-offset-3">
+                <div class="keeplogin">
+                    <input name="user[remember_me]" type="hidden" value="0" /><input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1" />
+                    <label for="user_remember_me">Keep me logged in</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-xs-6 col-md-6 col-xs-offset-4 col-md-offset-4">
+                <input class="btn btn-lg btn-submit-btn" name="commit" type="submit" value="Login" />
+              </div>
+            </div>
+</form>        </div>
+      </div>
+
+      <hr style="margin: 0">
+
+      <div class="row">
+        <div class="change_links">
+          <span class="pull-left">
+            <a href="#" data-target="#forgot_pwd_modal" data-toggle="modal">Forgot your password?</a>
+          </span>
+          <span class="pull-right">
+            Not a member yet ? &nbsp;
+            <a href="/register#independentrecruiter" class="footer_btn btn btn-green">Join us</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Forgot Password Modal -->
+<div class="modal fade" id="forgot_pwd_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title" id="myModalLabel">Sending reset password instructions</h3>
+      </div>
+      <div class="modal-body">
+        <form accept-charset="UTF-8" action="/users/secret" class="form-inline" id="new_user" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="M6DXEUp0tv70UKNdtD5R/4FKlVdyq8ULLgW10YYyMCM=" /></div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="entypo-mail"></i></span>
+              <span><input class="form-control" id="user_email" name="user[email]" placeholder="Email" required="required" size="30" type="email" /></span>
+            </div>
+          </div>
+
+          <input class="btn btn-submit-btn" id="resend_pwd_btn" name="commit" type="submit" value="Send" />
+
+</form>      </div>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+    <!--End page-->
+    
+  </div>
+  
+</body>
+{% endblock %}
+</html>

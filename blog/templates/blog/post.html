@@ -37,7 +37,7 @@
         <ul>            
            	<div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div><br>
 			<div class="user">By: <a href="{%url 'aboutme' %}"> {{ post.author }} </a></div><br>
-			<a href="https://about.me/yashwanthbabu" target="_blank">About Author</a>
+			<div class="user"><a href="https://about.me/yashwanthbabu" target="_blank">About Author</a></div>
                 <ul>
 				<div class="time">{{ post.created}}</div>
 				<div class="body">{{ post.body|linebreaks }}</div>
@@ -50,16 +50,16 @@
 				No Tags are available for this post
 				{% endfor %}
 				<br/><br>
-					<div class="fb-like" data-href="http://127.0.0.1:8000/blog/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div><br><br>
+					<div class="user"><div class="fb-like" data-href="http://127.0.0.1:8000/blog/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div></div><br>
 				
 				
 				
 				
 				
-				<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+				<div class="user"><a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a></div>
                 
                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-			<div class="addthis_native_toolbox"></div>
+			<div class="user"><div class="addthis_native_toolbox"></div></div>
 
                 
 			
@@ -83,6 +83,7 @@
             				<a href="{% url 'delete_single_comment' post.pk comment.pk %}">delete</a>
         			{% endif %}
     			</div>
+
 			{% endfor %} 
 			{% if user.is_staff and comments %}
     		<div class="form-group row">
@@ -120,7 +121,7 @@
         </div>
         
         
-       <p id="sendwrapper"><input type="submit" value="Comment" id="submitbutton"/></p>
+       <p id="sendwrapper"><input type="submit" value="Comment"></p>
         </fieldset>
         </form> 
         </ul>
@@ -131,7 +132,7 @@
 				
 		
 	</ul>
-	</div>
+	
 
 
 {% endblock %}
