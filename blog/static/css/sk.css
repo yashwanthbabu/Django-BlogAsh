@@ -1,6 +1,7 @@
 .main { margin-left: 25px; margin-top: 30px; }
         .time { font-size: 0.8em; margin-top: 2px; }
-        .comment { border: 2px solid white; padding: 4px; margin-bottom: 12px; }
+        .user { text-decoration:none;}
+        .comment { border: 4px solid white; padding: 4px; margin-bottom: 12px; }
         .body { font-size: 1.1em; margin-top: 2px; background-image:url('images/img2.jpeg'); }
         .messages { margin-left: 20px; }
         .title { font-size: 1.4em; margin-top: 20px; border-bottom: 1px solid #ccc; padding-left: 4px; }
@@ -13,7 +14,7 @@
         #submit { float: right; margin-right: 50px; width: 500px; margin-top: -5px; }
 
         ul { margin-bottom: 30px; }
-ul{
+ul #post ul{
 	margin: 30px;
 	padding: 0;
 	border: 0;
@@ -25,16 +26,74 @@ ul{
 
 
 }
-.blog{background:#F9F0D2; padding:20px;}
-.blog .tags{font-family: 'Molengo', arial, serif; font-size:15px; color:#962000; text-transform:uppercase; line-height:20px;display:inline;font:bold;}
+
+ul {
+  text-align: left;
+  display: inline;
+  margin: 0;
+  padding: 15px 4px 17px 0;
+  list-style: none;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+ul li {
+  font: bold 12px/18px sans-serif;
+  display: inline-block;
+  margin-right: -4px;
+  position: relative;
+  padding: 15px 20px;
+  background: #ffff99;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+ul li:hover {
+  background: #555;
+  color: #fff;
+}
+ul li ul {
+  padding: 0;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 150px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transiton: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  -transition: opacity 0.2s;
+}
+ul li ul li { 
+  background: #555; 
+  display: block; 
+  color: #ffffff;
+  text-shadow: 0 -1px 0 #000;
+}
+ul li ul li:hover { background: #666; }
+ul li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
 #sendwrapper{ float:right; padding:3px; }
 h2{font:bold 15px Helvetica, Arial, sans-serif; line-height:40px;}
 h2.message{color: brown; text-align: right; font-style:italic; font:bold;}
 h2{color:red;}
-body{background:#F9F0D2; padding:20px;
+body{background:#262b34; padding:20px;
     }
 #author_bg{background:url(..images/frame_bg.png);}
-a{color: #009966; }
+a{color: #9999cc; text-decoration: none;}
 a:hover{color:brown;}
  #sidebar { float: right; border: 0px dotted #ccc; padding: 4px; text-align:center; color:black}
  .col-sm-8 { color: red ;}
