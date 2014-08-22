@@ -3,6 +3,7 @@ Markdown==2.4.1
 South==1.0
 argparse==1.2.1
 django-admin-bootstrapped==1.6.7
+django-markdown==0.6.1
 django-session-idle-timeout==1.4.2
 django-social-auth==0.7.28
 django-taggit==0.12.1
@@ -10,6 +11,8 @@ httplib2==0.9
 ipdb==0.8
 ipython==2.2.0
 oauth2==1.5.211
+pep8==1.5.7
+pyflakes==0.8.1
 python-openid==2.2.5
 pytz==2014.4
 wsgiref==0.1.2

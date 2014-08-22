@@ -185,5 +185,6 @@ def authorposts(request, username):
     author = get_object_or_404(User, username=username)
     print author
     posts = author.post_set.all()
-    return render(request, "author.html", {'posts': posts, 'post_list': posts, 'author': author,
-                                            'months': mkmonth_lst()})
+    return render(request, "author.html", {'posts': posts, 'post_list': posts,
+                                           'author': author,
+                                           'months': mkmonth_lst()})
