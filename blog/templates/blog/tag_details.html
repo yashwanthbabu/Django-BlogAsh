@@ -20,7 +20,7 @@
 	
                 <div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div><br>
                 
-		<div class="user"> By: <a href="{%url 'aboutme' %}"> {{ post.author }}</a> on  {{ post.created }} </div>
+		<div class="user"> By: <a href="{%url 'author' post.author.username %}"> {{ post.author }}</a> on  {{ post.created }} </div>
                 <ul>
                     <!-- <div class="time">{{ post.created|linebreaks}}</div> -->
                     <div class="body">{{ post.body|truncatewords_html:20|linebreaks }}</div>
