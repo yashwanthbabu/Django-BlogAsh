@@ -175,9 +175,9 @@ class AboutMe(TemplateView):
 
 def tag_details(request, tag_slug):
     tag = get_object_or_404(Tag, slug=tag_slug)
-    posts = Post.objects.all()
+    posts = Post.objects.filter(tags__in=[tag])
     # tagged_entries = Post.objects.filter(tags__in=[tag])
-    d = {'post': posts, 'tag': tag}
+    d = {'posts': posts, 'tag': tag}
     return render(request, "tag_details.html", d)
 
 
