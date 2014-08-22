@@ -1,30 +1,37 @@
 {% extends "base.html" %}
 
 
+{% load staticfiles %}
+
     <style type="text/css">
-        #sidebar { float: right; border: 1px dotted #ccc; padding: 4px; }
+        #sidebar { float: right; border: 1px dotted #ccc; padding: 4px; align:right; color:green}
     </style>
+    
+
+
 {% block content %}
 
 	
+    <div class="hoverblock"> <a> About Author </a></div>
 
-    <div class="main">
 
-
-        <!-- Posts  -->
         <ul>
-            {% for post in posts %}
-	
+        
+            
+    {% for post in posts %}
+    
                 <div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div><br>
-                {% if post.author.username %}
-		<div class="user">By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a></div>
-        {% endif %}
+            {% if post.author.username %}
+		<div class="user"> By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a> on  {{ post.created }} </div>
+            {% endif %}
                 <ul>
-                    <div class="time">{{ post.created|linebreaks}}</div>
+                    <!-- <div class="time">{{ post.created|linebreaks}}</div> -->
                     <div class="body">{{ post.body|truncatewords_html:20|linebreaks }}</div>
+            
 		    <div class="commentlink"><a href="{% url 'post' post.id %}"> Read more → </a></div><br>
 
                 </ul>
+            
             {% endfor %}
         </ul>
 
@@ -47,15 +54,13 @@
                     <a href="?page={{ posts.next_page_number }}"> &gt;&gt; NEXT</a>
                 {% endif %} <br> <br> 
  		
-                    <a href="{% url 'main' %}">Back to Blog Frontpage</a>
+                    
 		</ul>
             </span>
         </div>
         {% endif %}
 
     </div>
-
-
 
 
 {% endblock %}

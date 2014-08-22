@@ -1,24 +1,34 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 <head>
-<title> {% block title %} {{ post.title }} {% endblock %} </title>
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css">
+	<title> 
+		{% block title %} 
+			{{ post.title }} 
+		{% endblock %} 
+	</title>
+	
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css">
 </head>
+
 {% block content %}
 
-<div id="fb-root"></div>
+	<div id="fb-root">
+		
+	</div>
 	<script>(function(d, s, id)
 		{
   			var js, fjs = d.getElementsByTagName(s)[0];
-  			if (d.getElementById(id)) return;
-  			js = d.createElement(s); js.id = id;
+  			if (d.getElementById(id)) 
+  				return;
+  			js = d.createElement(s); 
+  			js.id = id;
   			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=559235774199929&version=v2.0";
   			fjs.parentNode.insertBefore(js, fjs);
 		}
 			(document, 'script', 'facebook-jssdk'));
 	</script>
 
-<script>!function(d,s,id)
+	<script>!function(d,s,id)
 		{
 			var js,fjs=d.getElementsByTagName(s)[0];
 			if(!d.getElementById(id))
@@ -30,76 +40,84 @@
 				}
 		}
 		(document,"script","twitter-wjs");
-</script>
+	</script>
 
 
 	<div class="blog"> 
         <ul>            
            	<div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div><br>
-			<div class="user">By: <a href="{%url 'aboutme' %}"> {{ post.author }} </a></div><br>
+			<div class="user">By: <a href="{% url 'author' post.author.username %}"> {{ post.author }} </a></div><br>
 			<div class="user"><a href="https://about.me/yashwanthbabu" target="_blank">About Author</a></div>
                 <ul>
-				<div class="time">{{ post.created}}</div>
-				<div class="body">{{ post.body|linebreaks }}</div>
+					<div class="time">{{ post.created}}</div>
+					<div class="body">{{ post.body|linebreaks }}</div>
 				
-				{% for tag in post.tags.all %}
-				<div class="tags">
-				{% if forloop.first %}Topics : {% endif %}
-			    <a href= "{% url 'tag_details' tag.slug %}">{{ tag.name }}, </a> </div>
-			    {% empty %}
-				No Tags are available for this post
-				{% endfor %}
-				<br/><br>
-					<div class="user"><div class="fb-like" data-href="http://127.0.0.1:8000/blog/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div></div><br>
-				
-				
-				
-				
-				
-				<div class="user"><a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a></div>
+					{% for tag in post.tags.all %}
+						<div class="tags">
+							{% if forloop.first %}Topics : {% endif %}
+			    				<a href= "{% url 'tag_details' tag.slug %}">{{ tag.name }}, </a> 
+			    		</div>
+			    	{% empty %}
+						No Tags are available for this post
+					{% endfor %}
+					<br/><br>
+					
+					<div class="user">
+						<div class="fb-like" data-href="http://127.0.0.1:8000/blog/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true">
+							
+						</div>
+					</div><br>
+
+					<div class="user">
+						<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+					</div>
                 
-                <!-- Go to www.addthis.com/dashboard to customize your tools -->
-			<div class="user"><div class="addthis_native_toolbox"></div></div>
+                	<!-- Go to www.addthis.com/dashboard to customize your tools -->
+					<div class="user">
+						<div class="addthis_native_toolbox">
+							
+						</div>
+					</div>
 
                 
 			
-		<!-- Comments  -->
+			<!-- Comments  -->
 		
-		<form action="{% url 'delete_comment' post.id %}" method="POST">{% csrf_token %}
+			<form action="{% url 'delete_comment' post.id %}" method="POST">{% csrf_token %}
 
-			{% if comments %}
-    		<p>Comments:</p>
-			{% endif %}
+				{% if comments %}
+    			<p>Comments:</p>
+				{% endif %}
 				
-			{% for comment in comments %}
+				{% for comment in comments %}
           
-        	  <a name="comment-{{ comment.pk }}">
-    			<div class="comment">
-        			<div class="time">{{ comment.name }} | {{ comment.created }}</div><br>
-        			<div class="body">{{ comment.body }}  </div>
+        	  	<a name="comment-{{ comment.pk }}">
+    				<div class="comment">
+        				<div class="time">{{ comment.name }} | {{ comment.created }}</div><br>
+        				<div class="body">{{ comment.body }}</div>
           
-				{% if user.is_staff %}
-		                	<input type="checkbox" name="delete" value="{{ comment.pk }}">
+						{% if user.is_staff %}
+		               		<input type="checkbox" name="delete" value="{{ comment.pk }}">
             				<a href="{% url 'delete_single_comment' post.pk comment.pk %}">delete</a>
-        			{% endif %}
-    			</div>
+        				{% endif %}
+    				</div>
 
-			{% endfor %} 
-			{% if user.is_staff and comments %}
-    		<div class="form-group row">
-            <div class="col-sm-5">
-            <input type="submit" value="Delete all selected" class="btn btn-primary" />
-            </div>
-        	</div>
-    		<br />
-			{% endif %}
-		</ul>
-		</form>
-	</ul>
-            
-	        </ul>
+				{% endfor %} 
+			
+				{% if user.is_staff and comments %}
+    				<div class="form-group row">
+            			<div class="col-sm-5">
+            				<input type="submit" value="Delete all selected" class="btn btn-primary" />
+            			</div>
+        			</div>
+    				<br />
+				{% endif %}
+	
+			</form>
+	    </ul>
 
-		</div>
+	</div>
+    
     <ul>	
 		<fieldset>
 		<legend> Add a Comment </legend>
