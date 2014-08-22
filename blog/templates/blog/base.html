@@ -37,78 +37,65 @@
 
 <script>
     $(document).ready(function() {
-            $('#popover').popover({
-                trigger: "hover",
-                placement: "top",
-                title: "This is a default title",
-                'html'=true;
-                });
+        $('#popover').popover({
+            trigger: "hover",
+            placement: "top",
+            title: "This is a default title",
+            'html'=true;
+            });
         });
   </script>
-
-
- <!-- cript type="text/javascript">var switchTo5x=true;</script> -->
+<!-- cript type="text/javascript">var switchTo5x=true;</script> -->
 <!-- <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script> -->
 <!--<script type="text/javascript">stLight.options({publisher: "f73ac946-1c8d-4569-aae7-5e72cbe7f5e2", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>-->
 </head>
-<center>
-{% if messages %}
-<div class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</div>
-{% endif %}
-</center>
+    <center>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </center>
 <body>
 
-    
-    <div id="container">
-
+<div id="container">
     <div id="sidebar"><br><br>
-    {% block nav-global %}
+        {% block nav-global %}
             {% if user and not user.is_anonymous %}
-     Welcome {{ user.get_full_name|default:user.username }}!
-     
-   
-   {% endif %}</div>
-        <div id="menu">
-        
-            
-
-                <!-- MENU -->
-                {% if user.is_staff %}
-                <a href="{% url 'admin:index' %}">Admin</a>
-                <a href="{% url 'admin:blog_post_add' %}">Add post</a>
-                <a href="{% url 'admin:blog_comment_add' %}"> Add Comment </a>
-                {% endif %} 
-    <!-- HEADER STARTS HERE -->
-                
-        <br>
+                Welcome {{ user.get_full_name|default:user.username }}!
+            {% endif %}
+    </div>
+    
+    <div id="menu">
+        <!-- MENU -->
+        {% if user.is_staff %}
+            <a href="{% url 'admin:index' %}">Admin</a>
+            <a href="{% url 'admin:blog_post_add' %}">Add post</a>
+            <a href="{% url 'admin:blog_comment_add' %}"> Add Comment </a>
+        {% endif %}
+        <br> 
+    <div id="header">
         <!-- HEADER STARTS HERE -->
-        <!-- HEADER STARTS HERE -->
-          <div id="header">
-      <a href="{% url 'main' %}">
-        <img src="{% static 'images/blog.png' %}" width="206" height="67" alt="Agiliq Solutions" />
-      </a>
-      </div>
+            <a href="{% url 'main' %}">
+                <img src="{% static 'images/blog.png' %}" width="206" height="67" alt="Agiliq Solutions" />
+            </a>
+    </div>
     <!-- HEADER ENDS HERE -->
-    <!-- Go to your Addthis.com Dashboard to update any options -->
-        <div id="header" align="right">
-                    
-
+    <div id="header" align="right">
         <ul>
-            <li><a href="{% url 'main' %}">HOME</a></li>
-            <li><a href="{% url 'recentposts' %}">RECENT ARTICLES</a> </li>
-            <li><a><font color="black">MONTHLY ARCHIVES</font></a>
-            <ul>
-            <li>
-            {% for month in months %}
-            <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3">{{ month.2 }} - {{ month.0 }} </font><br></a> <br />
-        
-        {% endfor %}
-        </li>
-        </ul>
+            <li><font color="black"><a href="{% url 'main' %}">HOME</a></font></li>
+            <li><font color="black"><a href="{% url 'recentposts' %}">RECENT ARTICLES</a></font> </li>
+            
+            <li><font color="black"><a>MONTHLY ARCHIVES</a></font>
+                <ul>
+                    <li>
+                        {% for month in months %}
+                            <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3">{{ month.2 }} - {{ month.0 }} </font><br></a> <br />
+                        {% endfor %}
+                    </li>
+            e</ul>
         </li>
         {% if user and not user.is_anonymous %}
             <li><font color="#9999CC">{{ user.get_full_name|default:user.username }}</font>
@@ -122,6 +109,7 @@
             </div>
             
             {% endif %}
+            </font>
            </ul>
         </div>
         </div>

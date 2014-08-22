@@ -162,24 +162,6 @@ def recentposts(request):
         raise Http404
 
 
-def author(request, author_id):
-    page = 1
-    posts = Post.objects.all()
-    author = get_object_or_404(User, pk=author_id)
-    entries_per_page = getattr(settings, 'BLOG_NUMBER_OF_ENTRIES_PER_PAGE')
-    paginator = Paginator(posts, entries_per_page)
-    if page > paginator.num_pages:
-        return redirect(reverse("post",
-                                args=[author.author_id, paginator.num_pages]))
-    try:
-        posts = paginator.page(page)
-        # author_posts = User.objects.order_by("-created")
-        return render(request, "authorposts.html", {'posts': posts,
-                      'months': mkmonth_lst()})
-    except Post.DoesNotExist:
-        raise Http404
-
-
 def logout(request):
     """Logs out user"""
     auth_logout(request)
@@ -197,3 +179,11 @@ def tag_details(request, tag_slug):
     # tagged_entries = Post.objects.filter(tags__in=[tag])
     d = {'post': posts, 'tag': tag}
     return render(request, "tag_details.html", d)
+
+
+def authorposts(request, username):
+    author = get_object_or_404(User, username=username)
+    print author
+    posts = author.post_set.all()
+    return render(request, "author.html", {'posts': posts, 'post_list': posts, 'author': author,
+                                            'months': mkmonth_lst()})

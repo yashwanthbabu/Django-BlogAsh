@@ -52,7 +52,7 @@ ul li {
   transition: all 0.2s;
 }
 ul li:hover {
-  background: #555;
+  background: #999999;
   color: #fff;
 }
 ul li ul {
@@ -74,12 +74,12 @@ ul li ul {
   -transition: opacity 0.2s;
 }
 ul li ul li { 
-  background: #555; 
+  background: #999999; 
   display: block; 
   color: #ffffff;
   text-shadow: 0 -1px 0 #000;
 }
-ul li ul li:hover { background: #666; }
+ul li ul li:hover { background: #999999; }
 ul li:hover ul {
   display: block;
   opacity: 1;
