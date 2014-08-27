@@ -25,14 +25,14 @@
     });
 </script>
 <script type="text/javascript">
-    window.onload = function() {
-        document.getElementById("popup").onclick = function(){
-            return !window.open(this.href, "pop", "width=700,height=600");
-            window.parent.reload();
-            window.close();
-        
-        }
-    }
+    // window.onload = function() {
+        // document.getElementById("popup").onclick = function(){
+            // return !window.open(this.href, "pop", "width=700,height=600");
+            // window.parent.reload();
+            // window.close();
+        // 
+        // }
+    // }
 </script>
 
 <script>
@@ -70,11 +70,11 @@
     
     <div id="menu">
         <!-- MENU -->
-        {% if user.is_staff %}
-            <a href="{% url 'admin:index' %}">Admin</a>
-            <a href="{% url 'admin:blog_post_add' %}">Add post</a>
-            <a href="{% url 'admin:blog_comment_add' %}"> Add Comment </a>
-        {% endif %}
+        <!-- {% if user.is_staff %} -->
+            <!-- <a href="{% url 'admin:index' %}">Admin</a> -->
+            <!-- <a href="{% url 'admin:blog_post_add' %}">Add post</a> -->
+            <!-- <a href="{% url 'admin:blog_comment_add' %}"> Add Comment </a> -->
+        <!-- {% endif %} -->
         <br> 
     <div id="header">
         <!-- HEADER STARTS HERE -->
@@ -97,8 +97,8 @@
                     </li>
             e</ul>
         </li>
-        {% if user and not user.is_anonymous %}
-            <li><font color="#9999CC">{{ user.get_full_name|default:user.username }}</font>
+        {% if request.user and not request.user.is_anonymous %}
+            <li><font color="#9999CC">{{ request.user.get_full_name|default:request.user.username }}</font>
             <ul><li><a href="{% url 'auth:logout' %}">LOGOUT</a></li></ul></li>
             {% else %}
             <li>

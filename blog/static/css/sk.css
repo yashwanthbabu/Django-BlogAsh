@@ -86,14 +86,14 @@ ul li:hover ul {
   visibility: visible;
 }
 
-#sendwrapper{ float:right; padding:3px; }
+.col-sm-8 #sendwrapper{ float:right; padding:3px; }
 h2{font:bold 15px Helvetica, Arial, sans-serif; line-height:40px;}
 h2.message{color: brown; text-align: right; font-style:italic; font:bold;}
 h2{color:red;}
 body{background:#262b34; padding:20px;
     }
 #author_bg{background:url(..images/frame_bg.png);}
-a{color: #9999cc; text-decoration: none;}
+a{color: #9e9999; text-decoration: none;}
 a:hover{color:brown;}
  #sidebar { float: right; border: 0px dotted #ccc; padding: 4px; text-align:center; color:black}
  .col-sm-8 { color: red ;}
