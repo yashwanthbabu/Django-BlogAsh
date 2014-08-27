@@ -6,7 +6,7 @@ from taggit.managers import TaggableManager
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=60) 
+    title = models.CharField(max_length=60)
     tags = TaggableManager()
     author = models.ForeignKey(User, null=True)
     body = models.TextField()

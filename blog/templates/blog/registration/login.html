@@ -31,12 +31,11 @@
              $('#login-form').validate(
              {
               rules: {
-                email: {
+                username: {
                   required: true,
-                  email: true
                 },
                 password: {
-                  minlength: 8,
+                  minlength: 4,
                   required: true
                 }
               },
@@ -51,19 +50,21 @@
              });
             }); // end document.ready
         </script>
+        
 </head>
 {% block content %}
 <body class="page-body">
 <!--base body-->
   <!--layout content-->
+
   <div class="page-body">
     <!--page-->
     <div class="row main-content">
       <div class="static-container">
         <div id="flash-message" style="margin-top:5px"></div>
         <div class="email_confirmation_box">
-        <header>
-        <h1> Agiliq Login Form </h1><br>
+        <header><center>
+        <h1> Agiliq Login Form </h1><br></center>
         </header>
 
   <script>
@@ -107,27 +108,51 @@
 
         
 
-<form class="form-signin form-horizontal" action="{% url 'main' %}" method="post" id="login-form"><input type='hidden' name='csrfmiddlewaretoken' value='36J7k1FL3KscYGBN2TeTAewogjeAStO5' />{% csrf_token %}
-  
-  
+<style> 
+ .textbox { 
+    border: 3px #000000; 
+    outline:4; 
+    height:200px; 
+    width: 275px; 
+  } 
+  div #color {color:red;}
+</style> 
+<div id="color">
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}</div>
+
+<form class="form-signin form-horizontal" action="{% url 'loginuser' %}" method="post" id="login-form">
+{% csrf_token %}  
+  <center>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><font color="red">{{ message }}</font></li>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </center>
   <div class="form-group">
-              <label class="col-sm-4 control-label">Username</label>
+              <label class="col-sm-4 control-label" for="user_email">username</label>
               <div class="col-sm-7">
                 <div class="input-group">
-                  <span class="input-group-addon"><i class="entypo-user"></i></span>
-                  {{ form.user.errors}}<br>
-                  {{ form.user.username }} {{ request.user.username }}
-                  <span><input type ="email" class="form-control" id="email" name="email" placeholder=""><br><br>
+                  <span><i class="entypo-user"></i></span>
+                  <span class="textbox">    <input type="text" name="username" value="{{ username}}" /><br />
+
+                  <br><br>
 </span>
                 </div>
               </div>
             </div>
   <div class="form-group">
-              <label class="col-sm-4 control-label" for="user_password">Password</label>
+              <label class="col-sm-4 control-label" for="user_password">password</label>
               <div class="col-sm-7">
                 <div class="input-group">
-                  <span class="input-group-addon"><i class="entypo-key"></i></span>
-                  <span><input type="password" class="form-control" id="password" name="password" placeholder="" ><br><br>
+                  <span><i class="entypo-key"></i></span>{{ form.password.errors }}
+                  <span>    <input type="password" name="password" value="" /><br />
+
+                  <br><br>
 </span>
                 </div>
               </div>
@@ -136,12 +161,18 @@
     <input type="hidden" name="next" value="/admin/" />
   </div>
   
-  
-  <div class="form-actions clearfix">
+  {% if username and not username.is_anonymous %}
+            <li><font color="#9999CC">{{ username.get_full_name|default:user.username }}</font>
+            <ul><li><a href="{% url 'auth:logout' %}">LOGOUT</a></li></ul></li>
+            {% else %}
+            
+            <div class="form-actions clearfix">
     <div class="controls col-sm-offset-2 col-sm-10">
       <input type="submit" value="Log in" class="btn btn-primary" />
     </div>
   </div>
+  {% endif %}
+  
   </div>
 </form>
 

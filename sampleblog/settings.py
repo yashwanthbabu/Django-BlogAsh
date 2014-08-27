@@ -68,11 +68,15 @@ INSTALLED_APPS = (
     'blog',
     'taggit',
     'social_auth',
+    'password_reset',
+    'registration',
     'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django-session-idle-timeout',
 )
+
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
 
 TEMPLATE_LOADERS = ('django.template.loaders.filesystem.Loader',
 	 'django.template.loaders.app_directories.Loader'
@@ -131,7 +135,7 @@ TWITTER_CONSUMER_KEY = os.environ.get("twitterapi")
 
 TWITTER_CONSUMER_SECRET = os.environ.get("twittersecret")
 
-LOGIN_URL = '/blog/'
+LOGIN_URL = 'django.contrib.auth.views.login'
 LOGIN_REDIRECT_URL = '/blog/'
 SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/blog/'
 SOCIAL_AUTH_INACTIVE_USER_URL = '...'
