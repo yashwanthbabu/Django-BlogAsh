@@ -41,6 +41,7 @@
               },
               highlight: function(element) {
                 $(element).closest('.required').removeClass('success').addClass('error');
+                $('.error').css('color', 'red');
               },
               success: function(element) {
                 element
@@ -63,6 +64,9 @@
       <div class="static-container">
         <div id="flash-message" style="margin-top:5px"></div>
         <div class="email_confirmation_box">
+        <div align="right">
+        <header><br><br>
+        <a href="{% url 'main' %}"><font size="5">Back to Blog</font></a></header></div>
         <header><center>
         <h1> Agiliq Login Form </h1><br></center>
         </header>
@@ -89,7 +93,7 @@
 
         <div class="social_logins">
           <a href="{% url 'socialauth_begin' 'facebook' %}" class="sl_icon_facebook">
-            <i class="fa fa-facebook"></i>
+            <i class="fa fa-facebook"></i>        
 </a>
           <a href="{% url 'socialauth_begin' 'twitter' %}" class="sl_icon_twitter">
             <i class="fa fa-twitter"></i>
@@ -138,7 +142,7 @@
               <div class="col-sm-7">
                 <div class="input-group">
                   <span><i class="entypo-user"></i></span>
-                  <span class="textbox">    <input type="text" name="username" value="{{ username}}" /><br />
+                  <span class="textbox">    <input type="text" name="username" value="" /><br />
 
                   <br><br>
 </span>
@@ -185,7 +189,7 @@
           </span>
           <span class="pull-right">
             Not a member yet ? &nbsp;
-            <a href="{% url 'loginform' %}" class="footer_btn btn btn-green">Join us</a>
+            <a href="{% url 'register' %}" class="footer_btn btn btn-green">Join us</a>
           </span>
         </div>
       </div>

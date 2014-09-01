@@ -7,7 +7,7 @@
 <head> <title>{% block title %}Welcome to MyBlog{% endblock %}</title> 
 <link href="{% static 'css/sk.css' %}" rel="stylesheet" type="text/css">
 <script src="{{ STATIC_URL }}js/jquery.js" type="text/javascript"></script>
-<link href="https://jobhuk.s3.amazonaws.com/assets/neon/neon-23e885954cef25699cc9775207b44378.css" media="screen" rel="stylesheet" type="text/css" />
+<!-- <link href="https://jobhuk.s3.amazonaws.com/assets/neon/neon-23e885954cef25699cc9775207b44378.css" media="screen" rel="stylesheet" type="text/css" /> -->
 <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
 <script src="https://jobhuk.s3.amazonaws.com/assets/neon/neon-a3d832730fc8438ae1dbc4aee79e94f2.js" type="text/javascript"></script>
 <link href="https://jobhuk.s3.amazonaws.com/assets/appnew/application-5bcf12223fa10dd82085f51af8960f2e.css" media="screen" rel="stylesheet" type="text/css" />
@@ -35,6 +35,8 @@
     // }
 </script>
 
+
+
 <script>
     $(document).ready(function() {
         $('#popover').popover({
@@ -44,6 +46,13 @@
             'html'=true;
             });
         });
+  </script>
+  <script>
+  $(document).ready(function(){
+    ("#fade").popup({
+        transition: 'all 0.3s'
+    });
+  });
   </script>
 <!-- cript type="text/javascript">var switchTo5x=true;</script> -->
 <!-- <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script> -->
@@ -76,6 +85,7 @@
             <!-- <a href="{% url 'admin:blog_comment_add' %}"> Add Comment </a> -->
         <!-- {% endif %} -->
         <br> 
+        <!-- <input type="button" id="myButton" value="Click to activate the Popup!">   -->
     <div id="header">
         <!-- HEADER STARTS HERE -->
             <a href="{% url 'main' %}">
@@ -85,10 +95,10 @@
     <!-- HEADER ENDS HERE -->
     <div id="header" align="right">
         <ul>
-            <li><font color="black"><a href="{% url 'main' %}">HOME</a></font></li>
-            <li><font color="black"><a href="{% url 'recentposts' %}">RECENT ARTICLES</a></font> </li>
+            <li><font color="black"><a href="{% url 'main' %}"><u>HOME</u></a></font></li>
+            <li><font color="black"><a href="{% url 'recentposts' %}"><u>RECENT ARTICLES</u></a></font> </li>
             
-            <li><font color="black"><a>MONTHLY ARCHIVES</a></font>
+            <li><font color="black"><a><u>MONTHLY ARCHIVES</u></a></font>
                 <ul>
                     <li>
                         {% for month in months %}
@@ -99,19 +109,21 @@
         </li>
         {% if request.user and not request.user.is_anonymous %}
             <li><font color="#9999CC">{{ request.user.get_full_name|default:request.user.username }}</font>
-            <ul><li><a href="{% url 'auth:logout' %}">LOGOUT</a></li></ul></li>
+            <ul><li><a href="{% url 'auth:logout' %}"><u>LOGOUT</u></a></li></ul></li>
             {% else %}
             <li>
             
-            <font color="#9999CC"> <a href="{% url 'login' %}" id="popup">USER LOGIN</a></font></li>
+            <font color="#9999CC"> <a href="{% url 'login' %}"><u>USER LOGIN</u></a></font></li>
             </form>
+            </div>
             </div>
             </div>
             
             {% endif %}
+
             </font>
-           </ul>
-        </div>
+           </ul
+       
         </div>
         
 

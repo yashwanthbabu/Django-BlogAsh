@@ -54,11 +54,12 @@
 				
 					{% for tag in post.tags.all %}
 						<div class="tags">
-							{% if forloop.first %}Topics : {% endif %}
-			    				<a href= "{% url 'tag_details' tag.slug %}">{{ tag.name }}, </a> 
-			    		</div>
+							{% if forloop.first %}Tags : {% endif %}
+			    				<a href= "{% url 'tag_details' tag.slug %}">
+			    				<font style="background-color:#00ffff" size="4" color="red">{{ tag.name }}  </font></a> 
+			    		
 			    	{% empty %}
-						No Tags are available for this post
+						No Tags are available for this post</div>
 					{% endfor %}
 					<br/><br>
 					
