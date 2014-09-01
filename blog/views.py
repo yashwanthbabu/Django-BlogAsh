@@ -1,5 +1,7 @@
 import time
+import warnings
 from calendar import month_name
+from taggit.models import Tag
 
 from django.conf import settings
 from django.http import Http404
@@ -9,20 +11,10 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth import logout as auth_logout
-from django.core.context_processors import csrf
-from taggit.models import Tag
 from django.core.mail import send_mail, BadHeaderError
+from django.views.decorators.csrf import csrf_protect
+from django.template import RequestContext
 from django.template.loader import Context, get_template
-from django.core.paginator import Paginator, \
-    InvalidPage, EmptyPage
-from django.shortcuts import render, \
-    HttpResponseRedirect, HttpResponse, get_object_or_404, redirect
-
-from .models import Post, Comment
-from .forms import CommentsForm, CommentForm, MyRegistrationForm, \
-    LoginForm
-
-import warnings
 from django.template.response import TemplateResponse
 from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import ugettext as _
@@ -30,6 +22,14 @@ from django.shortcuts import resolve_url
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 from django.contrib.auth.tokens import default_token_generator
+from django.core.paginator import Paginator, \
+    InvalidPage, EmptyPage
+from django.shortcuts import render, render_to_response, \
+    HttpResponseRedirect, HttpResponse, get_object_or_404, redirect
+
+from .models import Post, Comment
+from .forms import CommentsForm, CommentForm, RegistrationForm, \
+    LoginForm
 
 
 @login_required
@@ -180,24 +180,41 @@ def recentposts(request):
         raise Http404
 
 
-def register_user(request):
-    if request.method == "POST":
-        form = MyRegistrationForm(request.POST)
+@csrf_protect
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('main')
-    args = {}
-    args.update(csrf(request))
+            user = User.objects.create_user(
+            username=form.cleaned_data['username'],
+            password=form.cleaned_data['password1'],
+            email=form.cleaned_data['email']
+            )
+            return HttpResponseRedirect('/register/success/')
+    else:
+        form = RegistrationForm()
+    variables = RequestContext(request, {
+    'form': form
+    })
+ 
+    return render_to_response(
+    'registration/LoginForm.html',
+    variables,
+    )
 
-    args['form'] = MyRegistrationForm()
 
-    return render(request, "register.html", args)
+def register_success(request):
+    return render_to_response(
+    'registration/success.html',
+    )
+
 
 
 def login_user(request):
     state = "Please log in below..."
     username = password = ''
     if request.method == 'POST':
+        form = RegistrationForm(request.POST)
         username = request.POST.get('username')
         password = request.POST.get('password')
         print username

@@ -32,3 +32,9 @@ class Comment(models.Model):
 
     def __unicode__(self):
         return unicode("%s: %s" % (self.post, self.body[:60]))
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    activation_key = models.CharField(max_length=40)
+    key_expires = models.DateTimeField()

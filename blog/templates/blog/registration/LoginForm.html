@@ -174,19 +174,52 @@ messages: {
 </a>          </div>
         </div>
         <div class="row">
-          <form id="register" name="register" action="/codejudge/contest.php" method="post" >
+
+<style> 
+ .textbox { 
+    border: 3px #000000; 
+    outline:4; 
+    height:200px; 
+    width: 275px; 
+  } 
+  div #color {color:red;}
+</style> 
+
+<div id="color">
+{% if form.username.errors %}
+<p> Username already exists</p>
+{% endif %}
+{% if form.email.errors %}
+<p> Email already exists</p>
+{% endif %}
+{% if form.errors %}
+<p> Password fields didn't match </p>
+{% endif %}
+
+
+</div>
+
+    <form method="post" action="{% url 'register' %}">{% csrf_token %}
+    <center>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><font color="red">{{ message }}</font></li>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </center>
 <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="aXdvDrax3G2ZEMf1WdKz/TBtL0T+KV1fojI9mJ49C08=" /></div>
             <input id="user_account_type" name="user[account_type]" type="hidden" value="individual" />
             <input id="user_partner_code" name="user[partner_code]" type="hidden" />
 
             <div class="form-group">
-              <label class="col-sm-4 control-label" for="user_email">username</label>
+              <label class="col-sm-4 control-label" for="user_email">Username:</label>
               <div class="col-sm-7">
                 <div class="input-group">
                   <span><i class="entypo-user"></i></span>
-                  <span class="textbox">    <input type="text" name="username" value="" /><br />
+                  <span class="textbox"> {{ form.username }}<br><br>
 
-                  <br><br>
 </span>
                 </div>
               </div>
@@ -195,8 +228,8 @@ messages: {
               <label class="col-sm-4 control-label" for="user_email">Email:</label>
               <div class="col-sm-7">
                 <div class="input-group">
-                  <span class="input-group-addon"><i class="entypo-user"></i></span>
-                  <span><input type ="email" class="form-control" id="email" name="email" placeholder="Enter Valid Email"><br><br>
+                  <span><i class="entypo-user"></i></span>
+                      <span class="textbox">{{ form.email}}<br> <br>
 </span>
                 </div>
                 <span id="ind_email_error" for="email" class="validate-has-error hide">Email is already exist.</span>
@@ -204,11 +237,11 @@ messages: {
             </div>
 
             <div class="form-group">
-              <label class="col-sm-4 control-label" for="user_password">Password</label>
+              <label class="col-sm-4 control-label" for="user_password">Password:</label>
               <div class="col-sm-7">
                 <div class="input-group">
-                  <span class="input-group-addon"><i class="entypo-key"></i></span>
-                  <span><input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" ><br><br>
+                  <span><i class="entypo-key"></i></span>
+                  <span class="textbox">{{ form.password1 }}<br><br>
 </span>
                 </div>
               </div>
@@ -218,8 +251,8 @@ messages: {
               <label class="col-sm-4 control-label" for="user_password_confirmation">Confirm password</label>
               <div class="col-sm-7">
                 <div class="input-group">
-                  <span class="input-group-addon"><i class="entypo-key"></i></span>
-                  <span><input type="password" class="form-control" id="Confirm_Password" name="Confirm_Password" placeholder="Confirm Password" ><br><br>
+                  <span><i class="entypo-key"></i></span>
+                  <span>{{ form.password2 }}<br><br>
 </span>
                 </div>
                 <span id="ind_password_confirmation_error" for="email" class="validate-has-error hide">Password does not match.</span>
@@ -247,6 +280,7 @@ messages: {
 </div>
       </div>
     </div>
+
 
     <!--signup employer registration-->
     
