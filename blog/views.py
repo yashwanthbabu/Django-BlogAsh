@@ -217,8 +217,6 @@ def login_user(request):
         form = RegistrationForm(request.POST)
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print username
-        print password
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
@@ -255,7 +253,6 @@ def tag_details(request, tag_slug):
 
 def authorposts(request, username):
     author = get_object_or_404(User, username=username)
-    print author
     posts = author.post_set.all()
     return render(request, "author.html", {'posts': posts, 'post_list': posts,
                                            'author': author,
@@ -267,10 +264,8 @@ def forgot_password(request):
     if form.is_valid():
         # send_mail("password reset", subject, from_email, to)
         from_email = request.POST.get('email')
-        print from_email
     else:
         from_email = request.POSt.get('email')
-        print from_email
         return render(request, 'registration/password_reset_form.html')
 
 

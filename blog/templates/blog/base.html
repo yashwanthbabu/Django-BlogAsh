@@ -105,7 +105,7 @@
                             <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3">{{ month.2 }} - {{ month.0 }} </font><br></a> <br />
                         {% endfor %}
                     </li>
-            e</ul>
+            </ul>
         </li>
         {% if request.user and not request.user.is_anonymous %}
             <li><font color="#9999CC">{{ request.user.get_full_name|default:request.user.username }}</font>

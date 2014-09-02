@@ -14,13 +14,12 @@ Blog entries exist at /blog/. Try accessing it. It will show the limited blog en
 * HOME - which will redirects to the /blog/ page.
 * RECENT ARTICLES - shows the recent blog entries in the manner of recently added.
 * MONTHLY ARCHIVES - shows the blog entries of the particular month and 
-* USER LOGIN - user can login through social authentication. Instead of having the registration form, the user can register and login using Facebook, Twitter and LinkedIn
+* USER LOGIN - user can login through social authentication. The user can login using Facebook, Twitter and google+. If you want more, you can add according to your requirement.
 
-  This UserLogin has been done with the django-social_auth libray. Here is the documentation: http://django-social-auth.readthedocs.org/en/latest/
-  
-  - social plugins to follow the social accounts of the organization by the user.
-  
-  - For each and every post you can see the facebook like, share and tweet option. By this the user can share the particular post for his social account.
+    - After clicking USER LOGIN, you will see the Login form with username and password. If you are already a member you can login here. 
+    - For the forgot password., the user should provide an email address to sent an password_reset_email for the user. so that the user can reset his password and can enter the new password. Added this functionality for the application
+    - If not a member, then JOIN US button will provide the registration form. By this the user can register and here. After the registration has been done, it will ask for the login. Again you should login. If the particulars are correct then it will login.
+    - 
 
 If you are a Admin user and you are already logged in, then the links of Admin, Add Post and Add Comment will be appeared at the Top-Left of the /blog/ page.By this you can directly redirect to the adming to add posts and comments.
 
@@ -33,7 +32,7 @@ If you are a Admin user then you can delete either single or bulk comments.
 # **To integrate into your application:**
 
 * Install the requirements.txt
-* Include `django_admin_bootstrapped.bootstrap3` , `django_admin_bootstrapped` , `south` in settings.INSTALLED_APPS.
+* Include `django_admin_bootstrapped.bootstrap3` , `django_admin_bootstrapped` , `south` , `registration` , `suit` in settings.INSTALLED_APPS.
 * Enable django admin. If not already enabled python manange.py syncdb 
 * Check out your blog at /blog/
 

@@ -27,6 +27,8 @@
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.2.0/css/bootstrap.min.css"/>
+
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -113,7 +115,7 @@ messages: {
   <div class="page-body">
   <div align="right">
         <header><br><br>
-        <a href="{% url 'main' %}"><font size="5">Back to Blog</font></a></header></div>
+        <a href="{% url 'main' %}"><font size="5"> &lsaquo; Agiliq Blog </font></a></header></div>
     <header><center>
         <h1> Agiliq Registration Form </h1>
         </center></header>
@@ -186,16 +188,13 @@ messages: {
 </style> 
 
 <div id="color">
-{% if form.username.errors %}
-<p> Username already exists</p>
-{% endif %}
-{% if form.email.errors %}
-<p> Email already exists</p>
+{% if form.errors %}
+{{ form.username.errors }}
+{{ form.email.errors }}
 {% endif %}
 {% if form.errors %}
-<p> Password fields didn't match </p>
+<ul><li>Password dosen't matches</li></ul>
 {% endif %}
-
 
 </div>
 
