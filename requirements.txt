@@ -8,6 +8,7 @@ django-password-reset==0.7
 django-registration==1.0
 django-session-idle-timeout==1.4.2
 django-social-auth==0.7.28
+django-suit==0.2.9
 django-taggit==0.12.1
 httplib2==0.9
 ipdb==0.8

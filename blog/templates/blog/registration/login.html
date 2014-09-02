@@ -24,7 +24,12 @@
 
   <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/bootstrap/3.2.0/css/bootstrap.min.css"/>
-
+<style>
+#login-form label.error {
+    font-size: 12px;
+    color: red;
+}
+</style>
   <script>
   $(document).ready(function(){
 
@@ -41,6 +46,7 @@
               },
               highlight: function(element) {
                 $(element).closest('.required').removeClass('success').addClass('error');
+                $('.error').css('color', 'red', 'font-size', '10px');
               },
               success: function(element) {
                 element
@@ -50,6 +56,17 @@
              });
             }); // end document.ready
         </script>
+
+<script type="text/javascript">
+    window.onload = function() {
+        document.getElementById("popup").onclick = function(){
+            return !window.open(this.href, "pop", "width=700,height=600");
+            window.parent.reload();
+            window.close();
+        
+        }
+    }
+</script>
         
 </head>
 {% block content %}
@@ -63,6 +80,9 @@
       <div class="static-container">
         <div id="flash-message" style="margin-top:5px"></div>
         <div class="email_confirmation_box">
+        <div align="right">
+        <header><br><br>
+        <a href="{% url 'main' %}"><font size="5"> &lsaquo; Agiliq Blog</font></a></header></div>
         <header><center>
         <h1> Agiliq Login Form </h1><br></center>
         </header>
@@ -89,7 +109,7 @@
 
         <div class="social_logins">
           <a href="{% url 'socialauth_begin' 'facebook' %}" class="sl_icon_facebook">
-            <i class="fa fa-facebook"></i>
+            <i class="fa fa-facebook"></i>        
 </a>
           <a href="{% url 'socialauth_begin' 'twitter' %}" class="sl_icon_twitter">
             <i class="fa fa-twitter"></i>
@@ -134,11 +154,11 @@
         {% endif %}
     </center>
   <div class="form-group">
-              <label class="col-sm-4 control-label" for="user_email">username</label>
+              <label class="col-sm-4 control-label" for="user_email">Username:</label>
               <div class="col-sm-7">
                 <div class="input-group">
                   <span><i class="entypo-user"></i></span>
-                  <span class="textbox">    <input type="text" name="username" value="{{ username}}" /><br />
+                  <span class="textbox">    <input type="text" name="username" value="" />
 
                   <br><br>
 </span>
@@ -146,7 +166,7 @@
               </div>
             </div>
   <div class="form-group">
-              <label class="col-sm-4 control-label" for="user_password">password</label>
+              <label class="col-sm-4 control-label" for="user_password">Password:</label>
               <div class="col-sm-7">
                 <div class="input-group">
                   <span><i class="entypo-key"></i></span>{{ form.password.errors }}
@@ -185,7 +205,7 @@
           </span>
           <span class="pull-right">
             Not a member yet ? &nbsp;
-            <a href="{% url 'loginform' %}" class="footer_btn btn btn-green">Join us</a>
+            <a href="{% url 'register' %}" class="footer_btn btn btn-green">Join us</a>
           </span>
         </div>
       </div>

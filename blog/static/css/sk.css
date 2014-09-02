@@ -1,4 +1,4 @@
-.main { margin-left: 25px; margin-top: 30px; }
+.main { margin-left: 25px; margin-top: 30px; background: url(images/images.jpeg) no-repeat center center fixed;}
         .time { font-size: 0.8em; margin-top: 2px; }
         .user { text-decoration:none;}
         .comment { border: 4px solid white; padding: 4px; margin-bottom: 12px; }
@@ -14,6 +14,15 @@
         #submit { float: right; margin-right: 50px; width: 500px; margin-top: -5px; }
 
         ul { margin-bottom: 30px; }
+
+html { 
+  background: url(images/images.jpeg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 ul #post ul{
 	margin: 30px;
 	padding: 0;
@@ -104,6 +113,4 @@ a:hover{color:brown;}
 }
 a:hover .hoverblock{display:block;
 }
-
- 
 

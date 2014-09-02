@@ -52,10 +52,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/')
 
 SOUTH_TESTS_MIGRATE = False
 
+SOUTH_MIGRATION_MODULES = {
+        'taggit': 'taggit.south_migrations',
+    }
+
+
 
 # Application definition
 
 INSTALLED_APPS = (
+	'suit',
     'django_admin_bootstrapped.bootstrap3',
     'django_admin_bootstrapped',
     'django.contrib.admin',
@@ -121,19 +127,30 @@ MIDDLEWARE_CLASSES = (
     'django-session-idle-timeout.middleware.SessionIdleTimeout',
 )
 
+SOCIAL_AUTH_PIPELINE = (
+'social_auth.backends.pipeline.social.social_auth_user',
+'social_auth.backends.pipeline.associate.associate_by_email',
+'social_auth.backends.pipeline.user.get_username',
+'social_auth.backends.pipeline.user.create_user',
+'social_auth.backends.pipeline.social.associate_user',
+'social_auth.backends.pipeline.user.update_user_details',
+)
+
 SESSION_IDLE_TIMEOUT = 60
 
-GOOGLE_OAUTH2_CLIENT_ID = os.environ.get("googleclientid")
+GOOGLE_OAUTH2_CLIENT_ID = '1008298715868-rco5g1rd603igduj0armr16f2oulqmbh.apps.googleusercontent.com'
 
-GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get("googleclientsecret")
+GOOGLE_OAUTH2_CLIENT_SECRET = '1008298715868-36on6k5n1ddjdjdoqidv5bnbb956i83b@developer.gserviceaccount.com'
 
-FACEBOOK_APP_ID = os.environ.get("fbID")
+FACEBOOK_APP_ID = '559235774199929'
 
-FACEBOOK_API_SECRET = os.environ.get("fbsecret")
+FACEBOOK_API_SECRET = 'f6f810170c820a624614bf07e1f89c37'
 
-TWITTER_CONSUMER_KEY = os.environ.get("twitterapi")
+TWITTER_CONSUMER_KEY = 'Cpj0XRzoFiTpfN5w3qNPS1pQk'
 
-TWITTER_CONSUMER_SECRET = os.environ.get("twittersecret")
+TWITTER_CONSUMER_SECRET = 'aEx2CMIGzlhxyb5jGTJRtw4JggJFYqzbudQQzqRaeloazqNfb4'
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'publish_actions']
 
 LOGIN_URL = 'django.contrib.auth.views.login'
 LOGIN_REDIRECT_URL = '/blog/'
@@ -186,6 +203,11 @@ STATIC_URL = '/static/'
 BLOG_NUMBER_OF_ENTRIES_PER_PAGE = 3
 
 BLOG_NUMBER_OF_RECENT_ENTRIES_PER_PAGE = 5
+
+ACCOUNT_EMAIL_UNIQUE = True
+ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = True
+ACCOUNT_SETTINGS_REDIRECT_URL = 'home'
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ.get("emailhost")
