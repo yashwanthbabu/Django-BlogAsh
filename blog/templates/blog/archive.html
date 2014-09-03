@@ -25,7 +25,10 @@
 		    <div class="commentlink"><a href="{% url 'post' post.id %}"> Read more → </a></div><br>
 
                 </ul>
+                {% empty %}<center>
+            <h3>Oops!<br>No any posts available for this month</h3></center>
             {% endfor %}
+
         </ul>
 
 	

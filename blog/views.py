@@ -185,40 +185,36 @@ def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            user = User.objects.create_user(
-            username=form.cleaned_data['username'],
-            password=form.cleaned_data['password1'],
-            email=form.cleaned_data['email']
-            )
+            User.objects.create_user(
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password1'],
+                email=form.cleaned_data['email']
+                )
             return HttpResponseRedirect('/register/success/')
     else:
         form = RegistrationForm()
     variables = RequestContext(request, {
-    'form': form
+        'form': form
     })
- 
+
     return render_to_response(
-    'registration/LoginForm.html',
-    variables,
+        'registration/LoginForm.html',
+        variables,
     )
 
 
 def register_success(request):
     return render_to_response(
-    'registration/success.html',
+        'registration/success.html',
     )
-
 
 
 def login_user(request):
     state = "Please log in below..."
     username = password = ''
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print username
-        print password
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
@@ -255,7 +251,6 @@ def tag_details(request, tag_slug):
 
 def authorposts(request, username):
     author = get_object_or_404(User, username=username)
-    print author
     posts = author.post_set.all()
     return render(request, "author.html", {'posts': posts, 'post_list': posts,
                                            'author': author,
@@ -266,11 +261,9 @@ def forgot_password(request):
     form = LoginForm(request.POST)
     if form.is_valid():
         # send_mail("password reset", subject, from_email, to)
-        from_email = request.POST.get('email')
-        print from_email
+        request.POST.get('email')
     else:
-        from_email = request.POSt.get('email')
-        print from_email
+        request.POSt.get('email')
         return render(request, 'registration/password_reset_form.html')
 
 
