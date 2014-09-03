@@ -188,13 +188,7 @@ messages: {
 </style> 
 
 <div id="color">
-{% if form.errors %}
-{{ form.username.errors }}
-{{ form.email.errors }}
-{% endif %}
-{% if form.errors %}
-<ul><li>Password dosen't matches</li></ul>
-{% endif %}
+
 
 </div>
 
@@ -217,9 +211,14 @@ messages: {
               <div class="col-sm-7">
                 <div class="input-group">
                   <span><i class="entypo-user"></i></span>
-                  <span class="textbox"> {{ form.username }}<br><br>
 
-</span>
+                  <span class="textbox"> {{ form.username }}<br></span>
+                  {% if form.errors %}
+                  <font color="red">
+                  {{ form.username.errors.0 }}
+                  </font>
+                  {% endif %}<br>
+
                 </div>
               </div>
             </div>
@@ -228,7 +227,12 @@ messages: {
               <div class="col-sm-7">
                 <div class="input-group">
                   <span><i class="entypo-user"></i></span>
-                      <span class="textbox">{{ form.email}}<br> <br>
+                      <span class="textbox">{{ form.email}}<br>
+                      {% if form.errors %}
+                  <font color="red">
+                  {{ form.email.errors.0 }}
+                  </font>
+                  {% endif %}<br>
 </span>
                 </div>
                 <span id="ind_email_error" for="email" class="validate-has-error hide">Email is already exist.</span>
@@ -240,7 +244,9 @@ messages: {
               <div class="col-sm-7">
                 <div class="input-group">
                   <span><i class="entypo-key"></i></span>
-                  <span class="textbox">{{ form.password1 }}<br><br>
+                  <span class="textbox">{{ form.password1 }}<br>
+                  
+                  <br>
 </span>
                 </div>
               </div>
@@ -251,7 +257,13 @@ messages: {
               <div class="col-sm-7">
                 <div class="input-group">
                   <span><i class="entypo-key"></i></span>
-                  <span>{{ form.password2 }}<br><br>
+                  <span>{{ form.password2 }}<br>
+                  {% if form.errors %}
+                  <font color="red">
+                  Password doesn't matches</font>
+                  {% endif %}
+                  <br>
+                  
 </span>
                 </div>
                 <span id="ind_password_confirmation_error" for="email" class="validate-has-error hide">Password does not match.</span>
