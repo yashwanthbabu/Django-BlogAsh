@@ -33,6 +33,7 @@ If you are a Admin user then you can delete either single or bulk comments.
 
 * Install the requirements.txt
 * Include `django_admin_bootstrapped.bootstrap3` , `django_admin_bootstrapped` , `south` , `registration` , `suit` in settings.INSTALLED_APPS.
+* Include `django_admin_bootstrapped.bootstrap3` , `django_admin_bootstrapped` , `south` , `registration` in settings.INSTALLED_APPS.
 * Enable django admin. If not already enabled python manange.py syncdb 
 * Check out your blog at /blog/
 
