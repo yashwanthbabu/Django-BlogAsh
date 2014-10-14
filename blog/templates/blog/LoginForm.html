@@ -66,6 +66,13 @@
 
 //]]>
 </script>
+<style>
+#registration-form label.error {
+    font-size: 12px;
+    color: red;
+}
+</style>
+  
   <!-- End layout head -->
 
   <!--End base head-->
@@ -73,49 +80,32 @@
 <body class="page-body">
 <!--base body-->
   <!--layout content-->
-  <script type="text/javascript">
-$(document).ready(function(){
-$("#register").validate({
-errorElement: 'div',
-rules:{
-   "username":{
-    required:true,
-   },
+ <script>
+  $(document).ready(function(){
 
-   "email":{
-required:true,  
-},
-"password":{
-required:true,
-minlength:5
-},
-"Confirm_Password":{
-required:true,
-equalTo: "#password"
-},
-
-},
-messages: {
-    username:{
-                required: "Please provide a unique username"
-              },
-    }
-    email:{
-                required: "Please provide a valid email"
-    },
-     password: {
-                required: "Please provide a password",
-                minlength: "Your password must be at least 5 characters long"
+             $('#registration-form').validate(
+             {
+              rules: {
+                username: {
+                  required: true,
                 },
-     Confirm_Password: {
-                required: "Please provide a confirm password",
-                equalTo: "Please enter the same password as above"
+                password: {
+                  minlength: 4,
+                  required: true
                 }
-    },
-     
-  });  
- });
- </script>
+              },
+              highlight: function(element) {
+                $(element).closest('.required').removeClass('success').addClass('error');
+                $('.error').css('color', 'red', 'font-size', '10px');
+              },
+              success: function(element) {
+                element
+                .text('').addClass('valid')
+                .closest('.required').removeClass('error').addClass('success');
+              }
+             });
+            }); // end document.ready
+        </script>
 
 
   <div class="page-body">
@@ -182,7 +172,7 @@ messages: {
 </a>          </div>
         </div>
         <div class="row">
-          <form id="register" name="register" action="" method="post" >
+          <form id="register" name="register" action="" method="post" id="registration-form">
 <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="aXdvDrax3G2ZEMf1WdKz/TBtL0T+KV1fojI9mJ49C08=" /></div>
             <input id="user_account_type" name="user[account_type]" type="hidden" value="individual" />
             <input id="user_partner_code" name="user[partner_code]" type="hidden" />
