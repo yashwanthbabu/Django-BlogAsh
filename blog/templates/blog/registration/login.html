@@ -117,18 +117,10 @@
           <a href="{% url 'socialauth_begin' 'google-oauth2' %}" class="sl_icon_google_plus">
             <i class="fa fa-google-plus"></i>
 </a>        </div>
-      </div>
+      </div><br>
 
-      <div id="content" class="colM">
-        
-
-        
-        
-        
-
-        
-
-<style> 
+<div id="content" class="colM">
+     <style> 
  .textbox { 
     border: 3px #000000; 
     outline:4; 
@@ -160,11 +152,11 @@
                   <span><i class="entypo-user"></i></span>
                   <span class="textbox">    <input type="text" name="username" value="" />
 
-                  <br><br>
+                  <br>
 </span>
                 </div>
               </div>
-            </div>
+  </div>
   <div class="form-group">
               <label class="col-sm-4 control-label" for="user_password">Password:</label>
               <div class="col-sm-7">
@@ -172,7 +164,7 @@
                   <span><i class="entypo-key"></i></span>{{ form.password.errors }}
                   <span>    <input type="password" name="password" value="" /><br />
 
-                  <br><br>
+                  <br>
 </span>
                 </div>
               </div>
@@ -185,11 +177,13 @@
             <li><font color="#9999CC">{{ username.get_full_name|default:user.username }}</font>
             <ul><li><a href="{% url 'auth:logout' %}">LOGOUT</a></li></ul></li>
             {% else %}
-            
+           
+           <div class="form-group"> 
             <div class="form-actions clearfix">
-    <div class="controls col-sm-offset-2 col-sm-10">
+    <div class="col-md-6 col-md-offset-5">
       <input type="submit" value="Log in" class="btn btn-primary" />
     </div>
+  </div>
   </div>
   {% endif %}
   

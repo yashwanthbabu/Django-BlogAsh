@@ -108,7 +108,7 @@
 		               		<input type="checkbox" name="delete" value="{{ comment.pk }}">
             				<a href="{% url 'delete_single_comment' post.pk comment.pk %}">delete</a>
         				{% endif %}
-    				</div>
+    				</div></a>
 
 				{% endfor %} 
 			

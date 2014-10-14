@@ -213,12 +213,13 @@ messages: {
                 <div class="input-group">
                   <span><i class="entypo-user"></i></span>
 
-                  <span class="textbox"> {{ form.username }}<br></span>
+                  <span class="textbox"> {{ form.username }}<br>
                   {% if form.errors %}
                   <font color="red">
                   {{ form.username.errors.0 }}
                   </font>
                   {% endif %}<br>
+                  </span>
 
                 </div>
               </div>
@@ -228,7 +229,7 @@ messages: {
               <div class="col-sm-7">
                 <div class="input-group">
                   <span><i class="entypo-user"></i></span>
-                      <span class="textbox">{{ form.email}}<br>
+                      <span class="textbox">{{ form.email }}<br>
                       {% if form.errors %}
                   <font color="red">
                   {{ form.email.errors.0 }}
@@ -272,7 +273,7 @@ messages: {
             </div>
 
             <div class="form-group">
-              <div class=" col-md-6 col-md-offset-5">
+              <div class="col-md-6 col-md-offset-5">
                 <input class="btn btn-lg btn-submit-btn" name="commit" type="submit" value="Sign up" />
               </div>
             </div>

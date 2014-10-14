@@ -12,15 +12,12 @@
 {% block content %}
 
 	
-    <div class="hoverblock"> <a> About Author </a></div>
-
-
         <ul>
             {% for post in posts %}
 	
-                <div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div><br>
+                <div class="title"><h1><a href="{% url 'post' post.id %}">{{ post.title }}</a></h1></div>
                 
-		<div class="user"> By: <a href="{%url 'author' post.author.username %}"> {{ post.author }}</a> on  {{ post.created }} </div>
+		<div class="user"><h3> By: <a href="{%url 'author' post.author.username %}"> {{ post.author }}</a></h3> on  {{ post.created }} </div><br>
                 <ul>
                     <!-- <div class="time">{{ post.created|linebreaks}}</div> -->
                     <div class="body">{{ post.body|truncatewords_html:20|linebreaks }}</div>

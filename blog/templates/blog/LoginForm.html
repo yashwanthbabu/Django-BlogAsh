@@ -78,6 +78,10 @@ $(document).ready(function(){
 $("#register").validate({
 errorElement: 'div',
 rules:{
+   "username":{
+    required:true,
+   },
+
    "email":{
 required:true,  
 },
@@ -92,6 +96,10 @@ equalTo: "#password"
 
 },
 messages: {
+    username:{
+                required: "Please provide a unique username"
+              },
+    }
     email:{
                 required: "Please provide a valid email"
     },
@@ -174,17 +182,17 @@ messages: {
 </a>          </div>
         </div>
         <div class="row">
-          <form id="register" name="register" action="/codejudge/contest.php" method="post" >
+          <form id="register" name="register" action="" method="post" >
 <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="aXdvDrax3G2ZEMf1WdKz/TBtL0T+KV1fojI9mJ49C08=" /></div>
             <input id="user_account_type" name="user[account_type]" type="hidden" value="individual" />
             <input id="user_partner_code" name="user[partner_code]" type="hidden" />
 
             <div class="form-group">
-              <label class="col-sm-4 control-label" for="user_email">username</label>
+              <label class="col-sm-4 control-label" for="user_email">Username:</label>
               <div class="col-sm-7">
                 <div class="input-group">
-                  <span><i class="entypo-user"></i></span>
-                  <span class="textbox">    <input type="text" name="username" value="" /><br />
+                  <span class="input-group-addon"><i class="entypo-user"></i></span>
+                  <span class="textbox"><input type="text" class="form-control" placeholder="Enter Username" name="username" value="" />
 
                   <br><br>
 </span>
