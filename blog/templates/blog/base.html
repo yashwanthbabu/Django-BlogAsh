@@ -103,72 +103,8 @@
 <br><br><br><br>
 
 
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabel"><center>Log In </center></h4>
-                </div>
-                <div class="modal-body">
-
-                    <div id="color">
-                        {% if form.errors %}
-                        <p>Your username and password didn't match. Please try again.</p>
-                        {% endif %}
-                    </div>
-                <div id="signin">
-                    <form class="form-signin form-horizontal" action="" method="post" id="login-form" name="login-form">{% csrf_token %}  
-                    <center>
-                        {% if messages %}
-                    <div class="messages">
-                        {% for message in messages %}
-                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><font color="red">{{ message }}</font></li>
-                        {% endfor %}
-                    </div>
-                        {% endif %}
-                    </center>
-                </div>
-                
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Username</label>
-                    <div class="col-md-5">
-                        <input type="text" id="username1" class="form-control" name="username" onblur="validate('username', this.value)" />
-                    </div>
-                </div>
-                <div id="username"></div>
-
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Password</label>
-                    <div class="col-md-5">
-                        <input type="password1" id="password" class="form-control" name="password" onblur="validate('password', this.value") />
-                    </div>
-                </div>
-                <div id="password"></div>
-                    <input type="hidden" name="this_is_the_login_form" value="1" />
-                    <input type="hidden" name="next" value="/admin/" />
-                </div>
-  
-                  {% if username and not username.is_anonymous %}
-                    <li><font color="#9999CC">{{ username.get_full_name|default:user.username }}</font>
-                    <ul><li><a href="{% url 'auth:logout' %}">LOGOUT</a></li></ul></li>
-                  {% else %}
-                <div class="form-group">
-                    <div class="col-md-5 col-md-offset-3">
-                        <button type="submit" class="btn btn-default" onclick="checkForm()">Login</button>
-                    </div>
-                </div>
-            
-                  {% endif %}
-  
-                </form>
-            </div>
-        </div>
-        </div>
-
-
-<div class="container" align="right">
-<div id="sidebar">
+<div class="container" style="width:300px; float:right;">
+<div class="centered">
             <font color="black"><font color="brown"> ARCHIVE DATES </font> </font><br><br>
                     
                         {% for month in months %}
@@ -177,10 +113,9 @@
              </div>
              </div>
 
-        <div id="content">
+        <div id="content" style="width:1000px; float:left;"> 
             {% block content %}{% endblock %}
         </div>
-    </div>
 {% endblock %}
 
 

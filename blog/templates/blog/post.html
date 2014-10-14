@@ -1,24 +1,10 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-<head>
-	<title> 
-		{% block title %} 
-			{{ post.title }} 
-		{% endblock %} 
-	</title>
-	
-	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css">
-</head>
+
 
 {% block content %}
-	<script>
-	// $(function(){
-	// 	$("#popover").popover({html:true});
-	// });
-	// </script> 
 
 	<div id="fb-root">
-		
 	</div>
 	<script>(function(d, s, id)
 		{
@@ -47,27 +33,23 @@
 		(document,"script","twitter-wjs");
 	</script>
 
-
-
-
-	<div class="blog"> 
-        <ul>            
-           	<div class="title"><a href="{% url 'post' post.id %}"><h1>{{ post.title }}</h1></a></div>
-			<div class="user"><h3>By: <a href="{% url 'author' post.author.username %}"> {{ post.author }}</h3> </a></div><br>
-			<div class="user"><a href="https://about.me/yashwanthbabu" target="_blank">About Author</a></div>
-                <ul>
-					<div class="time">{{ post.created}}</div>
-					<div class="body">{{ post.body|linebreaks }}</div>
-				
+    <ul>            
+      	<div class="title"><a href="{% url 'post' post.id %}"><h1>{{ post.title }}</h1></a></div>
+		<div class="user"><h3>By: <a href="{% url 'author' post.author.username %}"> {{ post.author }}</h3> </a></div><br>
+		<div class="user"><a href="https://about.me/yashwanthbabu" target="_blank">About Author</a></div>
+            <ul>
+				<div class="time">{{ post.created}}</div>
+				<div class="body">{{ post.body|linebreaks }}</div>
+			
 					{% for tag in post.tags.all %}
-						<div class="tags">
-							{% if forloop.first %}Tags : {% endif %}
-			    				<a href= "{% url 'tag_details' tag.slug %}">
-			    				<font style="background-color:#00ffff" size="4" color="red">{{ tag.name }}  </font></a> 
-			    		
-			    	{% empty %}
-						No Tags are available for this post</div>
-					{% endfor %}
+					<div class="tags">
+						{% if forloop.first %}Tags : {% endif %}
+		    				<a href= "{% url 'tag_details' tag.slug %}">
+		    				<font style="background-color:#00ffff" size="4" color="red">{{ tag.name }}  </font></a>			    		
+			    			{% empty %}
+								No Tags are available for this post
+					</div>
+							{% endfor %}
 					<br/><br>
 					
 					<div class="user">
@@ -86,23 +68,21 @@
 							
 						</div>
 					</div>
-
-                
 			
 			<!-- Comments  -->
 		
 			<form action="{% url 'delete_comment' post.id %}" method="POST">{% csrf_token %}
 
 				{% if comments %}
-    			<p><h3>Comments:</h3></p>
+    				<p><h3>Comments:</h3></p>
 				{% endif %}
 				
 				{% for comment in comments %}
-          
-        	  	<a name="comment-{{ comment.pk }}"></a>
+               	  	<a name="comment-{{ comment.pk }}"></a>
     				<div class="comment">
     				    <div class="body"><h4><a>{{ comment.body }}</a></h4></div>
-        				<div class="time">Comment by --><a>{{ comment.name }}</a> ON <a>{{ comment.created }}</a></div>
+        				<div class="time">Comment by --><a>{{ comment.name }}</a> ON <a>{{ comment.created }}</a>
+        				</div>
 						{% if user.is_staff %}
 		               		<input type="checkbox" name="delete" value="{{ comment.pk }}">
             				<a href="{% url 'delete_single_comment' post.pk comment.pk %}">delete</a>
@@ -122,8 +102,9 @@
 	
 			</form>
 	    </ul>
+	</ul>
 
-	</div>
+
     
     <ul>	
 		<fieldset>
