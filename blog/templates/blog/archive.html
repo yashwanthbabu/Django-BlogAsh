@@ -18,9 +18,9 @@
                 <div class="title"><h1><a href="{% url 'post' post.id %}">{{ post.title }}</a></h1></div>
                 {% if post.author.username %}
 		<div class="user"><h3>By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a></h3></div>
+        <div class="time"> on {{ post.created }}</div><br>
         {% endif %}
                 <ul>
-                    <div class="time">{{ post.created }}</div>
                     <div class="body">{{ post.body|truncatewords_html:20|linebreaks }}</div>
 		    <div class="commentlink"><a href="{% url 'post' post.id %}"> Read more → </a></div><br>
 

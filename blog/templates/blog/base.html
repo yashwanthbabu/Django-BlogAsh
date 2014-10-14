@@ -169,10 +169,10 @@
 
 <div class="container" align="right">
 <div id="sidebar">
-            <font color="black"><a><u>MONTHLY ARCHIVES</u></a></font><br>
+            <font color="black"><font color="brown"> ARCHIVE DATES </font> </font><br><br>
                     
                         {% for month in months %}
-                            <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3">{{ month.2 }} - {{ month.0 }} </font><br></a>
+                            <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3">{{ month.2 }}  {{ month.0 }} </font><br></a>
                         {% endfor %}
              </div>
              </div>
