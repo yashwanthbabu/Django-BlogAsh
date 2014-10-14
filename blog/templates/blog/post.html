@@ -94,21 +94,20 @@
 			<form action="{% url 'delete_comment' post.id %}" method="POST">{% csrf_token %}
 
 				{% if comments %}
-    			<p>Comments:</p>
+    			<p><h3>Comments:</h3></p>
 				{% endif %}
 				
 				{% for comment in comments %}
           
-        	  	<a name="comment-{{ comment.pk }}">
+        	  	<a name="comment-{{ comment.pk }}"></a>
     				<div class="comment">
-        				<div class="time">{{ comment.name }} | {{ comment.created }}</div><br>
-        				<div class="body">{{ comment.body }}</div>
-          <input type="file">
+    				    <div class="body"><h4><a>{{ comment.body }}</a></h4></div>
+        				<div class="time">Comment by --><a>{{ comment.name }}</a> ON <a>{{ comment.created }}</a></div>
 						{% if user.is_staff %}
 		               		<input type="checkbox" name="delete" value="{{ comment.pk }}">
             				<a href="{% url 'delete_single_comment' post.pk comment.pk %}">delete</a>
         				{% endif %}
-    				</div></a>
+    				</div><br>
 
 				{% endfor %} 
 			
@@ -133,11 +132,10 @@
 		<ul>
 		<!-- Comment form  -->
     
-    <h2></h2>
     {% if form.errors %}
     <div class="text-danger">Please correct the error{{ form.errors|pluralize }} below.</div>
     {% endif %}
-    <div class="col-sm-8">
+    <div class="col-sm-4">
     <form id="ajaxform" action="{% url 'add_comment' post.id %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
