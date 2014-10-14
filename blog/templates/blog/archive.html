@@ -15,24 +15,25 @@
         <ul>
             {% for post in posts %}
 	
-                <div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div><br>
+                <div class="title"><h1><a href="{% url 'post' post.id %}">{{ post.title }}</a></h1></div>
                 {% if post.author.username %}
-		<div class="user">By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a></div>
+		<div class="user"><h3>By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a></h3></div>
         {% endif %}
                 <ul>
-                    <div class="time">{{ post.created|linebreaks}}</div>
+                    <div class="time">{{ post.created }}</div>
                     <div class="body">{{ post.body|truncatewords_html:20|linebreaks }}</div>
 		    <div class="commentlink"><a href="{% url 'post' post.id %}"> Read more → </a></div><br>
 
                 </ul>
                 {% empty %}<center>
-            <h3>Oops!<br>No any posts available for this month</h3></center>
+            <h3>Oops!<br>No any posts available for this month <br>
+                <center> <a href="{% url 'main' %}">&lsaquo; Back </a></center></h3></center>
             {% endfor %}
 
         </ul>
 
 	
-
+<ul class="pager">
         <!-- Next/Prev page links  -->
         {% if not archive and posts.object_list and posts.paginator.num_pages > 1 %}
         <div class="pagination" style="margin-top: 20px; margin-left: -20px; ">
@@ -55,7 +56,7 @@
             </span>
         </div>
         {% endif %}
-
+</ul>
     </div>
 
 

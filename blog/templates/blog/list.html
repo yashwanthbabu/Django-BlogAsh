@@ -6,19 +6,17 @@
     
 	{% block content %}
 
-    	<div class="hoverblock"> 
-    		<a> About Author </a>
-    	</div>
+    	
 	        
 	    <ul>
     	    {% for post in posts.object_list %}
 	            <div class="title">
-	           		<a href="{% url 'post' post.id %}">{{ post.title }}</a>
-	            </div><br>
+	           		<h1><a href="{% url 'post' post.id %}">{{ post.title }}</a></h1>
+	            </div>
 
     	        {% if post.author.username %}
 				<div class="user"> 
-					By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a> on  {{ post.created }} </div>
+					<h3>By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a></h3> on  {{ post.created }} </div><br>
 				{% endif %}
             <ul>
                 <div class="body">
@@ -37,7 +35,7 @@
         {% if not archive and posts.object_list and posts.paginator.num_pages > 1 %}
         	<div class="pagination" style="margin-top: 20px; margin-left: -20px; ">
             	<span class="step-links">
-            		<ul>
+            		<ul class="pager">
                 		{% if posts.has_previous %}
                     		<a href= "?page={{ posts.previous_page_number }}">PREVIOUS &lt;&lt; </a>
                 		{% endif %}

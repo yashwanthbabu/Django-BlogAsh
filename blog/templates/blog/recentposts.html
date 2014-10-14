@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<ul>
 <h1><u>Recent Articles</u></h1>
 {% if form.errors %}
     <p style="color: red;">
@@ -10,12 +11,15 @@
 
 {% if posts %}
     {% for post in posts|slice:":4" %}
-		
+		<ul>
+			<li><h3>
 			<div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div>
-		
+			</h3></li>
+		</ul>
 		
                 
     {% endfor %}
 {% endif %}
+</ul>
 
 {% endblock %}

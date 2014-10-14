@@ -5,18 +5,14 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head> <title>{% block title %}Welcome to MyBlog{% endblock %}</title> 
-<link href="{% static 'css/sk.css' %}" rel="stylesheet" type="text/css">
-<script src="{{ STATIC_URL }}js/jquery.js" type="text/javascript"></script>
-<!-- <link href="https://jobhuk.s3.amazonaws.com/assets/neon/neon-23e885954cef25699cc9775207b44378.css" media="screen" rel="stylesheet" type="text/css" /> -->
-<link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
-<script src="https://jobhuk.s3.amazonaws.com/assets/neon/neon-a3d832730fc8438ae1dbc4aee79e94f2.js" type="text/javascript"></script>
-<link href="https://jobhuk.s3.amazonaws.com/assets/appnew/application-5bcf12223fa10dd82085f51af8960f2e.css" media="screen" rel="stylesheet" type="text/css" />
-<link href="%{ static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
-<script src="{{ STATIC_URL }js/bootstrap.js"></script>
+<script src="{{ STATIC_URL }bootstrap/js/bootstrap.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<!-- <link href="%{ static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+ -->
 <script src="/assets/application-0d51cff6a15ce2b19a34e3c0515aff4d.js"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53ec607840f43654"></script>
+<!-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53ec607840f43654"></script> -->
 <script type="text/javascript">
     $(document).ready(function(){
         setTimeout(function(){
@@ -54,9 +50,7 @@
     });
   });
   </script>
-<!-- cript type="text/javascript">var switchTo5x=true;</script> -->
-<!-- <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script> -->
-<!--<script type="text/javascript">stLight.options({publisher: "f73ac946-1c8d-4569-aae7-5e72cbe7f5e2", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>-->
+
 </head>
     <center>
         {% if messages %}
@@ -67,65 +61,121 @@
             </div>
         {% endif %}
     </center>
+
+
 <body>
 
-<div id="container">
+<!-- <div id="container">
     <div id="sidebar"><br><br>
         {% block nav-global %}
             {% if user and not user.is_anonymous %}
                 Welcome {{ user.get_full_name|default:user.username }}!
             {% endif %}
     </div>
-    
-    <div id="menu">
-        <!-- MENU -->
-        <!-- {% if user.is_staff %} -->
-            <!-- <a href="{% url 'admin:index' %}">Admin</a> -->
-            <!-- <a href="{% url 'admin:blog_post_add' %}">Add post</a> -->
-            <!-- <a href="{% url 'admin:blog_comment_add' %}"> Add Comment </a> -->
-        <!-- {% endif %} -->
-        <br> 
-        <!-- <input type="button" id="myButton" value="Click to activate the Popup!">   -->
-    <div id="header">
-        <!-- HEADER STARTS HERE -->
-            <a href="{% url 'main' %}">
-                <img src="{% static 'images/blog.png' %}" width="206" height="67" alt="Agiliq Solutions" />
-            </a>
-    </div>
-    <!-- HEADER ENDS HERE -->
-    <div id="header" align="right">
-        <ul>
-            <li><font color="black"><a href="{% url 'main' %}"><u>HOME</u></a></font></li>
-            <li><font color="black"><a href="{% url 'recentposts' %}"><u>RECENT ARTICLES</u></a></font> </li>
-            
-            <li><font color="black"><a><u>MONTHLY ARCHIVES</u></a></font>
-                <ul>
-                    <li>
-                        {% for month in months %}
-                            <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3">{{ month.2 }} - {{ month.0 }} </font><br></a> <br />
-                        {% endfor %}
-                    </li>
-            </ul>
-        </li>
-        {% if request.user and not request.user.is_anonymous %}
-            <li><font color="#9999CC">{{ request.user.get_full_name|default:request.user.username }}</font>
-            <ul><li><a href="{% url 'auth:logout' %}"><u>LOGOUT</u></a></li></ul></li>
-            {% else %}
-            <li>
-            
-            <font color="#9999CC"> <a href="{% url 'login' %}"><u>USER LOGIN</u></a></font></li>
-            </form>
-            </div>
-            </div>
-            </div>
-            
-            {% endif %}
+     -->
 
-            </font>
-           </ul
-       
+    <!-- HEADER ENDS HERE -->
+     <div class="container">
+        <div class="header">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="{% url 'main' %}">Agiliq Blog</a>
+                        </div>
+                        <div class="nav navbar-nav navbar-right">
+                            <font color="black"><a href="{% url 'main' %}"><u>HOME</u></a></font>
+                            <font color="black"><a href="{% url 'recentposts' %}"><u>RECENT ARTICLES</u></a></font>
+
+                            {% if request.user and not request.user.is_anonymous %}
+                            <font color="#9999CC">{{ request.user.get_full_name|default:request.user.username }}</font>
+                            <a href="{% url 'auth:logout' %}"><u>LOGOUT</u></a>
+                            {% else %}
+            
+                            <font color="#9999CC"> <a href="{% url 'loginform' %}"><u>USER LOGIN</u></a></font>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+           </div>
         </div>
-        
+    </div>
+<br><br><br><br>
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><center>Log In </center></h4>
+                </div>
+                <div class="modal-body">
+
+                    <div id="color">
+                        {% if form.errors %}
+                        <p>Your username and password didn't match. Please try again.</p>
+                        {% endif %}
+                    </div>
+                <div id="signin">
+                    <form class="form-signin form-horizontal" action="" method="post" id="login-form" name="login-form">{% csrf_token %}  
+                    <center>
+                        {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><font color="red">{{ message }}</font></li>
+                        {% endfor %}
+                    </div>
+                        {% endif %}
+                    </center>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Username</label>
+                    <div class="col-md-5">
+                        <input type="text" id="username1" class="form-control" name="username" onblur="validate('username', this.value)" />
+                    </div>
+                </div>
+                <div id="username"></div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Password</label>
+                    <div class="col-md-5">
+                        <input type="password1" id="password" class="form-control" name="password" onblur="validate('password', this.value") />
+                    </div>
+                </div>
+                <div id="password"></div>
+                    <input type="hidden" name="this_is_the_login_form" value="1" />
+                    <input type="hidden" name="next" value="/admin/" />
+                </div>
+  
+                  {% if username and not username.is_anonymous %}
+                    <li><font color="#9999CC">{{ username.get_full_name|default:user.username }}</font>
+                    <ul><li><a href="{% url 'auth:logout' %}">LOGOUT</a></li></ul></li>
+                  {% else %}
+                <div class="form-group">
+                    <div class="col-md-5 col-md-offset-3">
+                        <button type="submit" class="btn btn-default" onclick="checkForm()">Login</button>
+                    </div>
+                </div>
+            
+                  {% endif %}
+  
+                </form>
+            </div>
+        </div>
+        </div>
+
+
+<div class="container" align="right">
+<div id="sidebar">
+            <font color="black"><a><u>MONTHLY ARCHIVES</u></a></font><br>
+                    
+                        {% for month in months %}
+                            <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3">{{ month.2 }} - {{ month.0 }} </font><br></a>
+                        {% endfor %}
+             </div>
+             </div>
 
         <div id="content">
             {% block content %}{% endblock %}

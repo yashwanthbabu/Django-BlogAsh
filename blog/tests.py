@@ -63,9 +63,9 @@ class BlogEntriesTest(TestCase):
         response = self.c.get(reverse('recentposts'))
         self.assertEqual(200, response.status_code)
 
-    def test_blog_post_user_logout_access(self):
-        response = self.c.get(reverse('logout'))
-        self.assertEqual(302, response.status_code)
-        if self.c.login(username="Yashwanth", password="yashwanth"):
-            response = self.c.get(reverse('logout'))
-            self.assertEqual(200, response.status_code)
+    # def test_blog_post_user_logout_access(self):
+    #     response = self.c.get(reverse('logout'))
+    #     self.assertEqual(302, response.status_code)
+    #     if self.c.login(username="Yashwanth", password="yashwanth"):
+    #         response = self.c.get(reverse('logout'))
+    #         self.assertEqual(200, response.status_code)
