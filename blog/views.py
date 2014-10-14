@@ -246,7 +246,9 @@ def tag_details(request, tag_slug):
     posts = Post.objects.filter(tags__in=[tag])
     # tagged_entries = Post.objects.filter(tags__in=[tag])
     # d = {'posts': posts, 'tag': tag}
-    return render(request, "tag_details.html", {'posts': posts, 'tag': tag, 'months': mkmonth_lst()})
+    return render(request, "tag_details.html", {'posts': posts,
+                                                'tag': tag,
+                                                'months': mkmonth_lst()})
 
 
 def authorposts(request, username):
