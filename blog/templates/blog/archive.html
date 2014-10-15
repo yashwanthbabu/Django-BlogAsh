@@ -1,32 +1,31 @@
 {% extends "base.html" %}
 
-
     <style type="text/css">
         #sidebar { float: right; border: 1px dotted #ccc; padding: 4px; }
     </style>
+    
+{% block title %}
+    BlogAsh | Archive Posts
+{% endblock %}
+
 {% block content %}
 
-	
-
     <div class="main">
-
-
         <!-- Posts  -->
         <ul>
             {% for post in posts %}
-	
                 <div class="title"><h1><a href="{% url 'post' post.id %}">{{ post.title }}</a></h1></div>
                 {% if post.author.username %}
-		<div class="user"><h3>By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a></h3></div>
-        <div class="time"> on {{ post.created }}</div><br>
-        {% endif %}
+		          <div class="user"><h3>By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a></h3></div>
+                <div class="time"> on {{ post.created }}</div><br>
+                {% endif %}
                 <ul>
-                    <div class="body">{{ post.body|truncatewords_html:20|linebreaks }}</div>
-		    <div class="commentlink"><a href="{% url 'post' post.id %}"> Read more → </a></div><br>
+                <div class="body">{{ post.body|truncatewords_html:20|linebreaks }}</div>
+		          <div class="commentlink"><a href="{% url 'post' post.id %}"> Read more → </a></div><br>
 
                 </ul>
                 {% empty %}<center>
-            <h3>Oops!<br>No any posts available for this month <br>
+                <h3>Oops!<br>No any posts available for this month <br>
                 <center> <a href="{% url 'main' %}">&lsaquo; Back </a></center></h3></center>
             {% endfor %}
 
@@ -58,8 +57,5 @@
         {% endif %}
 </ul>
     </div>
-
-
-
 
 {% endblock %}
