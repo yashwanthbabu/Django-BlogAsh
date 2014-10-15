@@ -1,4 +1,4 @@
-Checkout the application and use it at https://github.com/yashwanthbabu/DjangoBlog
+Checkout the application and use it at https://github.com/yashwanthbabu/Django-BlogAsh
 
 # **To try it locally**
 
