@@ -67,10 +67,10 @@
      <div class="container">
         <div class="header">
             <div class="navbar navbar-inverse navbar-fixed-top">
-                <div class="navbar-inner">
+                <div class="navbar-inner" style="margin-top: 20px;">
                     <div class="container">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="{% url 'main' %}">BlogAsh</a>
+                            <a class="navbar-brand" href="{% url 'main' %}"><h2 style="margin-top: -15px; margin-bottom: 100px; border-bottom-width: 1px;">BlogAsh</h2></a>
                         </div>
                         <div class="nav navbar-nav navbar-right">
                             <font color="black"><a href="{% url 'main' %}"><u>HOME</u></a></font>
@@ -103,7 +103,8 @@
              </div>
 
         <div id="content" style="width:1000px; float:left;"> 
-            {% block content %}{% endblock %}
+        <ul style="border-left-width: 0px; margin-left: 40px;">
+            {% block content %}{% endblock %}</ul>
         </div>
 
 
