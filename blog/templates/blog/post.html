@@ -4,42 +4,47 @@
 
 {% block content %}
 
-	<div id="fb-root">
-	</div>
+<div id="fb-root">
+</div>
 	<script>(function(d, s, id)
-		{
-  			var js, fjs = d.getElementsByTagName(s)[0];
-  			if (d.getElementById(id)) 
-  				return;
-  			js = d.createElement(s); 
-  			js.id = id;
-  			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=559235774199929&version=v2.0";
-  			fjs.parentNode.insertBefore(js, fjs);
-		}
-			(document, 'script', 'facebook-jssdk'));
+	{
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) 
+			return;
+		js = d.createElement(s); 
+		js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=559235774199929&version=v2.0";
+		fjs.parentNode.insertBefore(js, fjs);
+	}
+		(document, 'script', 'facebook-jssdk'));
 	</script>
 
 	<script>!function(d,s,id)
-		{
-			var js,fjs=d.getElementsByTagName(s)[0];
-			if(!d.getElementById(id))
-				{
-					js=d.createElement(s);
-					js.id=id;
-					js.src="https://platform.twitter.com/widgets.js";
-					fjs.parentNode.insertBefore(js,fjs);
-				}
-		}
-		(document,"script","twitter-wjs");
+	{
+		var js,fjs=d.getElementsByTagName(s)[0];
+		if(!d.getElementById(id))
+			{
+				js=d.createElement(s);
+				js.id=id;
+				js.src="https://platform.twitter.com/widgets.js";
+				fjs.parentNode.insertBefore(js,fjs);
+			}
+	}
+	(document,"script","twitter-wjs");
 	</script>
 
     <ul>            
-      	<div class="title"><a href="{% url 'post' post.id %}"><h1>{{ post.title }}</h1></a></div>
-		<div class="user"><h3>By: <a href="{% url 'author' post.author.username %}"> {{ post.author }}</h3> </a></div><br>
-		<div class="user"><a href="https://about.me/yashwanthbabu" target="_blank">About Author</a></div>
+    	<div class="title"><a href="{% url 'post' post.id %}"><h1>{{ post.title }}</h1></a>
+    	</div>
+			<div class="user"><h3>By: <a href="{% url 'author' post.author.username %}"> {{ post.author }}</h3> </a>
+			</div><br>
+			<div class="user"><a href="https://about.me/yashwanthbabu" target="_blank">About Author</a>
+			</div>
             <ul>
-				<div class="time">{{ post.created}}</div>
-				<div class="body">{{ post.body|linebreaks }}</div>
+				<div class="time">{{ post.created}}
+				</div>
+				<div class="body">{{ post.body|linebreaks }}
+				</div>
 			
 					{% for tag in post.tags.all %}
 					<div class="tags">
@@ -69,7 +74,7 @@
 						</div>
 					</div>
 			
-			<!-- Comments  -->
+			<!-- Comments Form  -->
 		
 			<form action="{% url 'delete_comment' post.id %}" method="POST">{% csrf_token %}
 
@@ -101,6 +106,8 @@
 				{% endif %}
 	
 			</form>
+					<!-- Comment form ends here -->
+
 	    </ul>
 	</ul>
 
@@ -111,7 +118,6 @@
 		<legend> Add a Comment </legend>
 		
 		<ul>
-		<!-- Comment form  -->
     
     {% if form.errors %}
     <div class="text-danger">Please correct the error{{ form.errors|pluralize }} below.</div>
@@ -120,12 +126,7 @@
     <form id="ajaxform" action="{% url 'add_comment' post.id %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-       <!-- <h4 style="color:black">Name: {{ form.author }} </h4>{{ form.author.errors }}  -->
-        <!-- <h4 style="color:black">Email:{{ form.email }}</h4> {{ form.email.errors }}  -->
-        <!-- <h4 style="color:black">Body: {{ form.body }}</h4>  {{ form.body.errors }} <br/> -->
-        
-        
-        
+       
        <p id="sendwrapper"><input type="submit" value="Comment" class="btn btn-warning"></p>
         
         </form></div>
