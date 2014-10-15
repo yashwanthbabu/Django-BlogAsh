@@ -8,8 +8,8 @@
 {% load staticfiles %}
 <head>
   <title>Agiliq | Login </title>
-  <link href="https://jobhuk.s3.amazonaws.com/assets/neon/neon-23e885954cef25699cc9775207b44378.css" media="screen" rel="stylesheet" type="text/css" />
-<link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
+<!--   <link href="https://jobhuk.s3.amazonaws.com/assets/neon/neon-23e885954cef25699cc9775207b44378.css" media="screen" rel="stylesheet" type="text/css" />
+ --><link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
 <script src="https://jobhuk.s3.amazonaws.com/assets/neon/neon-a3d832730fc8438ae1dbc4aee79e94f2.js" type="text/javascript"></script>
 <!-- <link href="https://jobhuk.s3.amazonaws.com/assets/appnew/application-5bcf12223fa10dd82085f51af8960f2e.css" media="screen" rel="stylesheet" type="text/css" />
  --><link href="%{ static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
@@ -82,9 +82,9 @@
         <div class="email_confirmation_box">
         <div align="right">
         <header><br><br>
-        <a href="{% url 'main' %}"><font size="5"> &lsaquo; Agiliq Blog</font></a></header></div>
+        <a href="{% url 'main' %}"><font size="5" style="margin-right: 90px;"> &lsaquo; Agiliq Blog</font></a></header></div>
         <header><center>
-        <h1> Agiliq Login Form </h1><br></center>
+        <h2> Agiliq Login Form </h2><br></center>
         </header>
 
   <script>
@@ -192,17 +192,15 @@
                 <span class="pull-right"><input class="btn btn-primary btn-block" name="commit" type="submit" value="Log in" /></span><br>
               {% endif %}
                 
-                <div class="row">
   <div class="change_links">
     <span class="pull-left">
       <a href="{% url 'forgot-password' %}">  &nbsp; Forgot Your Password?</a>
     </span>
     <span class="pull-right"><br><br>
       Not a MemberYet?&nbsp;
-      <a href="{% url 'register' %}" class="btn btn-success">Join Us</a>
+      <a href="{% url 'register' %}" class="btn btn-success" style="padding-top: 6px; margin-top: 0px; margin-bottom: 0px; border-bottom-width: 10px;">Join Us</a>
     </span>
   </div>
-</div> 
                 
               
               </form>
