@@ -26,7 +26,7 @@
                     <!-- <div class="time">{{ post.created|linebreaks}}</div> -->
                     <div class="body">{{ post.body|truncatewords_html:20|linebreaks }}</div>
             
-		    <div class="commentlink"><a href="{% url 'post' post.id %}"> Read more → </a></div><br>
+		    <div class="commentlink"><a href="{% url 'post' post.id %}"> Continue reading...</a></div><br>
 
                 </ul>
                 {% empty %}
