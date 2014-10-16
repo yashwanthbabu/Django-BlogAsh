@@ -73,16 +73,19 @@
                             <a class="navbar-brand" href="{% url 'main' %}"><h2 style="margin-top: -15px; margin-bottom: 100px; border-bottom-width: 1px;">BlogAsh</h2></a>
                         </div>
                         <div class="nav navbar-nav navbar-right">
-                            <font color="black"><a href="{% url 'main' %}"><u>HOME</u></a></font>
-                            <font color="black"><a href="{% url 'recentposts' %}"><u>RECENT ARTICLES</u></a></font>
-
-                            {% if request.user and not request.user.is_anonymous %}
-                            <font color="#9999CC">{{ request.user.get_full_name|default:request.user.username }}</font>
-                            <a href="{% url 'auth:logout' %}"><u>LOGOUT</u></a>
-                            {% else %}
-            
-                            <font color="#9999CC"> <a href="{% url 'login' %}"><u>USER LOGIN</u></a></font>
-                            {% endif %}
+                        <div class="panel-heading">
+                            <div class="btn-group pull-right">
+                                <a href="{% url 'main' %}" class="btn btn-default btn-sm"> HOME </a>
+                                <a href="{% url 'recentposts' %}" class="btn btn-default btn-sm"> RECENT ARTICLES</a>
+                                {% if request.user and not request.user.is_anonymous %}
+                                    {{ request.user.get_full_name|default:request.user.username }}
+                                    <a href="{% url 'auth:logout' %}" class="btn btn-default btn-sm"> LOGOUT</a>
+                                {% else %}
+                                    <a href="{% url 'login' %}" class="btn btn-default btn-sm"> USER LOGIN</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                            
                         </div>
                     </div>
                 </div>

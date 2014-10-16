@@ -41,12 +41,12 @@
     	<div class="title"><a href="{% url 'post' post.id %}"><h1>{{ post.title }}</h1></a>
     	</div>
 			<div class="user"><h3>By: <a href="{% url 'author' post.author.username %}"> {{ post.author }}</h3> </a>
-			</div><br>
-			<div class="user"><a href="https://about.me/yashwanthbabu" target="_blank">About Author</a>
 			</div>
-            <ul>
-				<div class="time">{{ post.created}}
-				</div>
+			<div class="user"><a href="https://about.me/yashwanthbabu" target="_blank"> </a>
+			</div>
+			<div class="time">{{ post.created}}
+			</div><br>
+			<ul>
 				<div class="body">{{ post.body|linebreaks }}
 				</div>
 			
@@ -54,7 +54,7 @@
 					<div class="tags">
 						{% if forloop.first %}Tags : {% endif %}
 		    				<a href= "{% url 'tag_details' tag.slug %}">
-		    				<font style="background-color:#00ffff" size="4" color="red">{{ tag.name }}  </font></a>			    		
+		    				<font size="4" color="brown">{{ tag.name }}  </font></a>			    		
 			    			{% empty %}
 								No Tags are available for this post
 					</div>
