@@ -7,16 +7,17 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
+
     # Blog urls
     url(r'^blog/', 'blog.views.blog', name='main'),
-    url(r"post/(?P<post_id>[0-9]+)/$", 'blog.views.post', name='post'),
-    url(r"^add_comments/", 'blog.views.add_comment', name='add_comments'),
+    url(r"blogpost/(?P<post_id>[0-9]+)/$", 'blog.views.post', name='post'),
+    # url(r"^blogpost/add_comments/", 'blog.views.add_comment', name='add_comments'),
     url(r"^add_comment/(?P<post_id>[0-9]+)/$", 'blog.views.add_comment', name='add_comment'),
     url(r"^month/(?P<year>\d{4})/(?P<month>(0|1)?\d)/$", 'blog.views.month', name='month'),
     url(r"^delete_bulk_comment/(?P<post_pk>[0-9]+)/$", 'blog.views.delete_bulk_comment', name='delete_comment'),
     url(r"^delete_single_comment/(?P<post_pk>[0-9]+)/(?P<comment_pk>[0-9]+)/$", 'blog.views.delete_single_comment', name='delete_single_comment'),
-    url(r"^recentposts/", 'blog.views.recentposts', name='recentposts'),
-    url(r"^tag/(?P<tag_slug>[-\w]+)/$", 'blog.views.tag_details', name='tag_details'),
+    url(r"^blogposts/recentposts/", 'blog.views.recentposts', name='recentposts'),
+    url(r"^blogpost/tag/(?P<tag_slug>[-\w]+)/$", 'blog.views.tag_details', name='tag_details'),
     url(r'^author/(?P<username>[\w.@+-]+)/$', 'blog.views.authorposts', name='author'),
     url(r'^checkout/purchaseform/', TemplateView.as_view(template_name="2checkout.html"), name="checkout_purchase"),
     url(r'^checkout/paymentform/', TemplateView.as_view(template_name="2checkout_sample.html"), name="checkout_payment"),
@@ -28,8 +29,10 @@ urlpatterns = patterns('',
     url(r"^logout/", 'blog.views.logout', name='logout'),
     url('', include('django.contrib.auth.urls', namespace='auth')),
 
-    #Social_Auth urls
+    #django-social-auth urls
     url(r'', include('social_auth.urls')),
+
+    #Registration password reset urls
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^accounts/forgot-password/$','blog.views.password_reset', name="forgot-password"),
     url(r'^accounts/password_reset/$', 'blog.views.password_reset', name='password_reset'),
