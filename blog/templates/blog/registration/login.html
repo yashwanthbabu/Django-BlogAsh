@@ -1,13 +1,10 @@
 
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+ <html lang="en" class="no-js">
 {% load staticfiles %}
 <head>
   <title>BlogAsh | Login </title>
+<link rel="icon" type="image/png" href="{{STATIC_URL}}images/yashwanth.jpg"></link>
  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
 <script src="https://jobhuk.s3.amazonaws.com/assets/neon/neon-a3d832730fc8438ae1dbc4aee79e94f2.js" type="text/javascript"></script>
 <link href="%{ static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
@@ -53,17 +50,6 @@
             }); // end document.ready
         </script>
 
-<script type="text/javascript">
-    window.onload = function() {
-        document.getElementById("popup").onclick = function(){
-            return !window.open(this.href, "pop", "width=700,height=600");
-            window.parent.reload();
-            window.close();
-        
-        }
-    }
-</script>
-        
 </head>
 {% block content %}
 <body class="page-body">
