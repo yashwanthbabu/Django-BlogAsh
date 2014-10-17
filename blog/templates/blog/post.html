@@ -59,7 +59,12 @@
 								No Tags are available for this post
 					</div>
 							{% endfor %}
-					<br/><br>
+					<br/> 
+					<form action="{% url 'login' %}" method="POST">
+
+					<a href="{% url 'checkout_purchase' %}" class="btn btn-default btn-sm" target="_blank"> Books related {{ post.title }} available in store. Want to Buy?</a>
+					</form>
+					<br><br>
 					
 					<div class="user">
 						<div class="fb-like" data-href="http://127.0.0.1:8000/blog/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true">

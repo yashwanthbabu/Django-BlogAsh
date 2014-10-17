@@ -6,7 +6,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from .models import Comment
 
-
 class CommentForm(ModelForm):
     class Meta:
         model = Comment
@@ -59,3 +58,4 @@ class RegistrationForm(forms.Form):
             if self.cleaned_data['password1'] != self.cleaned_data['password2']:
                 raise forms.ValidationError(_("The two password fields did not match."))
         return self.cleaned_data
+    

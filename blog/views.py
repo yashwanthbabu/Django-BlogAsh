@@ -345,7 +345,7 @@ def password_reset_confirm(request, uidb64=None, token=None,
             form = set_password_form(user, request.POST)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect(post_reset_redirect)
+                return HttpResponseRedirect(poszt_reset_redirect)
         else:
             form = set_password_form(user)
     else:
@@ -357,3 +357,4 @@ def password_reset_confirm(request, uidb64=None, token=None,
         context.update(extra_context)
     return TemplateResponse(request, context,
                             current_app=current_app)
+
