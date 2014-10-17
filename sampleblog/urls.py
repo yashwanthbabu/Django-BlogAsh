@@ -11,7 +11,6 @@ urlpatterns = patterns('',
     # Blog urls
     url(r'^blog/', 'blog.views.blog', name='main'),
     url(r"blogpost/(?P<post_id>[0-9]+)/$", 'blog.views.post', name='post'),
-    # url(r"^blogpost/add_comments/", 'blog.views.add_comment', name='add_comments'),
     url(r"^add_comment/(?P<post_id>[0-9]+)/$", 'blog.views.add_comment', name='add_comment'),
     url(r"^month/(?P<year>\d{4})/(?P<month>(0|1)?\d)/$", 'blog.views.month', name='month'),
     url(r"^delete_bulk_comment/(?P<post_pk>[0-9]+)/$", 'blog.views.delete_bulk_comment', name='delete_comment'),
