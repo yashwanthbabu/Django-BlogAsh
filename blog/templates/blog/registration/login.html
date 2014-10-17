@@ -8,15 +8,11 @@
 {% load staticfiles %}
 <head>
   <title>BlogAsh | Login </title>
-<!--   <link href="https://jobhuk.s3.amazonaws.com/assets/neon/neon-23e885954cef25699cc9775207b44378.css" media="screen" rel="stylesheet" type="text/css" />
- --><link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
 <script src="https://jobhuk.s3.amazonaws.com/assets/neon/neon-a3d832730fc8438ae1dbc4aee79e94f2.js" type="text/javascript"></script>
-<!-- <link href="https://jobhuk.s3.amazonaws.com/assets/appnew/application-5bcf12223fa10dd82085f51af8960f2e.css" media="screen" rel="stylesheet" type="text/css" />
- --><link href="%{ static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+<link href="%{ static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
 <script src="{{ STATIC_URL }js/bootstrap.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
 <script src="/assets/application-0d51cff6a15ce2b19a34e3c0515aff4d.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
 <script src="/assets/application-0d51cff6a15ce2b19a34e3c0515aff4d.js"></script>
   <!--End base head-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
@@ -87,38 +83,30 @@
         <h2> BlogAsh Login Form </h2><br></center>
         </header>
 
-  <script>
-    //  $.cookie('confirm_close', null);
-    console.log($.cookie('confirm_close'));
-    $('.confirm_close').click(function () {
-      $.cookie('confirm_close', true, { expires: 1, path: '/' });
-      console.log($.cookie('confirm_close'));
-    });
-
-    if ($.cookie('confirm_close')) {
-      $('.email_confirmation_box').remove();
-    }
-  </script>
-
-</div>
+  </div>
         <div class="">
   <div id="login-wrapper">
     <div class="content-box background-box">
       <div class="row">
-<!--         <h1>Log in</h1>
- -->
-        <!-- <div class="social_logins">
-          <a href="{% url 'socialauth_begin' 'facebook' %}" class="sl_icon_facebook">
-            <i class="fa fa-facebook"></i>        
-</a>
-          <a href="{% url 'socialauth_begin' 'twitter' %}" class="sl_icon_twitter">
-            <i class="fa fa-twitter"></i>
-</a>
-          <a href="{% url 'socialauth_begin' 'google-oauth2' %}" class="sl_icon_google_plus">
-            <i class="fa fa-google-plus"></i>
-</a>        </div> -->
-      </div><br>
+      <center>
 
+        <div class="social_logins">
+          <a href="{% url 'socialauth_begin' 'facebook' %}" class="">
+            <i class="fa fa-facebook">
+                <img src="{{STATIC_URL}}images/facebook.jpeg" style="width: 20px; height: 20px;"></img>
+            </i>        
+          </a>&nbsp;
+          <a href="{% url 'socialauth_begin' 'twitter' %}" class="sl_icon_twitter">
+            <i class="fa fa-twitter"><img src="{{STATIC_URL}}images/twitter.png" style="width: 25px; height: 25px;"></img></i></a>&nbsp;
+          <a href="{% url 'socialauth_begin' 'google-oauth2' %}" class="sl_icon_google_plus">
+            <i class="fa fa-google-plus">
+            <img src="{{STATIC_URL}}images/google-plus-icon.png" style="width: 25px; height: 25px;"></img>
+            </i>
+</a>        </div></center>
+      </div><br>
+<center>
+(OR)
+</center>
 <div id="content" class="colM">
      <style> 
  .textbox { 

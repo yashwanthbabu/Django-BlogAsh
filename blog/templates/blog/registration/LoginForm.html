@@ -144,17 +144,24 @@ messages: {
           </div>
         </div>
         <div class="row">
-          <div class="social_logins" style="margin-top: 20px;">
-            <a href="{% url 'socialauth_begin' 'facebook' %}" class="sl_icon_facebook">
-            <i class="fa fa-facebook"></i>
-</a>
+        <center>
+          <div class="social_logins">
+          <a href="{% url 'socialauth_begin' 'facebook' %}" class="">
+            <i class="fa fa-facebook">
+                <img src="{{STATIC_URL}}images/facebook.jpeg" style="width: 20px; height: 20px;"></img>
+            </i>        
+          </a>&nbsp;
           <a href="{% url 'socialauth_begin' 'twitter' %}" class="sl_icon_twitter">
-            <i class="fa fa-twitter"></i>
-</a>
+            <i class="fa fa-twitter"><img src="{{STATIC_URL}}images/twitter.png" style="width: 25px; height: 25px;"></img></i></a>&nbsp;
           <a href="{% url 'socialauth_begin' 'google-oauth2' %}" class="sl_icon_google_plus">
-            <i class="fa fa-google-plus"></i>
-</a>          </div>
-        </div>
+            <i class="fa fa-google-plus">
+            <img src="{{STATIC_URL}}images/google-plus-icon.png" style="width: 25px; height: 25px;"></img>
+            </i>
+</a>        </div></center>
+      </div><br>
+<center>
+(OR)
+</center>
         <div class="row">
 
 <style> 
