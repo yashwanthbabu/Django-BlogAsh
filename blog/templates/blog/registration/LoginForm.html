@@ -146,7 +146,7 @@ messages: {
         <div class="row">
         <center>
           <div class="social_logins">
-          <a href="{% url 'socialauth_begin' 'facebook' %}" class="">
+          <a href="{% url 'socialauth_begin' 'facebook' %}">
             <i class="fa fa-facebook">
                 <img src="{{STATIC_URL}}images/facebook.jpeg" style="width: 20px; height: 20px;"></img>
             </i>        
@@ -180,15 +180,7 @@ messages: {
 </div>
 
     <form method="post" action="{% url 'register' %}">{% csrf_token %}
-    <center>
-        {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><font color="red">{{ message }}</font></li>
-                {% endfor %}
-            </div>
-        {% endif %}
-    </center>
+    
 <div class="container" align="left">
         <div class="row centered-form">
         <div class="col-xs-24 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">

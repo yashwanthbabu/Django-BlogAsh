@@ -124,15 +124,7 @@
 
 <form class="form-signin form-horizontal" action="{% url 'loginuser' %}" method="post" id="login-form">
 {% csrf_token %}  
-  <center>
-        {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><font color="red">{{ message }}</font></li>
-                {% endfor %}
-            </div>
-        {% endif %}
-    </center>
+
     <div class="container">
         <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">

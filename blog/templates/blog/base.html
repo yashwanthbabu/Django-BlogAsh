@@ -110,6 +110,15 @@
                         {% endfor %}
              </div>
              </div>
+             <center>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <font color="red">{{ message }}</font>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </center>
 
         <div id="content" style="width:1000px; float:left;"> 
         <ul style="border-left-width: 0px; margin-left: 40px;">
