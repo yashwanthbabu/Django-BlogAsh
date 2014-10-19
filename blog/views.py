@@ -229,7 +229,7 @@ def login_user(request):
 def logout(request):
     """Logs out user"""
     auth_logout(request)
-    messages.success(request, "you have successfully logged out")
+    messages.success(request, "You Have Successfully Logged Out")
     return redirect(reverse("main"), args=[])
 
 

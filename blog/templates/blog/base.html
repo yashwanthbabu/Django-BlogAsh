@@ -15,12 +15,12 @@ BlogAsh | Home{% endblock %}</title>
 <script src="/assets/application-0d51cff6a15ce2b19a34e3c0515aff4d.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        setTimeout(function(){
-            $('.messages').fadeOut('slow');
-        }, 3000);
-    });
-</script>
+//     $(document).ready(function(){
+//         setTimeout(function(){
+//             $('.messages').fadeOut('slow');
+//         }, 3000);
+//     });
+// </script>
 <script type="text/javascript">
     // window.onload = function() {
         // document.getElementById("popup").onclick = function(){
@@ -57,7 +57,7 @@ BlogAsh | Home{% endblock %}</title>
         {% if messages %}
             <div class="messages">
                 {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                <font color="red">{{ message }}</font>
                 {% endfor %}
             </div>
         {% endif %}
