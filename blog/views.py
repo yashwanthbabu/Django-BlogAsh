@@ -118,8 +118,8 @@ def mkmonth_lst():
 
 def month(request, year, month):
     """Monthly archive."""
-    if request.user.is_authenticated():
-        messages.success(request, "you are successfully logged in")
+    # if request.user.is_authenticated():
+        # messages.success(request, "you are successfully logged in")
     posts = Post.objects.filter(created__year=year,
                                 created__month=month)
     return render(request, "archive.html", {'posts': posts, 'post_list': posts,
@@ -149,8 +149,6 @@ def blog(request):
     posts = Post.objects.all()
     entries_per_page = getattr(settings, 'BLOG_NUMBER_OF_ENTRIES_PER_PAGE')
     paginator = Paginator(posts, entries_per_page)
-    if request.user.is_authenticated():
-        messages.success(request, "you are successfully logged in")
     try:
         page = int(request.GET.get("page", '1'))
     except ValueError:
@@ -166,8 +164,6 @@ def blog(request):
 
 
 def recentposts(request):
-    if request.user.is_authenticated():
-        messages.success(request, "you are successfully logged in")
     try:
         posts = Post.objects.all()
         comments = Comment.objects.all()
