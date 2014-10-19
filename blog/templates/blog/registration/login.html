@@ -119,6 +119,15 @@
             <div class="panel-heading">
               <h3 class="panel-title"> <center>Please LogIn to BlogAsh</center></h3>
             </div>
+            <center>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <font color="red">{{ message }}</font>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </center>
             <div class="panel-body">
               <form role="form">
                 <div class="row">
