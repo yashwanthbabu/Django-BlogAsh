@@ -118,8 +118,6 @@ def mkmonth_lst():
 
 def month(request, year, month):
     """Monthly archive."""
-    # if request.user.is_authenticated():
-        # messages.success(request, "you are successfully logged in")
     posts = Post.objects.filter(created__year=year,
                                 created__month=month)
     return render(request, "archive.html", {'posts': posts, 'post_list': posts,
@@ -341,7 +339,7 @@ def password_reset_confirm(request, uidb64=None, token=None,
             form = set_password_form(user, request.POST)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect(poszt_reset_redirect)
+                return HttpResponseRedirect(post_reset_redirect)
         else:
             form = set_password_form(user)
     else:
@@ -353,4 +351,3 @@ def password_reset_confirm(request, uidb64=None, token=None,
         context.update(extra_context)
     return TemplateResponse(request, context,
                             current_app=current_app)
-
