@@ -48,5 +48,5 @@ urlpatterns = patterns('',
 
 
     # Admin url
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^console/admin/', include(admin.site.urls)),
 )
