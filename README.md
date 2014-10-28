@@ -1,4 +1,4 @@
-Checkout the application and use it at https://github.com/yashwanthbabu/Django-BlogAsh
+Checkout the application and use it at https://github.com/yashwanthbabu/DjangoBlog
 
 # **To try it locally**
 
@@ -32,9 +32,11 @@ If you are a Admin user then you can delete either single or bulk comments.
 # **To integrate into your application:**
 
 * Install the requirements.txt
-* Include `django_admin_bootstrapped.bootstrap3` , `django_admin_bootstrapped` , `south` , `registration` , `suit` in settings.INSTALLED_APPS.
 * Include `django_admin_bootstrapped.bootstrap3` , `django_admin_bootstrapped` , `south` , `registration` in settings.INSTALLED_APPS.
 * Enable django admin. If not already enabled python manange.py syncdb 
 * Check out your blog at /blog/
 
 Enjoy the blogging application in django now.
+
+# **DEMO**
+https://blogash.herokuapp.com/blog/
