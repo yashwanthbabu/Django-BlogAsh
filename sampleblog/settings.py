@@ -76,6 +76,7 @@ INSTALLED_APPS = (
     'social_auth',
     'password_reset',
     'registration',
+    'django_extensions',
     'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.messages',
