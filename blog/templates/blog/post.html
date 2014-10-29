@@ -95,7 +95,7 @@
                	  	<a name="comment-{{ comment.pk }}"></a>
     				<div class="comment">
     				    <div class="body"><h4><a>{{ comment.body }}</a></h4></div>
-        				<div class="time">Comment by --><a>{{ comment.name }}</a> ON <a>{{ comment.created }}</a>
+        				<div class="time">Commented By : <font color="brown">{{ comment.name }}</font> ON <font color="brown">{{ comment.created }}</font>
         				</div>
 						{% if user.is_staff %}
 		               		<input type="checkbox" name="delete" value="{{ comment.pk }}">
