@@ -95,7 +95,7 @@
         				<div class="time" style="margin-left: 20px;">By: <font color="brown">{{ comment.name }}</font> on {{ comment.created }}
         				</div>
 						{% if user.is_staff %}
-		               		<input type="checkbox" name="delete" value="{{ comment.pk }}">
+		               		<input type="checkbox" name="delete" value="{{ comment.pk }}" style="margin-left: 20px;">
             				<a href="{% url 'delete_single_comment' post.pk comment.pk %}">delete</a>
         				{% endif %}
     				</div><br>
@@ -132,8 +132,13 @@
     <form id="ajaxform" action="{% url 'add_comment' post.id %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
+        {% if request.user and not request.user.is_anonymous %}
+        <p id="sendwrapper"><input type="submit" value="Comment" class="btn btn-warning"></p> &nbsp;
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-warning"> Please Login to Comment</a>
+        {% endif %}
        
-       <p id="sendwrapper"><input type="submit" value="Comment" class="btn btn-warning"></p>
+       
         
         </form></div>
         </ul>
