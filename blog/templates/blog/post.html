@@ -85,14 +85,14 @@
 			<form action="{% url 'delete_comment' post.id %}" method="POST">{% csrf_token %}
 
 				{% if comments %}
-    				<p><h3>Comments:</h3></p>
+    				<p><h3><font color="brown">Comments:</font></h3></p>
 				{% endif %}
 				
 				{% for comment in comments %}
                	  	<a name="comment-{{ comment.pk }}"></a>
     				<div class="comment" style="border: 1px solid;">
-    				    <div class="body" style="margin-left: 20px;"><h4><font color="brown">{{ comment.body }}</font></h4></div>
-        				<div class="time" style="margin-left: 20px;">Commented By : <font color="brown">{{ comment.name }}</font> ON <font color="brown">{{ comment.created }}</font>
+    				    <div class="body" style="margin-left: 20px;"><h4>{{ comment.body }}</h4></div>
+        				<div class="time" style="margin-left: 20px;">By: <font color="brown">{{ comment.name }}</font> on {{ comment.created }}
         				</div>
 						{% if user.is_staff %}
 		               		<input type="checkbox" name="delete" value="{{ comment.pk }}">
