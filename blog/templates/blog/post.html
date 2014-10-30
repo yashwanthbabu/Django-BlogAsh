@@ -38,16 +38,16 @@
 	</script>
 
     <ul>            
-    	<div class="title"><a href="{% url 'post' post.id %}"><h1>{{ post.title }}</h1></a>
+    	<div class="title"><a href="{% url 'post' post.id %}"><h1 style="margin-left: 45px;">{{ post.title }}</h1></a>
     	</div>
-			<div class="user"><h5>Written By: <a href="{% url 'author' post.author.username %}"> {{ post.author }}</h5> </a>
+			<div class="user" style="margin-left: 45px;"><h5>Written By: <a href="{% url 'author' post.author.username %}"> {{ post.author }}</h5> </a>
 			</div>
 			<div class="user"><a href="https://about.me/yashwanthbabu" target="_blank"> </a>
 			</div>
-			<div class="time">{{ post.created}}
+			<div class="time" style="margin-left: 45px;">{{ post.created}}
 			</div><br>
 			<ul>
-				<div class="body">{{ post.body|linebreaks }}
+				<div class="body" style="margin-left: 45px;">{{ post.body|linebreaks }}
 				</div>
 			
 					{% for tag in post.tags.all %}
@@ -90,9 +90,9 @@
 				
 				{% for comment in comments %}
                	  	<a name="comment-{{ comment.pk }}"></a>
-    				<div class="comment">
-    				    <div class="body"><h4><font color="brown">{{ comment.body }}</font></h4></div>
-        				<div class="time">Commented By : <font color="brown">{{ comment.name }}</font> ON <font color="brown">{{ comment.created }}</font>
+    				<div class="comment" style="border: 1px solid;">
+    				    <div class="body" style="margin-left: 20px;"><h4><font color="brown">{{ comment.body }}</font></h4></div>
+        				<div class="time" style="margin-left: 20px;">Commented By : <font color="brown">{{ comment.name }}</font> ON <font color="brown">{{ comment.created }}</font>
         				</div>
 						{% if user.is_staff %}
 		               		<input type="checkbox" name="delete" value="{{ comment.pk }}">
@@ -115,13 +115,13 @@
 					<!-- Comment form ends here -->
 
 	    </ul>
-	</ul>
+	</ul><br>
 
 
     
     <ul>	
 		<fieldset>
-		<legend> Add a Comment </legend>
+		<legend style="margin-left: 45px;"> Add a Comment </legend>
 		
 		<ul>
     
