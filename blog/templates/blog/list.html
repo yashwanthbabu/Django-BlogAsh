@@ -13,7 +13,7 @@
 
     	        {% if post.author.username %}
 				<div class="user"> 
-					<h3>By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a></h3> on  {{ post.created }} </div><br>
+					<h5>Written By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a></h5> {{ post.created }}</div><br>
 				{% endif %}
             <ul>
                 <div class="body">

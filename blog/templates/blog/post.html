@@ -40,7 +40,7 @@
     <ul>            
     	<div class="title"><a href="{% url 'post' post.id %}"><h1>{{ post.title }}</h1></a>
     	</div>
-			<div class="user"><h3>By: <a href="{% url 'author' post.author.username %}"> {{ post.author }}</h3> </a>
+			<div class="user"><h5>Written By: <a href="{% url 'author' post.author.username %}"> {{ post.author }}</h5> </a>
 			</div>
 			<div class="user"><a href="https://about.me/yashwanthbabu" target="_blank"> </a>
 			</div>
@@ -91,7 +91,7 @@
 				{% for comment in comments %}
                	  	<a name="comment-{{ comment.pk }}"></a>
     				<div class="comment">
-    				    <div class="body"><h4><a>{{ comment.body }}</a></h4></div>
+    				    <div class="body"><h4><font color="brown">{{ comment.body }}</font></h4></div>
         				<div class="time">Commented By : <font color="brown">{{ comment.name }}</font> ON <font color="brown">{{ comment.created }}</font>
         				</div>
 						{% if user.is_staff %}
