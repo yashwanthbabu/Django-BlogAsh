@@ -6,7 +6,7 @@
 
 {% block content %}
 <ul>
-<h1><u>Recent Articles</u></h1>
+<h1><u style="margin-left: 45px;">Recent Articles</u></h1>
 {% if form.errors %}
     <p style="color: red;">
         Please correct the error{{ form.errors|pluralize }} below.
@@ -16,9 +16,9 @@
 {% if posts %}
     {% for post in posts|slice:":4" %}
 		<ul>
-			<li><h3>
-			<div class="title"><a href="{% url 'post' post.id %}">{{ post.title }}</a></div>
-			</h3></li>
+			<h3>
+			<div class="title"><a href="{% url 'post' post.id %}" style="margin-left: 45px;">{{ post.title }}</a></div>
+			</h3>
 		</ul>
 		
                 
