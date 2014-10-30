@@ -26,24 +26,21 @@
             </ul>
             {% endfor %}
         </ul>
-
         <!-- Next/Prev page links  -->
         {% if not archive and posts.object_list and posts.paginator.num_pages > 1 %}
-        	<div class="pagination" style="margin-top: 20px; margin-left: -20px; ">
+        	<div class="pagination" style="margin-top: 20px; margin-left: -20px; margin-left: 80px; ">
             	<span class="step-links">
-            		<ul class="pager">
                 		{% if posts.has_previous %}
-                    		<a href= "?page={{ posts.previous_page_number }}">PREVIOUS &lt;&lt; </a>
+                    		<a href= "?page={{ posts.previous_page_number }}"><input type="submit" value="PREVIOUS" class="btn btn-error"></a>
                 		{% endif %}
 
-                		<span class="current">
-                    		&nbsp;Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                		<span class="current" style="margin-left: 400px;">
+                    		
                 		</span>
 
                 		{% if posts.has_next %}
-                    		<a href="?page={{ posts.next_page_number }}"> &gt;&gt; NEXT</a>
+                    		<a href="?page={{ posts.next_page_number }}" style="margin-left: 399px;"> <input type="submit" value="NEXT" class="btn btn-error"></a>
                 		{% endif %} <br> <br> 
-					</ul>
             	</span>
         	</div>
         {% endif %}
