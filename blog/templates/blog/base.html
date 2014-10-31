@@ -119,11 +119,23 @@ BlogAsh | Home{% endblock %}</title>
                 {% for post in post_two %}
                 <a href="{% url 'post' post.id %}">
                     <font size="3" style="margin-left: 50px;">{{ post.title }} </font><br></a>
-{% endfor %}
+                {% endfor %}
             {% endif %}
 
 
-         </div>
+                </div><br><br>
+
+            <div class="centered" style="background-color: #f5f5f5; margin-right: 100px; margin-left: -50px;">
+             <font color"black"><font color="brown" style="margin-left: 80px;"> TAGS </font></font><br><br>
+             {% if tags %}
+                {% for tag in tags %}
+                <a href="{% url 'tag_details' tag.slug %}">
+                    <font size="3" style="margin-left: 75px;">{{ tag }} </font><br></a>
+                {% endfor %}
+            {% endif %}
+
+
+                </div>
              </div>
 
              <center>

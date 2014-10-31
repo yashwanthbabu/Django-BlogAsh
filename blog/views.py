@@ -41,12 +41,14 @@ def post(request, post_id):
     """Single post with comments and a comment form."""
 
     try:
+        tags = Tag.objects.all()
         post_model = Post.objects.get(pk=post_id)
         comment_model = Comment.objects.filter(post=post_model)
         d = {'post': post_model, 'comments': comment_model,
              'form': CommentForm(), 'user': request.user,
              'months': mkmonth_lst(),
-             'post_two': Post.objects.all()}
+             'post_two': Post.objects.all(),
+             'tags': tags}
         return render(request, "post.html", d,)
     except Post.DoesNotExist:
         raise Http404
@@ -121,9 +123,12 @@ def month(request, year, month):
     """Monthly archive."""
     posts = Post.objects.filter(created__year=year,
                                 created__month=month)
+    tags = Tag.objects.all()
     return render(request, "archive.html", {'posts': posts, 'post_list': posts,
                   'months': mkmonth_lst(),
-                  'post_two': Post.objects.all(), 'archive': True})
+                  'post_two': Post.objects.all(),
+                  'tags': tags,
+                  'archive': True})
 
 
 def delete_bulk_comment(request, post_pk, pk=None):
@@ -147,6 +152,7 @@ def delete_single_comment(request, post_pk, comment_pk, pk=None):
 def blog(request):
     """Main listing."""
     posts = Post.objects.all()
+    tags = Tag.objects.all()
     entries_per_page = getattr(settings, 'BLOG_NUMBER_OF_ENTRIES_PER_PAGE')
     paginator = Paginator(posts, entries_per_page)
     try:
@@ -162,6 +168,7 @@ def blog(request):
     return render(request, "list.html", {'posts': posts,
                                          'post_two': Post.objects.all(),
                                          'post_list': posts.object_list,
+                                         'tags': tags,
                                          'months': mkmonth_lst()})
 
 
@@ -169,10 +176,13 @@ def recentposts(request):
     try:
         posts = Post.objects.all()
         comments = Comment.objects.all()
+        tags = Tag.objects.all()
         comment_form = CommentsForm()
         return render(request, 'recentposts.html',
                       {'posts': posts,
-                       'comments': comments, 'comment_form': comment_form,
+                       'comments': comments,
+                       'comment_form': comment_form,
+                       'tags': tags,
                        'months': mkmonth_lst()})
     except Post.DoesNotExist:
         raise Http404
@@ -242,18 +252,21 @@ class AboutMe(TemplateView):
 def tag_details(request, tag_slug):
     tag = get_object_or_404(Tag, slug=tag_slug)
     posts = Post.objects.filter(tags__in=[tag])
+    tags = Tag.objects.all()
     # tagged_entries = Post.objects.filter(tags__in=[tag])
     d = {'posts': posts, 'tag': tag, 'months': mkmonth_lst(),
-         'post_two': Post.objects.all()}
+         'post_two': Post.objects.all(), 'tags': tags}
     return render(request, "tag_details.html", d)
 
 
 def authorposts(request, username):
     author = get_object_or_404(User, username=username)
     posts = author.post_set.all()
+    tags = Tag.objects.all()
     return render(request, "author.html", {'posts': posts, 'post_list': posts,
                                            'author': author,
                                            'months': mkmonth_lst(),
+                                           'tags': tags,
                                            'post_two': Post.objects.all()})
 
 
