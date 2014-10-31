@@ -100,39 +100,40 @@ BlogAsh | Home{% endblock %}</title>
            </div>
         </div>
     </div>
-    
 <br>
 
 
-<div class="container" style="width:300px; float:right;">
-<div class="centered" style="background-color: #f5f5f5; margin-right: 100px; margin-left: -50px;">
-            <font color="black"><font color="brown" style="margin-left: 50px;"> ARCHIVE DATES </font> </font><br><br>
-                    
-                        {% for month in months %}
-                            <a href="{% url 'year' month.0 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="margin-left: 40px;">{{ month.0 }}</font> <br></a>
+<div class="row">
+    <div class=".col-md-8">
+        <div id="content" style="width:1000px; float:left;"> 
+        <ul style="border-left-width: 0px; margin-left: 40px;">
+            {% block content %}{% endblock %}</ul>
+        </div>
+    </div>
 
-                            <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="margin-left: 60px;">  {{ month.2 }} </font><br></a>
+    <div class=".col-md-4">
+            <ul style="background-color: #f5f5f5; margin-left:1050px; margin-right: 165px;">
+                <font color="brown" style="margin-left:50px;">ARCHIVES</font><br><br>
+            {% for month in months %}
+                &gt; <a href="{% url 'year' month.0 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="margin-left:5px;">{{ month.0 }}</font> <br></a>
+                <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="margin-left: 25px;">{{ month.2 }}</font> <br></a>
+                <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="margin-left: 40px;">{{ month.2 }} {{ month.1 }} </font> <br></a>
+            
+            {% endfor %}
+        </ul><br>
 
-                            <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}">
-                            <font size="3" style="margin-left: 80px;">  {{ month.2}} {{ month.1 }} </font><br></a>
-                        {% endfor %}
-             </div><br><br>
-
-             <div class="centered" style="background-color: #f5f5f5; margin-right: 100px; margin-left: -50px;">
-             <font color"black"><font color="brown" style="margin-left: 50px;"> RECENT ARTICLES </font></font><br><br>
-
-             {% if post_two %}
+        <ul style="background-color: #f5f5f5; margin-left:1050px; margin-right: 165px;">
+                <font color="brown" style="margin-left:30px;">RECENT ARTICLES</font><br><br>
+                {% if post_two %}
                 {% for post in post_two %}
                 <a href="{% url 'post' post.id %}">
-                    <font size="3" style="margin-left: 50px;">{{ post.title }} </font><br></a>
+                    <font size="3" style="margin-left: 30px;">{{ post.title }} </font><br></a>
                 {% endfor %}
             {% endif %}
+        </ul><br>
 
-
-                </div><br><br>
-
-            <div class="centered" style="background-color: #f5f5f5; margin-right: 100px; margin-left: -50px;">
-             <font color"black"><font color="brown" style="margin-left: 80px;"> TAGS </font></font><br><br>
+        <ul style="background-color: #f5f5f5; margin-left:1050px; margin-right: 165px;">
+                <font color="brown" style="margin-left:30px;">TAGS</font><br><br>
              {% if tags %}
                 {% for tag in tags %}
                 <a href="{% url 'tag_details' tag.slug %}">
@@ -140,14 +141,10 @@ BlogAsh | Home{% endblock %}</title>
                 {% endfor %}
             {% endif %}
 
+        </ul><br>        
 
-                </div>
-             </div>
-
-        <div id="content" style="width:1000px; float:left;"> 
-        <ul style="border-left-width: 0px; margin-left: 40px;">
-            {% block content %}{% endblock %}</ul>
-        </div>
+    </div>
+</div>
 
 
 </body>

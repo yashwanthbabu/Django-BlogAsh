@@ -22,7 +22,7 @@
 					{{ post.body|truncatewords_html:20|linebreaks }}
 				</div>
 		    	<div class="commentlink">
-		    		<a href="{% url 'post' post.id %}" style="margin-left: 45px;"> Continue reading...</a>
+		    		<a href="{% url 'post' post.id %}" style="margin-left: 45px;"> Continue reading ⇒ </a>
 		    	</div><br>
                 Discussions: <a href="{% url 'post' post.id %}#comments"> {{ post.comment_set.count }} comments</a>
 
