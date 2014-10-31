@@ -84,7 +84,7 @@ BlogAsh | Home{% endblock %}</title>
                                 <a href="{% url 'admin:index' %}" class="btn btn-default btn-sm">ADMIN</a>
                                 <a href="{% url 'admin:blog_post_add' %}" class="btn btn-default btn-sm">ADD POST</a>
                                 {% endif %}
-                                <a href="{% url 'recentposts' %}" class="btn btn-default btn-sm"> RECENT ARTICLES</a> |  &nbsp; 
+                                
                                 {% if request.user and not request.user.is_anonymous %}
                                 <a href="{% url 'auth:logout' %}" class="btn btn-default btn-sm"> LOGOUT</a> &nbsp;
                                 {% else %}
@@ -112,8 +112,20 @@ BlogAsh | Home{% endblock %}</title>
                         {% endfor %}
              </div><br><br>
 
+             <div class="centered" style="background-color: #f5f5f5; margin-right: 100px; margin-left: -50px;">
+             <font color"black"><font color="brown" style="margin-left: 50px;"> RECENT ARTICLES </font></font><br><br>
 
+             {% if post_two %}
+                {% for post in post_two %}
+                <a href="{% url 'post' post.id %}">
+                    <font size="3" style="margin-left: 50px;">{{ post.title }} </font><br></a>
+{% endfor %}
+            {% endif %}
+
+
+         </div>
              </div>
+
              <center>
         {% if messages %}
             <div class="messages">

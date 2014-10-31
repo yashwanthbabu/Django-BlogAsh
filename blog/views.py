@@ -45,7 +45,7 @@ def post(request, post_id):
         comment_model = Comment.objects.filter(post=post_model)
         d = {'post': post_model, 'comments': comment_model,
              'form': CommentForm(), 'user': request.user,
-             'months': mkmonth_lst()}
+             'months': mkmonth_lst(),'post_two': Post.objects.all()}
         return render(request, "post.html", d,)
     except Post.DoesNotExist:
         raise Http404
@@ -121,7 +121,7 @@ def month(request, year, month):
     posts = Post.objects.filter(created__year=year,
                                 created__month=month)
     return render(request, "archive.html", {'posts': posts, 'post_list': posts,
-                  'months': mkmonth_lst(), 'archive': True})
+                  'months': mkmonth_lst(), 'post_two': Post.objects.all(), 'archive': True})
 
 
 def delete_bulk_comment(request, post_pk, pk=None):
@@ -158,6 +158,7 @@ def blog(request):
         posts = paginator.page(paginator.num_pages)
 
     return render(request, "list.html", {'posts': posts,
+                  'post_two': Post.objects.all(),
                   'post_list': posts.object_list, 'months': mkmonth_lst()})
 
 
@@ -242,7 +243,8 @@ def tag_details(request, tag_slug):
     # d = {'posts': posts, 'tag': tag}
     return render(request, "tag_details.html", {'posts': posts,
                                                 'tag': tag,
-                                                'months': mkmonth_lst()})
+                                                'months': mkmonth_lst(),
+                                                'post_two': Post.objects.all()})
 
 
 def authorposts(request, username):
@@ -250,7 +252,8 @@ def authorposts(request, username):
     posts = author.post_set.all()
     return render(request, "author.html", {'posts': posts, 'post_list': posts,
                                            'author': author,
-                                           'months': mkmonth_lst()})
+                                           'months': mkmonth_lst(),
+                                           'post_two': Post.objects.all()})
 
 
 def forgot_password(request):
