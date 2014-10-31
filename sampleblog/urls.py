@@ -12,7 +12,9 @@ urlpatterns = patterns('',
     url(r'^blog/', 'blog.views.blog', name='main'),
     url(r"blogpost/(?P<post_id>[0-9]+)/$", 'blog.views.post', name='post'),
     url(r"^add_comment/(?P<post_id>[0-9]+)/$", 'blog.views.add_comment', name='add_comment'),
-    url(r"^month/(?P<year>\d{4})/(?P<month>(0|1)?\d)/$", 'blog.views.month', name='month'),
+    url(r"^archives/(?P<year>\d{4})/(?P<month>(0|1)?\d)/$", 'blog.views.month', name='month'),
+    url(r"^archives/(?P<year>\d{4})/$", 'blog.views.year', name='year'),
+    url(r"^archives/(?P<year>\d{4})/(?P<month>(0|1)?\d)/(?P<date>\d{2})/$", 'blog.views.date', name='date'),
     url(r"^delete_bulk_comment/(?P<post_pk>[0-9]+)/$", 'blog.views.delete_bulk_comment', name='delete_comment'),
     url(r"^delete_single_comment/(?P<post_pk>[0-9]+)/(?P<comment_pk>[0-9]+)/$", 'blog.views.delete_single_comment', name='delete_single_comment'),
     url(r"^blogposts/recentposts/", 'blog.views.recentposts', name='recentposts'),
@@ -45,6 +47,10 @@ urlpatterns = patterns('',
 
     #Session Timeout url
     url(r'^django-session-idle-timeout/', include('django-session-idle-timeout.urls')),
+
+    #Comment App url's
+    # url(r'^comments/', include('django.contrib.comments.urls')),
+    # url(r'^comments/(?P<post_id>[0-9]+)/$', 'blog.views.comments_count', name="comments_count"),
 
 
     # Admin url
