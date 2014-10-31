@@ -69,9 +69,6 @@ BlogAsh | Home{% endblock %}</title>
                     <div class="container">
                         <div class="navbar-header">
                             <a class="navbar-brand" href="{% url 'main' %}"><h2 style="margin-top: -15px; margin-bottom: 100px; border-bottom-width: 1px;">BlogAsh</h2></a>
-                            {% if user.is_staff %}
-                            <a class="navbar-brand" href="{% url 'admin:index' %}"><h2 style="margin-top: -18px;">Admin</h2></a>
-                            {% endif %}
                         </div>
                         <center>
                         {% if request.user and not request.user.is_anonymous %}
@@ -83,6 +80,10 @@ BlogAsh | Home{% endblock %}</title>
                         <div class="panel-heading">
                             <div class="btn-group pull-right">
                                 <a href="{% url 'main' %}" class="btn btn-default btn-sm"> HOME </a>
+                                {% if user.is_staff %}
+                                <a href="{% url 'admin:index' %}" class="btn btn-default btn-sm">ADMIN</a>
+                                <a href="{% url 'admin:blog_post_add' %}" class="btn btn-default btn-sm">ADD POST</a>
+                                {% endif %}
                                 <a href="{% url 'recentposts' %}" class="btn btn-default btn-sm"> RECENT ARTICLES</a> |  &nbsp; 
                                 {% if request.user and not request.user.is_anonymous %}
                                 <a href="{% url 'auth:logout' %}" class="btn btn-default btn-sm"> LOGOUT</a> &nbsp;
