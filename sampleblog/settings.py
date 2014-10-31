@@ -27,6 +27,8 @@ DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
+SITE_ID = 1
+
 ALLOWED_HOSTS = ['blogging-application.herokuapp.com']
 
 TEMPLATE_DIRS = (
@@ -70,6 +72,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.comments',
+    'django.contrib.sites',
     'south',
     'blog',
     'taggit',
@@ -137,7 +141,7 @@ SOCIAL_AUTH_PIPELINE = (
 'social_auth.backends.pipeline.user.update_user_details',
 )
 
-SESSION_IDLE_TIMEOUT = 60
+SESSION_IDLE_TIMEOUT = 600
 
 GOOGLE_OAUTH2_CLIENT_ID = os.environ.get('GOOGLE_API_KEY')
 
