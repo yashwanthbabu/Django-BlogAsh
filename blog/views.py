@@ -131,6 +131,32 @@ def month(request, year, month):
                   'archive': True})
 
 
+def year(request, year):
+    """Yearly Archive"""
+    posts = Post.objects.filter(created__year=year)
+    tags = Tag.objects.all()
+    return render(request, "archive.html", {'posts': posts,
+                                            'post_list': posts,
+                                            'months': mkmonth_lst(),
+                                            'post_two': Post.objects.all(),
+                                            'tags': tags,
+                                            'archive': True})
+
+
+def date(request, year, month, date):
+    """Yearly Archive"""
+    posts = Post.objects.filter(created__year=year,
+                                created__month=month,
+                                created__date=date)
+    tags = Tag.objects.all()
+    return render(request, "archive.html", {'posts': posts,
+                                            'post_list': posts,
+                                            'months': mkmonth_lst(),
+                                            'post_two': Post.objects.all(),
+                                            'tags': tags,
+                                            'archive': True})
+
+
 def delete_bulk_comment(request, post_pk, pk=None):
     """Delete comment(s) with primary key `pk` or with pks in POST."""
     if request.user.is_staff:

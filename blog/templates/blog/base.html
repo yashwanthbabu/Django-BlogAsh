@@ -108,7 +108,12 @@ BlogAsh | Home{% endblock %}</title>
             <font color="black"><font color="brown" style="margin-left: 50px;"> ARCHIVE DATES </font> </font><br><br>
                     
                         {% for month in months %}
-                            <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="margin-left: 50px;">{{ month.2 }}  {{ month.0 }} </font><br></a>
+                            <a href="{% url 'year' month.0 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="margin-left: 40px;">{{ month.0 }}</font> <br></a>
+
+                            <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="margin-left: 60px;">  {{ month.2 }} </font><br></a>
+
+                            <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}">
+                            <font size="3" style="margin-left: 80px;">  {{ month.2}} {{ month.1 }} </font><br></a>
                         {% endfor %}
              </div><br><br>
 
