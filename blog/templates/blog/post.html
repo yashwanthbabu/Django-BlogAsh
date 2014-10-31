@@ -38,7 +38,7 @@
 	</script>
 
     <ul>            
-    	<div class="title"><a href="{% url 'post' post.id %}"><h1 style="margin-left: 45px;">{{ post.title }}</h1></a>
+    	<div class="title"><a href="{% url 'post' post.id %}"><h1 style="margin-left: 45px;">{{ post.title }}</h1><hr></a>
     	</div>
 			<div class="user" style="margin-left: 45px;"><h5>Written By: <a href="{% url 'author' post.author.username %}"> {{ post.author }}</h5> </a>
 			</div>
@@ -85,12 +85,12 @@
 			<form action="{% url 'delete_comment' post.id %}" method="POST">{% csrf_token %}
 
 				{% if comments %}
-    				<p><h3><font color="brown">Comments:</font></h3></p>
+    				<h3 id="comments"><font color="brown">Comments:</font></h3>
 				{% endif %}
 				
 				{% for comment in comments %}
-               	  	<a name="comment-{{ comment.pk }}"></a>
-    				<div class="comment" style="border: 1px solid;">
+            	  	<a name="comment-{{ comment.pk }}"></a>
+    				<div id="comment.id" class="comment" style="border: 1px solid;">
     				    <div class="body" style="margin-left: 20px;"><h4>{{ comment.body }}</h4></div>
         				<div class="time" style="margin-left: 20px;">By: <font color="brown">{{ comment.name }}</font> on {{ comment.created }}
         				</div>
@@ -151,6 +151,11 @@
 				
 		
 	</ul>
+
+<hr style="margin-left:130px;">
+<div class="footer" >
+      <h4 style="margin-left:170px;">  © BlogAsh 2014 </h4>
+</div><br>
 	
 
 
