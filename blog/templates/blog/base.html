@@ -60,25 +60,25 @@ BlogAsh | Home{% endblock %}</title>
     </center>
 
 
-<body>
+<body><br>
 
      <div class="container">
         <div class="header">
-            <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar navbar-default" role="navigation">
                 <div class="navbar-inner" style="margin-top: 20px;">
                     <div class="container">
                         <div class="navbar-header">
-                            <a class="navbar-brand" href="{% url 'main' %}"><h2 style="margin-top: -15px; margin-bottom: 100px; border-bottom-width: 1px;">BlogAsh</h2></a>
+                            <a class="navbar-brand" href="{% url 'main' %}"><h1 style="margin-top: -15px; margin-bottom: 100px; border-bottom-width: 1px; margin-left: 25px;">BlogAsh</h1></a>
                         </div>
                         <center>
                         {% if request.user and not request.user.is_anonymous %}
 
-                                   <font color="white" size="3">Welcome {{ request.user.get_full_name|default:request.user.username }}</font>
+                                   <font color="black" size="3">Welcome {{ request.user.get_full_name|default:request.user.username }}</font>
                               
                                 {% endif %}
                         <div class="nav navbar-nav navbar-right">
                         <div class="panel-heading">
-                            <div class="btn-group pull-right">
+                            <div class="btn-group pull-right" style="margin-right:50px;">
                                 <a href="{% url 'main' %}" class="btn btn-default btn-sm"> HOME </a>
                                 {% if user.is_staff %}
                                 <a href="{% url 'admin:index' %}" class="btn btn-default btn-sm">ADMIN</a>
@@ -100,7 +100,7 @@ BlogAsh | Home{% endblock %}</title>
            </div>
         </div>
     </div>
-<br><br><br><br>
+<br>
 
 
 <div class="container" style="width:300px; float:right;">
@@ -142,16 +142,6 @@ BlogAsh | Home{% endblock %}</title>
 
                 </div>
              </div>
-
-             <center>
-        {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                <font color="red">{{ message }}</font>
-                {% endfor %}
-            </div>
-        {% endif %}
-    </center>
 
         <div id="content" style="width:1000px; float:left;"> 
         <ul style="border-left-width: 0px; margin-left: 40px;">
