@@ -69,6 +69,9 @@ BlogAsh | Home{% endblock %}</title>
                     <div class="container">
                         <div class="navbar-header">
                             <a class="navbar-brand" href="{% url 'main' %}"><h2 style="margin-top: -15px; margin-bottom: 100px; border-bottom-width: 1px;">BlogAsh</h2></a>
+                            {% if user.is_staff %}
+                            <a class="navbar-brand" href="{% url 'admin:index' %}"><h2 style="margin-top: -18px;">Admin</h2></a>
+                            {% endif %}
                         </div>
                         <center>
                         {% if request.user and not request.user.is_anonymous %}
