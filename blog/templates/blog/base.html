@@ -113,31 +113,31 @@ BlogAsh | Home{% endblock %}</title>
 
     <div class=".col-md-4">
             <ul style="background-color: #f5f5f5; margin-left:1050px; margin-right: 165px;">
-                <font color="brown" style="margin-left:50px;">ARCHIVES</font><br><br>
+                <font color="brown" style="">ARCHIVES</font><br><br>
             {% for month in months %}
-                &gt; <a href="{% url 'year' month.0 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="margin-left:5px;">{{ month.0 }}</font> <br></a>
-                <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="margin-left: 25px;">{{ month.2 }}</font> <br></a>
-                <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="margin-left: 40px;">{{ month.2 }} {{ month.1 }} </font> <br></a>
+                &gt; <a href="{% url 'year' month.0 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="">{{ month.0 }}</font> <br></a>
+                <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="">{{ month.2 }}</font> <br></a>
+                <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="">{{ month.2 }} {{ month.1 }} </font> <br></a>
             
             {% endfor %}
         </ul><br>
 
         <ul style="background-color: #f5f5f5; margin-left:1050px; margin-right: 165px;">
-                <font color="brown" style="margin-left:30px;">RECENT ARTICLES</font><br><br>
+                <font color="brown" style="">RECENT ARTICLES</font><br><br>
                 {% if post_two %}
                 {% for post in post_two %}
                 <a href="{% url 'post' post.id %}">
-                    <font size="3" style="margin-left: 30px;">{{ post.title }} </font><br></a>
+                    <font size="3" style="">{{ post.title }} </font><br></a>
                 {% endfor %}
             {% endif %}
         </ul><br>
 
         <ul style="background-color: #f5f5f5; margin-left:1050px; margin-right: 165px;">
-                <font color="brown" style="margin-left:30px;">TAGS</font><br><br>
+                <font color="brown" style="">TAGS</font><br><br>
              {% if tags %}
                 {% for tag in tags %}
                 <a href="{% url 'tag_details' tag.slug %}">
-                    <font size="3" style="margin-left: 75px;">{{ tag }} </font><br></a>
+                    <font size="3" style="">{{ tag }} </font><br></a>
                 {% endfor %}
             {% endif %}
 
