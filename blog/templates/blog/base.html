@@ -112,7 +112,7 @@ BlogAsh | Home{% endblock %}</title>
     </div>
 
     <div class=".col-md-4">
-            <ul style="background-color: #f5f5f5; margin-left:1050px; margin-right: 165px;">
+            <ul style="">
                 <font color="brown" style="">ARCHIVES</font><br><br>
             {% for month in months %}
                 &gt; <a href="{% url 'year' month.0 %}" class="{% cycle 'left' 'right' %}"><font size="3" style="">{{ month.0 }}</font> <br></a>
@@ -122,7 +122,7 @@ BlogAsh | Home{% endblock %}</title>
             {% endfor %}
         </ul><br>
 
-        <ul style="background-color: #f5f5f5; margin-left:1050px; margin-right: 165px;">
+        <ul style="">
                 <font color="brown" style="">RECENT ARTICLES</font><br><br>
                 {% if post_two %}
                 {% for post in post_two %}
@@ -132,7 +132,7 @@ BlogAsh | Home{% endblock %}</title>
             {% endif %}
         </ul><br>
 
-        <ul style="background-color: #f5f5f5; margin-left:1050px; margin-right: 165px;">
+        <ul style="">
                 <font color="brown" style="">TAGS</font><br><br>
              {% if tags %}
                 {% for tag in tags %}
