@@ -1,11 +1,11 @@
-{% extends "base.html" %}
-{% block title %}Registration Successful{% endblock %}
+{% extends "registration/base1.html" %}
+{% block title %}BlogAsh | Registration Successful{% endblock %}
 {% block head %}
  Registration Completed Successfully
 {% endblock %}
 {% block content %}
-<center>
 <h2>
+	<center style="margin-left: 300px;">
     Thank you for registering.
-    <a href="{% url 'login' %}">Login</a></h2></center>
+    <a href="{% url 'login' %}">Login</a></center></h2>
 {% endblock %}
