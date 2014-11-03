@@ -12,7 +12,6 @@
 
     <div class="main">
         <!-- Posts  -->
-        <ul>
             {% for post in posts %}
                 <div class="title"><h1><a href="{% url 'post' post.id %}" style="margin-left: 45px;">{{ post.title }}</a></h1></div>
                 {% if post.author.username %}
@@ -32,7 +31,6 @@
                 <center> <a href="{% url 'main' %}">&lsaquo; Back </a></center></h3></center>
             {% endfor %}
 
-        </ul>
 
 	
 <ul class="pager">
@@ -56,9 +54,6 @@
         {% endif %}<br><br>
 </ul>
     </div>
-<hr>
-<div class="footer" >
-      <h4 style="margin-left:70px;">  © BlogAsh 2014 </h4>
-</div><br
+
 
 {% endblock %}

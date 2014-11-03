@@ -13,30 +13,26 @@
 
 
 {% block content %}
-
-        <ul>
-            
-    {% for post in posts %}
     
-                <div class="title"><h1><a href="{% url 'post' post.id %}" style="margin-left: 45px;">{{ post.title }}</a></h1></div>
+    {% for post in posts %}
+        <div class="title"><h1><a href="{% url 'post' post.id %}" style="margin-left: 45px;">{{ post.title }}</a></h1></div>
             {% if post.author.username %}
-		<div class="user" style="margin-left: 45px;"><h5>Written By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a> </h5>on  {{ post.created }} </div><br>
+		      <div class="user" style="margin-left: 45px;"><h5>Written By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a> </h5>on  {{ post.created }} </div><br>
             {% endif %}
-                <ul>
+            <ul>
                     <!-- <div class="time">{{ post.created|linebreaks}}</div> -->
-                    <div class="body" style="margin-left: 45px;">{{ post.body|truncatewords_html:20|linebreaks }}</div>
+                <div class="body" style="margin-left: 45px;">{{ post.body|truncatewords_html:20|linebreaks }}</div>
             
-		    <div class="commentlink"><a href="{% url 'post' post.id %}" style="margin-left: 45px;"> Continue reading...</a></div><br>
+		      <div class="commentlink"><a href="{% url 'post' post.id %}" style="margin-left: 45px;"> Continue reading...</a></div><br>
                 Discussions: <a href="{% url 'post' post.id %}"> {{ post.comment_set.count }} comments</a>
                 <hr>
  
 
-                </ul>
-                {% empty %}
+            </ul>
+            {% empty %}
                 <h1>No Posts are added by this author</h1>
             
             {% endfor %}
-        </ul>
 
 	
 
@@ -63,7 +59,6 @@
         </div>
         {% endif %}
 
-    </div>
 
 
 {% endblock %}
