@@ -72,8 +72,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.comments',
-    'django.contrib.sites',
+    # 'django.contrib.comments',
+    # 'django.contrib.sites',
     'south',
     'blog',
     'taggit',
@@ -133,23 +133,27 @@ MIDDLEWARE_CLASSES = (
 )
 
 SOCIAL_AUTH_PIPELINE = (
-'social_auth.backends.pipeline.social.social_auth_user',
-'social_auth.backends.pipeline.associate.associate_by_email',
-'social_auth.backends.pipeline.user.get_username',
-'social_auth.backends.pipeline.user.create_user',
-'social_auth.backends.pipeline.social.associate_user',
-'social_auth.backends.pipeline.user.update_user_details',
+  'social_auth.backends.pipeline.social.social_auth_user',
+  'social_auth.backends.pipeline.associate.associate_by_email',
+  'social_auth.backends.pipeline.misc.save_status_to_session',
+  'social_auth.backends.pipeline.user.create_user',
+  'social_auth.backends.pipeline.social.associate_user',
+  'social_auth.backends.pipeline.social.load_extra_data',
+  'social_auth.backends.pipeline.user.update_user_details',
+  'social_auth.backends.pipeline.misc.save_status_to_session',
 )
 
 SESSION_IDLE_TIMEOUT = 600
+
+SOCIAL_AUTH_EMABLED_BACKENDS = ('twitter', 'facebook', 'google',)
 
 GOOGLE_OAUTH2_CLIENT_ID = os.environ.get('GOOGLE_API_KEY')
 
 GOOGLE_OAUTH2_CLIENT_SECRET = os.environ.get('GOOGLE_API_SECRET')
 
-FACEBOOK_APP_ID = os.environ.get('FACEBOOK_API_KEY')
+FACEBOOK_APP_ID = '559235774199929'
 
-FACEBOOK_API_SECRET = os.environ.get('FACEBOOK_API_SECRET')
+FACEBOOK_API_SECRET = 'f6f810170c820a624614bf07e1f89c37'
 
 TWITTER_CONSUMER_KEY = os.environ.get('TWITTER_API_KEY')
 
@@ -157,7 +161,7 @@ TWITTER_CONSUMER_SECRET = os.environ.get('TWITTER_API_SECRET')
 
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'publish_actions']
 
-LOGIN_URL = 'django.contrib.auth.views.login'
+LOGIN_URL = ''
 LOGIN_REDIRECT_URL = '/blog/'
 SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/blog/'
 SOCIAL_AUTH_INACTIVE_USER_URL = '...'
