@@ -6,7 +6,6 @@
     
 	{% block content %}
 
-	    <ul>
     	    {% for post in posts.object_list %}
    
 	            <div class="title">
@@ -25,31 +24,29 @@
 		    		<a href="{% url 'post' post.id %}" style="margin-left: 45px;"> Continue reading ⇒ </a>
 		    	</div><br>
                 Discussions: <a href="{% url 'post' post.id %}#comments"> {{ post.comment_set.count }} comments</a>
-
             </ul>
+
             {% endfor %}
-        </ul>
         <!-- Next/Prev page links  -->
         {% if not archive and posts.object_list and posts.paginator.num_pages > 1 %}
-        	<div class="pagination" style="margin-top: 20px; margin-left: -20px; margin-left: 80px; ">
+        	<div class="pagination">
             	<span class="step-links">
+                    <ul>
                 		{% if posts.has_previous %}
                     		<a href= "?page={{ posts.previous_page_number }}"><input type="submit" value="PREVIOUS" class="btn btn-error"></a>
                 		{% endif %}
 
-                		<span class="current" style="margin-left: 400px;">
+                		<span class="current">
                     		
                 		</span>
 
                 		{% if posts.has_next %}
-                    		<a href="?page={{ posts.next_page_number }}" style="margin-left: 399px;"> <input type="submit" value="NEXT" class="btn btn-error"></a>
-                		{% endif %} <br> <br> 
+                    		<a href="?page={{ posts.next_page_number }}"> <input type="submit" value="NEXT" class="btn btn-error"></a>
+                		{% endif %} <br> <br>
+                    </ul> 
             	</span>
         	</div>
         {% endif %}<br><br>
-<hr>
-<div class="footer" >
-      <h4 style="margin-left:70px;">  © BlogAsh 2014 </h4>
-</div><br>
+
 
 {% endblock %}
