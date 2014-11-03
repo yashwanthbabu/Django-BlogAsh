@@ -99,9 +99,10 @@
 </style> 
 <center>
 <div id="color" style="margin-left:360px;">
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}</div>
+{% if form.username.errors %}
+<p>Your username / password were incorrect. Please try again.</p>
+{% endif %}
+</div>
 </center>
 
 <form class="form-signin form-horizontal" action="{% url 'login' %}" method="post" id="login-form">
@@ -115,7 +116,7 @@
               <h3 class="panel-title"> <center>Please LogIn to BlogAsh</center></h3>
             </div>
             <center>
-              <a href="{% url 'socialauth_begin' 'facebook' %}">Login with facebook</a>
+
 
         {% if messages %}
             <div class="messages">
