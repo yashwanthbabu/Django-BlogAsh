@@ -48,8 +48,6 @@ urlpatterns = patterns('',
     #Session Timeout url
     url(r'^django-session-idle-timeout/', include('django-session-idle-timeout.urls')),
 
-    url('', include('social.apps.django_app.urls', namespace='social')),
-
     #Comment App url's
     # url(r'^comments/', include('django.contrib.comments.urls')),
     # url(r'^comments/(?P<post_id>[0-9]+)/$', 'blog.views.comments_count', name="comments_count"),
