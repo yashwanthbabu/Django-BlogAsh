@@ -19,7 +19,7 @@ from django.template.response import TemplateResponse
 from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import ugettext as _
 from django.shortcuts import resolve_url
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 from django.contrib.auth.tokens import default_token_generator
 from django.core.paginator import Paginator, \
@@ -331,7 +331,7 @@ def password_reset(request, is_admin_site=False,
                     'from_email': from_email,
                     'request': request,
                     'html_email_template_name': html_email_template_name,
-                    }
+                   }
             if is_admin_site:
                 warnings.warn(
                     "The is_admin_site argument to "
