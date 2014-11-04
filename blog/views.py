@@ -32,11 +32,6 @@ from .forms import CommentsForm, CommentForm, RegistrationForm, \
     LoginForm
 
 
-@login_required
-def home(request):
-    return HttpResponse('Home Page')
-
-
 def post(request, post_id):
     """Single post with comments and a comment form."""
 
@@ -107,12 +102,12 @@ def mkmonth_lst():
     months = []
 
     # loop over years and months
-    for y in range(year, fyear-1, -1):
+    for y in range(year, fyear - 1, -1):
         start, end = 12, 0
         if y == year:
             start = month
         if y == fyear:
-            end = fmonth-1
+            end = fmonth - 1
 
         for m in range(start, end, -1):
             months.append((y, m, month_name[m]))
@@ -223,7 +218,7 @@ def register(request):
                 username=form.cleaned_data['username'],
                 password=form.cleaned_data['password1'],
                 email=form.cleaned_data['email']
-                )
+            )
             return HttpResponseRedirect('/register/success/')
     else:
         form = RegistrationForm()
