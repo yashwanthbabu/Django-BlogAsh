@@ -98,8 +98,8 @@
   div #color {color:red;}
 </style> 
 <center>
-<div id="color" style="margin-left:360px;">
-{% if form.username.errors %}
+<div id="color" style="margin-left:300px;">
+{% if form.errors %}
 <p>Your username / password were incorrect. Please try again.</p>
 {% endif %}
 </div>
@@ -116,8 +116,10 @@
               <h3 class="panel-title"> <center>Please LogIn to BlogAsh</center></h3>
             </div>
             <center>
-
-
+<!--               <a href="{% url 'socialauth_begin' 'facebook' %}">Login with facebook</a>
+              <a href="{% url 'socialauth_begin' 'twitter' %}">Twitter</a>
+              <a href="{% url 'socialauth_begin' 'google-oauth2' %}"> Google </a>
+ -->
         {% if messages %}
             <div class="messages">
                 {% for message in messages %}
