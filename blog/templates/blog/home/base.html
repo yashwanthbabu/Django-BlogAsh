@@ -21,6 +21,11 @@
     	font-family:TimesNewRoman;
     }
     </style>
+    <script type="text/javascript">
+         $("#newtab").on("click",function(){
+         window.open('/blog/','_blank');
+     });
+    </script>
 </head>
 
 <body><br>
@@ -33,8 +38,8 @@
 				<font color="white"><h3 style="margin-top: 20px; margin-left:10px;">Yashwanth Babu Gujarathi</h3></font>
 
 				<div class="navbar-right" style="margin-top:-40px;">
-                    <a href="{% url 'home' %}" class="btn btn-default btn-sm"> Home </a>
-                    <a href="{% url 'main' %}" class="btn btn-default btn-sm"> Blog</a>
+                    <a href="{% url 'home' %}" class="btn btn-default btn-sm"> HOME </a>
+                    <a href="{% url 'main' %}" class="btn btn-default btn-sm" id="newtab"> BLOG </a>
                 </div>
 			</div>
 		</div><br><br>
