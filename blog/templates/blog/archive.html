@@ -14,15 +14,15 @@
         <!-- Posts  -->
             {% for post in posts %}
                 <div class="title"><h1><a href="{% url 'post' post.id %}" style="margin-left: 45px;">{{ post.title }}</a></h1></div>
+                <hr>
                 {% if post.author.username %}
 		          <div class="user" style="margin-left: 45px;"><h5>Written By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a></h5></div>
                 <div class="time" style="margin-left: 45px;"> {{ post.created }}</div><br>
                 {% endif %}
                 <ul>
                 <div class="body" style="margin-left: 45px;">{{ post.body|truncatewords_html:20|linebreaks }}</div>
-		          <div class="commentlink"><a href="{% url 'post' post.id %}" style="margin-left: 45px;"> Continue reading...</a></div><br>
+		          <div class="commentlink"><a href="{% url 'post' post.id %}" style="margin-left: 45px;"> Continue reading ⇒ </a></div><br>
                  Discussions: <a href="{% url 'post' post.id %}#comments"> {{ post.comment_set.count }} comments</a>
-                <hr>
  
 
                 </ul>
