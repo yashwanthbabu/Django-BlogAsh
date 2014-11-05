@@ -9,6 +9,9 @@ urlpatterns = patterns(
     '',
     # Examples:
 
+    # Home urls
+    url(r'^$', 'blog.views.home', name='home'),
+
     # Blog urls
     url(r'^blog/', 'blog.views.blog', name='main'),
     url(r"blogpost/(?P<post_id>[0-9]+)/$", 'blog.views.post', name='post'),

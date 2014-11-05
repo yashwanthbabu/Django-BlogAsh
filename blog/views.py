@@ -32,6 +32,10 @@ from .forms import CommentsForm, CommentForm, RegistrationForm, \
     LoginForm
 
 
+def home(request):
+    return render_to_response("home/base.html", context_instance=RequestContext(request))
+
+
 def post(request, post_id):
     """Single post with comments and a comment form."""
 
@@ -331,7 +335,7 @@ def password_reset(request, is_admin_site=False,
                     'from_email': from_email,
                     'request': request,
                     'html_email_template_name': html_email_template_name,
-                   }
+                    }
             if is_admin_site:
                 warnings.warn(
                     "The is_admin_site argument to "
