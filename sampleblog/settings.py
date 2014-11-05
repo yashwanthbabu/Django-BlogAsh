@@ -72,6 +72,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # 'django.contrib.comments',
     # 'django.contrib.sites',
+    'twitter_tag',
     'south',
     'blog',
     'taggit',
@@ -161,6 +162,23 @@ TWITTER_CONSUMER_KEY = os.environ.get('twitter_id')
 TWITTER_CONSUMER_SECRET = os.environ.get('twitter_secret')
 
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'publish_actions']
+
+# Twitter Oauth credentials
+# TWITTER_USER = "TheLad_Alone"
+# TWITTER_CACHE_TIMEOUT = 600
+# TWITTER_CONSUMER_KEY = "KkJwCnVX6rrvSSljPqi5tezq3"
+# TWITTER_CONSUMER_SECRET = "j5HHkDer21cTfq3Yzl5nWypebpv20Y0Kn5SyzXHBgzna0Q2ftW"
+# TWITTER_OAUTH_TOKEN = "181107703-NIS0AQbOMpmQbaRSwYoI7oX2QYyfQbOHKPWuSR7m"
+# TWITTER_OAUTH_TOKEN_SECRET = "nv1lqg5tjxOGZSYQSNJNfScFZnG6vj1jrJ9uJZ7NaV0Rb"
+
+# Your access token: Access token
+TWITTER_OAUTH_TOKEN = '181107703-NIS0AQbOMpmQbaRSwYoI7oX2QYyfQbOHKPWuSR7m'
+# Your access token: Access token secret
+TWITTER_OAUTH_SECRET = 'nv1lqg5tjxOGZSYQSNJNfScFZnG6vj1jrJ9uJZ7NaV0Rb'
+# OAuth settings: Consumer key
+TWITTER_CONSUMER_KEY = 'KkJwCnVX6rrvSSljPqi5tezq3'
+# OAuth settings: Consumer secret
+TWITTER_CONSUMER_SECRET = 'j5HHkDer21cTfq3Yzl5nWypebpv20Y0Kn5SyzXHBgzna0Q2ftW'
 
 LOGIN_URL = 'django.contrib.auth.views.login'
 LOGIN_REDIRECT_URL = '/blog/'

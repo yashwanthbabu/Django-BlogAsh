@@ -1,4 +1,6 @@
 {% load staticfiles %}
+{% load twitter_tag %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -80,6 +82,10 @@
                         {% for month in months %}
                             <a href="{% url 'month' month.0 month.1 %}" class="{% cycle 'left' 'right' %}"> {{ month.2 }} {{ month.1 }}</a><br>
                         {% endfor %}
+
+
+
+
                     </center>
                     </div><br>
 
@@ -123,7 +129,18 @@
                                         <a href="https://github.com/yashwanthbabu?tab=repositories" target="_blank">
                                             <font size="3" style=""> GitHub </font><br></a>
                         </center>
-                    </div>
+                    </div><br>
+
+                    <div class="sidebar" style="margin-left:50px; background-color:#f5f5f5;">
+                        <center>
+                            <font color="brown"> Twitter Feeds </font><br>
+                            {% get_tweets for "TheLad_Alone" as tweets limit 3 %}
+                                {% for tweet in tweets %}
+                                    {{ tweet.html|safe }}
+                                    {{ tweet.datetime|date:"D d M Y" }}<br><br>
+                                {% endfor %}
+                        </center>
+                    </div><br>
 
             </div>
         </div><br><br><br><br><br><br>
