@@ -37,7 +37,6 @@
 	(document,"script","twitter-wjs");
 	</script>
 
-    <ul>            
     	<div class="title"><a href="{% url 'post' post.id %}"><h1 style="margin-left: 45px;">{{ post.title }}</h1><hr></a>
     	</div>
 			<div class="user" style="margin-left: 45px;"><h5>Written By: <a href="{% url 'author' post.author.username %}"> {{ post.author }}</h5> </a>
@@ -64,7 +63,7 @@
 					<br><br>
 					
 					<div class="user">
-						<div class="fb-like" data-href="http://127.0.0.1:8000/blog/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true">
+						<div class="fb-like" data-href="https://blogash.herokuapp.com/blog/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true">
 							
 						</div>
 					</div><br>
@@ -115,7 +114,7 @@
 					<!-- Comment form ends here -->
 
 	    </ul>
-	</ul><br>
+	<br>
 
 
     
