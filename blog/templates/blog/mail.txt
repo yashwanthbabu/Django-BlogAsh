@@ -1,6 +1,0 @@
-Hi {{ author }}. 
-
-Your comment ' {{ body }} '  was successfully added.
-
-Thanks for commenting and please keep update with our blog.
-
