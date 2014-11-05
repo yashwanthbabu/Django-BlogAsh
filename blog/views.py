@@ -33,7 +33,8 @@ from .forms import CommentsForm, CommentForm, RegistrationForm, \
 
 
 def home(request):
-    return render_to_response("home/base.html", context_instance=RequestContext(request))
+    return render_to_response("home/base.html",
+                              context_instance=RequestContext(request))
 
 
 def post(request, post_id):
