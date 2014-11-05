@@ -64,7 +64,7 @@ def add_comment(request, post_id):
     to = [mail]
     if request.method == 'POST':
         form = CommentForm(request.POST)
-        subject = get_template('blog/mail.txt').render(Context({
+        subject = get_template('blog/comment_email.txt').render(Context({
             'author': request.POST.get("name"),
             'body': request.POST.get("body")}))
         if form.is_valid():
