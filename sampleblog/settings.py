@@ -72,6 +72,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # 'django.contrib.comments',
     # 'django.contrib.sites',
+    'analytical',
     'twitter_tag',
     'south',
     'blog',
@@ -144,6 +145,14 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.user.update_user_details',
     'social_auth.backends.pipeline.misc.save_status_to_session',
 )
+
+GOOGLE_ANALYTICS_PROPERTY_ID = 'UA-56497829-1'
+
+GOOGLE_ANALYTICS_DISPLAY_ADVERTISING = True
+
+GOOGLE_ANALYTICS_SITE_SPEED = True
+
+GOOGLE_ANALYTICS_ANONYMIZE_IP = True
 
 SESSION_IDLE_TIMEOUT = 600
 
