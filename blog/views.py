@@ -29,7 +29,7 @@ from django.shortcuts import render, render_to_response, \
 
 from .models import Post, Comment
 from .forms import CommentsForm, CommentForm, RegistrationForm, \
-    LoginForm
+    LoginForm, FeedbackForm
 
 
 def home(request):
@@ -52,6 +52,33 @@ def post(request, post_id):
         return render(request, "post.html", d,)
     except Post.DoesNotExist:
         raise Http404
+
+
+def feedback(request):
+    form = FeedbackForm(request.POST)
+    from_email = ""
+    mail = request.POST.get("email")
+    to_email = [mail, 'yashwanth@agiliq.com']
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        subject = get_template('feedback/feedback_email.txt').render(Context({
+            'name': request.POST.get("name"),
+            'email': request.POST.get("email")
+            }))
+        if form.is_valid():
+            form.save()
+            form = FeedbackForm()
+            try:
+                send_mail("Feedback", subject, from_email, to_email)
+                form = FeedbackForm()
+                messages.success(request, "Thanks for giving your Feedback")
+                return HttpResponseRedirect('/')
+            except BadHeaderError:
+                return HttpResponse("invalid header error")
+    else:
+        form = FeedbackForm()
+    return render(request, "feedback/button.html", {'form': form})
+        
 
 
 def add_comment(request, post_id):

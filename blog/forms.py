@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 
-from .models import Comment
+from .models import Comment, Feedback
 
 
 class CommentForm(ModelForm):
@@ -24,6 +24,11 @@ class CommentsForm(forms.Form):
     Body = forms.CharField(widget=forms.Textarea(
         attrs={'cols': 50, 'rows': 5,
                'class': 'form-control'}))
+
+
+class FeedbackForm(ModelForm):
+    class Meta:
+        model = Feedback
 
 
 class PostForm(forms.Form):

@@ -40,15 +40,7 @@
      });
     </script>
 </head>
-    <center>
-        {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                <font color="red" size="4">{{ message }}</font>
-                {% endfor %}
-            </div>
-        {% endif %}
-    </center>
+
 <body><br>
 	<!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-545a7a7859a1857a" async="async"></script>
@@ -61,7 +53,7 @@
 				<div class="navbar-right" style="margin-top:-40px;">
                     <a href="{% url 'home' %}" class="btn btn-default btn-sm"> HOME </a>
                     <a href="{% url 'main' %}" class="btn btn-default btn-sm" id="newtab"> BLOG </a>
-                    <a href="{% url 'contact' %}" class="btn btn-default btn-sm" id="newtab"> CONTACT ME </a>
+                    <a href="" class="btn btn-default btn-sm" id="newtab"> CONTACT ME </a>
                     <a href="{% url 'feedback' %}" class="btn btn-default btn-sm" id="newtab"> FEEDBACK </a>
                 </div>
 			</div>
@@ -69,16 +61,15 @@
 
 		<div class="row" style="background-color:#f5f5f5; margin-left:15px; margin-right:5px;">
 			<div class="col-sm-12">
-				<ul>
-				<p><font size="20" style="font-style:oblique;">HI, I am Yashwanth Babu and here is my<br> personal site.</font></p> <br>
+				<ul><fieldset><legend>
+				<p><font size="20" style="font-style:oblique;">Get in touch with me<br></font></p></legend>
 					<font size="6" style="font-style:verdana;">
-					<p>I am a Python Developer. I am Very passionate of learning and doing things in #Python and #Django. Being Creative on doing some better and good work. </p>
-					<p>I  write my experiences in my <a href="{% url 'main' %}">blog</a>.</p>
-					<p> In my leisure times, I love to play Badminton, Reading books, Building some own Reliable applications.</p>
+					<p><font color="brown">Email Me: </font><a>yashwanthbabu.gujarathi@gmail.com </a></p>
+					<p><font color="brown">Speak to me: </font><br> <i>+91 - 9160494664</i></p>
+					<p><font color="brown">Address: </font><br>Yashwanth Babu.G<br>Madhapur<br>Hyderabad. (Just a brief address)</p>
 
-				<p>Follow me <a href="https://twitter.com/TheLad_Alone" target="_blank"> @TheLad_Alone </a> on twitter
-					and <a href="https://www.facebook.com/yashwathbabu" target="_blank"> Yashwanth Babu (Gujarathi) </a> on Facebook</p>
-				</font>
+
+				</font></fieldset>
 			</ul>
 			</div>
 		</div>

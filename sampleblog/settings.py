@@ -72,6 +72,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # 'django.contrib.comments',
     # 'django.contrib.sites',
+    # 'ad_rotator',
     'analytical',
     'twitter_tag',
     'south',

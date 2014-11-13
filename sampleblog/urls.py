@@ -11,6 +11,12 @@ urlpatterns = patterns(
 
     # Home urls
     url(r'^$', 'blog.views.home', name='home'),
+    url(r'contact/',
+        TemplateView.as_view(template_name="contact/contact.html"),
+        name="contact"),
+    url(r'feedback/',
+        'blog.views.feedback',
+        name="feedback"),
 
     # Blog urls
     url(r'^blog/', 'blog.views.blog', name='main'),
