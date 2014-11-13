@@ -69,7 +69,7 @@ def feedback(request):
             form.save()
             form = FeedbackForm()
             try:
-                send_mail("Feedback", subject, from_email, to_email)
+                send_mail("Feedback Confirmation", subject, from_email, to_email)
                 form = FeedbackForm()
                 messages.success(request, "Thanks for giving your Feedback")
                 return HttpResponseRedirect('/')
