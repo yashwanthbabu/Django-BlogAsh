@@ -36,6 +36,8 @@ If you are a Admin user then you can delete either single or bulk comments.
 * Enable django admin. If not already enabled python manange.py syncdb 
 * Check out your blog at /blog/
 
+This Project is licensed under mit license. Checkout the license.md file.
+
 Enjoy the blogging application in django now.
 
 # **DEMO**
