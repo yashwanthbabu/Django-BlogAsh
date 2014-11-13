@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+    <style type="text/css">
+        #sidebar { float: right; border: 1px dotted #ccc; padding: 4px; align:right; color:green}
+    </style>
+    
+    {% block content %}
+        {% for entries in found_entries %}
+        <center>
+            <h3>You searched for "{{ query_string }}" and the results are listed below.</h3></center><br>
+            <ul>
+                {% if post_two %}
+                    {% for post in post_two %}
+                        <a href="{% url 'post' post.id %}"> <h3> ⇒{{ entries }}</h3></a>
+                    {% endfor %}
+                {% endif %}</ul>
+            {% empty %}
+            <center>
+                <h3>Oops!<br>No any results found for "{{ query_string }}" <br>
+                <center> <a href="{% url 'main' %}">&lsaquo; Back </a></center></h3></center>
+{% endfor %}
+        <!-- Next/Prev page links  -->
+        {% if not archive and posts.object_list and posts.paginator.num_pages > 1 %}
+            <div class="pagination">
+                <span class="step-links">
+                    <ul>
+                        {% if posts.has_previous %}
+                            <a href= "?page={{ posts.previous_page_number }}"><input type="submit" value="PREVIOUS" class="btn btn-error"></a>
+                        {% endif %}
+
+                        <span class="current">
+                            
+                        </span>
+
+                        {% if posts.has_next %}
+                            <a href="?page={{ posts.next_page_number }}"> <input type="submit" value="NEXT" class="btn btn-error"></a>
+                        {% endif %} <br> <br>
+                    </ul> 
+                </span>
+            </div>
+        {% endif %}<br><br>
+
+
+{% endblock %}
