@@ -1,4 +1,5 @@
 import time
+import re
 import warnings
 from calendar import month_name
 from taggit.models import Tag
@@ -19,6 +20,7 @@ from django.template.response import TemplateResponse
 from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import ugettext as _
 from django.shortcuts import resolve_url
+from django.db.models import Q
 # from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 from django.contrib.auth.tokens import default_token_generator
@@ -331,6 +333,62 @@ def forgot_password(request):
     else:
         request.POSt.get('email')
         return render(request, 'registration/password_reset_form.html')
+
+
+def normalize_query(query_string,
+                    findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
+                    normspace=re.compile(r'\s{2,}').sub):
+    ''' Splits the query string in invidual keywords, getting rid of unecessary spaces
+        and grouping quoted words together.
+        Example:
+        
+        >>> normalize_query('  some random  words "with   quotes  " and   spaces')
+        ['some', 'random', 'words', 'with quotes', 'and', 'spaces']
+    
+    '''
+    return [normspace(' ', (t[0] or t[1]).strip()) for t in findterms(query_string)] 
+
+
+def get_query(query_string, search_fields):
+    ''' Returns a query, that is a combination of Q objects. That combination
+        aims to search keywords within a model by testing the given search fields.
+    
+    '''
+    query = None # Query to search for every search term        
+    terms = normalize_query(query_string)
+    for term in terms:
+        or_query = None # Query to search for a given term in each field
+        for field_name in search_fields:
+            q = Q(**{"%s__icontains" % field_name: term})
+            if or_query is None:
+                or_query = q
+            else:
+                or_query = or_query | q
+        if query is None:
+            query = or_query
+        else:
+            query = query & or_query
+    return query
+
+
+def search(request):
+    query_string = ''
+    found_entries = None
+    tags = Tag.objects.all()
+    if ('q' in request.GET) and request.GET['q'].strip():
+        query_string = request.GET['q']
+        
+        entry_query = get_query(query_string, ['title', 'body',])
+        
+        found_entries = Post.objects.filter(entry_query).order_by('-created')
+
+    return render_to_response('search/search_results.html',
+                          { 'query_string': query_string,
+                          'found_entries': found_entries,
+                          'months': mkmonth_lst(),
+                          'tags': tags,
+                          'post_two': Post.objects.all()},
+                          context_instance=RequestContext(request))
 
 
 def reset_confirm(request, uidb64=None, token=None):

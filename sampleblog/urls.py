@@ -38,6 +38,7 @@ urlpatterns = patterns(
         name='tag_details'),
     url(r'^author/(?P<username>[\w.@+-]+)/$', 'blog.views.authorposts',
         name='author'),
+    url(r'^search/$', 'blog.views.search', name="search_results"),
     url(r'^checkout/purchaseform/',
         TemplateView.as_view(template_name="2checkout.html"),
         name="checkout_purchase"),

@@ -94,6 +94,15 @@
                 </div>
 
                 <div class="col-sm-4">
+                    <div class="sidebar" style="margin-left:50px;">
+                        <center>
+                            <form method="get" action="{% url 'search_results' %}">
+                                    <input type="text" name="q" id="id_q"/>
+                                    <input type="submit" class="btn btn-info" value="Search"/>
+                            </form>
+
+                    </center>
+                    </div><br>
                     <div class="sidebar" style="margin-left:50px; background-color:#f5f5f5;">
                         <center>
                         <font color="brown"> ARCHIVES </font><br>
