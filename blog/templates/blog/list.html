@@ -24,6 +24,9 @@
 		    		<a href="{% url 'post' post.id %}" style="margin-left: 45px;"> Continue reading ⇒ </a>
 		    	</div><br>
                 Discussions: <a href="{% url 'post' post.id %}#comments"> {{ post.comment_set.count }} comments</a>
+
+                {% empty %}
+                    No Blog posts are available yet.
             </ul>
 
             {% endfor %}
