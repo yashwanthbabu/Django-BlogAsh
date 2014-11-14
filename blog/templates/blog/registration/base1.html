@@ -57,11 +57,13 @@
                             <a href="{% url 'admin:index' %}" class="btn btn-default btn-sm">ADMIN</a>
                             <a href="{% url 'admin:blog_post_add' %}" class="btn btn-default btn-sm">ADD POST</a>
                         {% endif %}
+                    <a href="{% url 'main' %}" class="btn btn-default btn-sm" id="newtab"> BLOG </a>
+                    <a href="{% url 'contact' %}" class="btn btn-default btn-sm" id="newtab"> CONTACT ME </a>
+                    <a href="" class="btn btn-default btn-sm" id="newtab"> FEEDBACK </a>
                                 
                         {% if request.user and not request.user.is_anonymous %}
                             <a href="{% url 'auth:logout' %}" class="btn btn-default btn-sm"> LOGOUT</a> &nbsp;
-                            {% else %}
-                                <a href="{% url 'login' %}" class="btn btn-default btn-sm"> USER LOGIN</a>
+
                         {% endif %}
                     </div>
                 </div>
