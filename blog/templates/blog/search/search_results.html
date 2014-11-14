@@ -5,9 +5,9 @@
     </style>
     
     {% block content %}
+                </center><h3>You searched for "{{ query_string }}"</h3></center><br>
+
         {% for entries in found_entries %}
-        <center>
-            <h3>You searched for "{{ query_string }}" and the results are listed below.</h3></center><br>
             <ul>
                 {% if post_two %}
                     {% for post in post_two %}

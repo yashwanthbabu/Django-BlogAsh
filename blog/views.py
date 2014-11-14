@@ -379,9 +379,13 @@ def search(request):
     if ('q' in request.GET) and request.GET['q'].strip():
         query_string = request.GET['q']
         
-        entry_query = get_query(query_string, ['title', 'body',])
+        entry_query = get_query(query_string, ['body',])
         
-        found_entries = Post.objects.filter(entry_query).order_by('-created')
+        post_entries = Post.objects.filter(entry_query).order_by('-created')
+
+        comment_entries = Comment.objects.filter(entry_query).order_by('-created')
+
+        found_entries = (set(post_entries) | set(comment_entries))
 
     return render_to_response('search/search_results.html',
                           { 'query_string': query_string,
