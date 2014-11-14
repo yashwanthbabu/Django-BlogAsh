@@ -2,6 +2,8 @@ Hi {{ name }}.
 
 Just for confirmation by me, Your mail id is {{ email }}
 
+Your Feedback: {{ feedback }}
+
 Thanks for giving your valuable feedback to me. Will get back to you soon with your feedback.
 
 Thank you

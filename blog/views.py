@@ -65,7 +65,8 @@ def feedback(request):
         form = FeedbackForm(request.POST)
         subject = get_template('feedback/feedback_email.txt').render(Context({
             'name': request.POST.get("name"),
-            'email': request.POST.get("email")
+            'email': request.POST.get("email"),
+            'feedback': request.POST.get("feedback")
             }))
         if form.is_valid():
             form.save()
