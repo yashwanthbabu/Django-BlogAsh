@@ -16,7 +16,6 @@
 				<div class="user" style="margin-left: 45px;"> 
 					<h5>Written By: <a href="{%url 'author' post.author.username %}"> {{ post.author }} </a></h5> {{ post.created }}</div><br>
 				{% endif %}
-            <ul>
                 <div class="body" style="margin-left: 45px;">
 					{{ post.body|truncatewords_html:20|linebreaks }}
 				</div>
@@ -27,7 +26,6 @@
 
                 {% empty %}
                     No Blog posts are available yet.
-            </ul>
 
             {% endfor %}
         <!-- Next/Prev page links  -->
