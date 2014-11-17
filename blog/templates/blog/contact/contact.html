@@ -16,6 +16,7 @@
     </title> 
     <link rel="icon" type="image/png" href="{{STATIC_URL}}images/yashwanth.jpg"></link>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
     <script>
@@ -39,6 +40,29 @@
          window.open('/blog/','_blank');
      });
     </script>
+
+        <style>
+      #map_canvas {
+        width: 360px;
+        height: 300px;
+        background-color: #CCC;
+      }
+    </style>
+
+    <script>
+      function initialize() {
+        var mapCanvas = document.getElementById('map_canvas');
+        var mapOptions = {
+          center: new google.maps.LatLng(44.5403, -78.5463),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        var map = new google.maps.Map(map_canvas);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+      </script>
+
 </head>
 
 <body><br>
@@ -60,7 +84,7 @@
 		</div><br><br>
 
 		<div class="row" style="background-color:#f5f5f5; margin-left:15px; margin-right:5px;">
-			<div class="col-sm-12">
+			<div class="col-sm-8">
 				<ul><fieldset><legend>
 				<p><font size="20" style="font-style:oblique;">Get in touch with me<br></font></p></legend>
 					<font size="6" style="font-style:verdana;">
@@ -72,6 +96,8 @@
 				</fieldset>
 			</ul>
 			</div>
+      <div class="col-sm-4">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.4511475896747!2d78.395835!3d17.438107999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91448b25873f%3A0x492f14f79b91098!2sAgiliq+Info+Solutions+India+Pvt+Ltd%2C+Flat+No+302%2C+Siri+Sampada+Apts%2C+Near+Madhapur+Police+Station!5e0!3m2!1sen!2sin!4v1416250237518" width="360" height="400" frameborder="0" style="margin-top:100px;"></iframe>
 		</div>
 
 	</div><br>
