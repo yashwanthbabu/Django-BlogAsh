@@ -2,6 +2,8 @@ Checkout the application and use it at https://github.com/yashwanthbabu/DjangoBl
 
 [MIT License](https://github.com/yashwanthbabu/Django-BlogAsh/blob/master/license.md)
 
+https://travis-ci.org/yashwanthbabu/Django-BlogAsh.svg?branch=master
+
 # **To try it locally**
 
 * `Clone the repository.`
