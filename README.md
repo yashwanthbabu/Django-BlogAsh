@@ -47,7 +47,7 @@ If you are a Admin user then you can delete either single or bulk comments.
 Enjoy the blogging application in django now.
 
 # **DEMO**
-https://blogash.herokuapp.com/blog/
+https://blogash.herokuapp.com/
 
 # **LIVE**
 www.yashwanthbabu.in
