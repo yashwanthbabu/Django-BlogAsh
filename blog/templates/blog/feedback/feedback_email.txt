@@ -1,10 +1,7 @@
-Hi {{ name }}. 
+Hi {{ name }},
 
-Just for confirmation by me, Your mail id is {{ email }}
-
-Your Feedback: {{ feedback }}
-
-Thanks for giving your valuable feedback to me. Will get back to you soon with your feedback.
+Thank you {{ name }}. Thanks for giving your valuable feedback. Your feedback meant a lot for me. Thanks for your support at all aspects of my work. 
+Please be updated with my site and share your ideas, suggestions and raise the problems you facing with my site.
 
 Thank you
-The www.yashwanthbabu.in team
+The www.yashwanthbabu.in team.

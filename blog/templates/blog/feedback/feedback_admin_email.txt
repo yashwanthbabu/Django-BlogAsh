@@ -1,0 +1,7 @@
+Hey Yashwanth, 
+
+{{ name }} has just given feedback to your site.
+
+User mail id is {{ email }}
+
+User Feedback: {{ feedback }}

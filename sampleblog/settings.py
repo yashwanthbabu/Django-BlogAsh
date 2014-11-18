@@ -24,6 +24,8 @@ SECRET_KEY = 'abcdefghijklmnop'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+FEEDBACK_ADMIN_EMAIL = 'yashwanth@agiliq.com'
+
 TEMPLATE_DEBUG = DEBUG
 
 SITE_ID = 1

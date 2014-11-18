@@ -60,10 +60,15 @@ def feedback(request):
     form = FeedbackForm(request.POST)
     from_email = ""
     mail = request.POST.get("email")
-    to_email = [mail, 'yashwanth@agiliq.com']
+    user_email = [mail]
+    admin_email = settings.FEEDBACK_ADMIN_EMAIL
+    to_admin = [admin_email]
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
         subject = get_template('feedback/feedback_email.txt').render(Context({
+            'name': request.POST.get("name")
+            }))
+        subject_admin = get_template('feedback/feedback_admin_email.txt').render(Context({
             'name': request.POST.get("name"),
             'email': request.POST.get("email"),
             'feedback': request.POST.get("feedback")
@@ -72,7 +77,8 @@ def feedback(request):
             form.save()
             form = FeedbackForm()
             try:
-                send_mail("Feedback Confirmation", subject, from_email, to_email)
+                send_mail("Feedback Confirmation", subject, from_email, user_email)
+                send_mail("Feedback Confirmation", subject_admin, from_email, to_admin)
                 form = FeedbackForm()
                 messages.success(request, "Thanks for giving your Feedback")
                 return HttpResponseRedirect('/')
