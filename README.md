@@ -2,7 +2,7 @@ Checkout the application and use it at https://github.com/yashwanthbabu/DjangoBl
 
 [MIT License](https://github.com/yashwanthbabu/Django-BlogAsh/blob/master/license.md)
 
-https://travis-ci.org/yashwanthbabu/Django-BlogAsh.svg?branch=master
+[![Build Status](https://travis-ci.org/yashwanthbabu/Django-BlogAsh.svg?branch=master)](https://travis-ci.org/yashwanthbabu/Django-BlogAsh)
 
 # **To try it locally**
 
