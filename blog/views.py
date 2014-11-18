@@ -68,7 +68,7 @@ def feedback(request):
         subject = get_template('feedback/feedback_email.txt').render(Context({
             'name': request.POST.get("name")
             }))
-        subject_admin = get_template('feedback/feedback_admin_email.txt').render(Context({
+        admin = get_template('feedback/admin_email.txt').render(Context({
             'name': request.POST.get("name"),
             'email': request.POST.get("email"),
             'feedback': request.POST.get("feedback")
@@ -77,8 +77,16 @@ def feedback(request):
             form.save()
             form = FeedbackForm()
             try:
-                send_mail("Feedback Confirmation", subject, from_email, user_email)
-                send_mail("Feedback By User", subject_admin, from_email, to_admin)
+                send_mail("Feedback Confirmation",
+                          subject,
+                          from_email,
+                          user_email
+                          )
+                send_mail("Feedback By User",
+                          admin,
+                          from_email,
+                          to_admin
+                          )
                 form = FeedbackForm()
                 messages.success(request, "Thanks for giving your Feedback")
                 return HttpResponseRedirect('/')
@@ -87,7 +95,6 @@ def feedback(request):
     else:
         form = FeedbackForm()
     return render(request, "feedback/button.html", {'form': form})
-        
 
 
 def add_comment(request, post_id):
@@ -345,26 +352,29 @@ def forgot_password(request):
 def normalize_query(query_string,
                     findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
                     normspace=re.compile(r'\s{2,}').sub):
-    ''' Splits the query string in invidual keywords, getting rid of unecessary spaces
-        and grouping quoted words together.
-        Example:
-        
-        >>> normalize_query('  some random  words "with   quotes  " and   spaces')
+    ''' Splits the query string in invidual keywords,
+    getting rid of unecessary spaces
+    and grouping quoted words together.
+    Example:
+
+        >>> normalize_query('  some random  words "with   quotes  "
+            and   spaces')
         ['some', 'random', 'words', 'with quotes', 'and', 'spaces']
-    
     '''
-    return [normspace(' ', (t[0] or t[1]).strip()) for t in findterms(query_string)] 
+    return [normspace(' ', (t[0] or t[1]).strip())
+            for t in findterms(query_string)]
 
 
 def get_query(query_string, search_fields):
-    ''' Returns a query, that is a combination of Q objects. That combination
-        aims to search keywords within a model by testing the given search fields.
-    
+
+    ''' Returns a query, that is a combination of Q objects.
+        That combination aims to search keywords within a
+        model by testing the given search fields.
     '''
-    query = None # Query to search for every search term        
+    query = None  # Query to search for every search term
     terms = normalize_query(query_string)
     for term in terms:
-        or_query = None # Query to search for a given term in each field
+        or_query = None  # Query to search for a given term in each field
         for field_name in search_fields:
             q = Q(**{"%s__icontains" % field_name: term})
             if or_query is None:
@@ -384,22 +394,22 @@ def search(request):
     tags = Tag.objects.all()
     if ('q' in request.GET) and request.GET['q'].strip():
         query_string = request.GET['q']
-        
-        entry_query = get_query(query_string, ['body',])
-        
-        post_entries = Post.objects.filter(entry_query).order_by('-created')
 
-        comment_entries = Comment.objects.filter(entry_query).order_by('-created')
+        query = get_query(query_string, ['body', ])
+
+        post_entries = Post.objects.filter(query).order_by('-created')
+
+        comment_entries = Comment.objects.filter(query).order_by('-created')
 
         found_entries = (set(post_entries) | set(comment_entries))
 
     return render_to_response('search/search_results.html',
-                          { 'query_string': query_string,
-                          'found_entries': found_entries,
-                          'months': mkmonth_lst(),
-                          'tags': tags,
-                          'post_two': Post.objects.all()},
-                          context_instance=RequestContext(request))
+                              {'query_string': query_string,
+                               'found_entries': found_entries,
+                               'months': mkmonth_lst(),
+                               'tags': tags,
+                               'post_two': Post.objects.all()},
+                              context_instance=RequestContext(request))
 
 
 def reset_confirm(request, uidb64=None, token=None):
