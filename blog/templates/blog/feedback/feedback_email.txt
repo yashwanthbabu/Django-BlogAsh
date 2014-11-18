@@ -1,6 +1,6 @@
 Hi {{ name }},
 
-Thank you {{ name }}. Thanks for giving your valuable feedback. Your feedback meant a lot for me. Thanks for your support at all aspects of my work. 
+Thanks for giving your valuable feedback. Your feedback meant a lot for me. Thanks for your support at all aspects of my work. 
 Please be updated with my site and share your ideas, suggestions and raise the problems you facing with my site.
 
 Thank you
