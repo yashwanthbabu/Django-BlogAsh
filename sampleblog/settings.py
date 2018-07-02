@@ -64,8 +64,8 @@ SOUTH_MIGRATION_MODULES = {
 
 INSTALLED_APPS = (
     'suit',
-    'django_admin_bootstrapped.bootstrap3',
-    'django_admin_bootstrapped',
+    # 'django_admin_bootstrapped.bootstrap3',
+    # 'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,16 +77,13 @@ INSTALLED_APPS = (
     # 'ad_rotator',
     'analytical',
     'twitter_tag',
-    'south',
+    # 'south',
     'blog',
     'taggit',
-    'social_auth',
-    'password_reset',
-    'registration',
+    # 'social_auth',
+    # 'password_reset',
+    # 'registration',
     'django_extensions',
-    'django.contrib.auth',
-    'django.contrib.sessions',
-    'django.contrib.messages',
     'django-session-idle-timeout',
 )
 
@@ -175,14 +172,6 @@ TWITTER_CONSUMER_SECRET = os.environ.get('twitter_secret')
 
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'publish_actions']
 
-# Twitter Oauth credentials
-# TWITTER_USER = "TheLad_Alone"
-# TWITTER_CACHE_TIMEOUT = 600
-# TWITTER_CONSUMER_KEY = "KkJwCnVX6rrvSSljPqi5tezq3"
-# TWITTER_CONSUMER_SECRET = "j5HHkDer21cTfq3Yzl5nWypebpv20Y0Kn5SyzXHBgzna0Q2ftW"
-# TWITTER_OAUTH_TOKEN = "181107703-NIS0AQbOMpmQbaRSwYoI7oX2QYyfQbOHKPWuSR7m"
-# TWITTER_OAUTH_TOKEN_SECRET = "nv1lqg5tjxOGZSYQSNJNfScFZnG6vj1jrJ9uJZ7NaV0Rb"
-
 # Your access token: Access token
 TWITTER_OAUTH_TOKEN = '181107703-NIS0AQbOMpmQbaRSwYoI7oX2QYyfQbOHKPWuSR7m'
 # Your access token: Access token secret
@@ -210,10 +199,21 @@ WSGI_APPLICATION = 'sampleblog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'pyme',
+        'PASSWORD': 'giant1pass',
+        'USER': 'awsuser',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 # Internationalization
